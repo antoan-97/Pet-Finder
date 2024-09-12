@@ -1,4 +1,5 @@
 import './App.css'
+import Home from './components/home/Home'
 import Navbar from './components/navbar/Navbar'
 
 function App() {
@@ -6,8 +7,7 @@ function App() {
   return (
     <div className='bg-green-500' >
           <Navbar />
-
-      <h1 className="text-3xl fond-bold">Welcome to PetFinder</h1>
+          <Home />
     </div>
   )
 }
