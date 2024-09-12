@@ -1,2 +1,9 @@
 
 server/.env
+server/node_modules/.bin/nodemon
+/server/node_modules
+server/node_modules/.package-lock.json
+*.md
+*.md
+/server/node_modules
+/server/node_modules

@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -22,6 +21,9 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
+
+const petRoutes = require('./routes/petRoutes');
+app.use('/api/pets', petRoutes);
 
 // Start server
 app.listen(PORT, () => {
