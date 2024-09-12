@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 
 export default function AboutUs() {
     return (
-        <section className="bg-white py-12">
+        <section className="bg-blue-400 py-12">
             <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-4xl font-bold text-center text-blue-600 mb-8">
+                <h2 className="text-4xl font-bold text-center text-white mb-8">
                     About Us
                 </h2>
-                <p className="text-lg text-gray-700 text-center mb-6 max-w-3xl mx-auto">
+                <p className="text-lg text-white text-center mb-6 max-w-3xl mx-auto">
                     Welcome to Paw Finder, a place where you can find homeless or temporary shelter animals in need of a loving home. You can help these animals through adoption or support them with donations. Together, we can make a difference in their lives and provide them with the care they deserve.
                 </p>
 

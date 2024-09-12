@@ -5,6 +5,7 @@ import Home from './components/home/Home'
 import Navbar from './components/navbar/Navbar'
 import AboutUs from './components/aboutus/Aboutus'
 import Donate from './components/donate/Donate'
+import PetAdoptionStarterGuide from './components/guides/AdoptionGuide'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/about-us' element={<AboutUs />}></Route>
         <Route path='/donate' element={<Donate />}></Route>
+        <Route path='/guide' element={<PetAdoptionStarterGuide />}></Route>
       </Routes>
 
       <Footer />

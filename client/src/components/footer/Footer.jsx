@@ -34,6 +34,11 @@ export default function Footer() {
                                         Support Us
                                     </Link>
                                 </li>
+                                <li>
+                                    <Link to='/guide' className="hover:text-gray-300">
+                                    Pet Adoption Starter Guide
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                         <div>
