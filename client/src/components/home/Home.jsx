@@ -3,7 +3,7 @@ export default function Home() {
         <div>
 
 
-            <h1 className="text-3xl fond-bold">Find your new best friend</h1>
+            <h1 className="text-3xl fond-bold bg-blue-400 text-white">Find your new best friend</h1>
 
 
     

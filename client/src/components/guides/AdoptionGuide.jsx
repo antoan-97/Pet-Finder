@@ -1,6 +1,6 @@
 export default function PetAdoptionStarterGuide() {
     return (
-        <section className="bg-blue-400 py-12">
+        <section className="bg-blue-500 py-12">
             <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-4xl font-bold text-center text-white mb-8">
                     Pet Adoption Starter Guide

@@ -2,19 +2,19 @@ import { Link } from "react-router-dom";
 
 export default function Register() {
     return (
-        <section className="bg-blue-50 dark:bg-blue-400">
+        <section className="bg-blue-50 dark:bg-blue-500">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <Link to='/'
                     className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
                 >
                     <img
                         className="w-8 h-8 mr-2"
-                        src="images/logo2.jpg"
+                        src="images/login.logo.jpg"
                         alt="logo"
                     />
                     PawFinder
                 </Link>
-                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-blue-500 dark:border-blue-600">
+                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-blue-400 dark:border-blue-600">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Create an account
@@ -84,12 +84,11 @@ export default function Register() {
                                         className="font-light text-gray-500 dark:text-gray-300"
                                     >
                                         I accept the{" "}
-                                        <a
+                                        <Link to='/terms'
                                             className="font-medium text-blue-600 hover:underline dark:text-blue-300"
-                                            href="#"
                                         >
                                             Terms and Conditions
-                                        </a>
+                                        </Link>
                                     </label>
                                 </div>
                             </div>

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Login() {
     return (
-        <section className="bg-blue-50 dark:bg-blue-400">
+        <section className="bg-blue-50 dark:bg-blue-500">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <a
                     href="/"
@@ -10,12 +10,12 @@ export default function Login() {
                 >
                     <img
                         className="w-8 h-8 mr-2"
-                        src="images/logo2.jpg"
+                        src="images/login.logo.jpg"
                         alt="logo"
                     />
                     PawFinder
                 </a>
-                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-blue-500 dark:border-blue-600">
+                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-blue-400 dark:border-blue-600">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Sign in to your account
