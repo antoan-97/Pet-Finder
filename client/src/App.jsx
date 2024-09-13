@@ -8,6 +8,7 @@ import Donate from './components/donate/Donate'
 import PetAdoptionStarterGuide from './components/guides/AdoptionGuide'
 import Register from './components/register/Register'
 import Login from './components/Login/Login'
+import TermsOfCondition from '../../server/controllers/terms/Terms'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path='/guide' element={<PetAdoptionStarterGuide />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/terms' element={<TermsOfCondition />}></Route>
       </Routes>
 
       <Footer />
