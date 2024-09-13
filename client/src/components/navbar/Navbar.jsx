@@ -17,12 +17,14 @@ export default function Navbar() {
                     <img
                         src="images/logo2.jpg"
                         className="h-12 w-auto"
-                        alt="Flowbite Logo"
+                        alt="PawFinder Logo"
                     />
                     <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
                         PawFinder
                     </span>
                 </Link>
+
+                {/* Mobile menu button */}
                 <button
                     onClick={toggleMenu}
                     data-collapse-toggle="navbar-default"
@@ -48,41 +50,55 @@ export default function Navbar() {
                         />
                     </svg>
                 </button>
-                <div className={`${isOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`} id="navbar-default">
-                  
-        <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 justify-center">
-            <li>
-                <Link to='/'
-                    className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                    aria-current="page"
-                >
-                    Home
-                </Link>
-            </li>
-            <li>
-                <Link to='/about-us'
-                    className="block py-2 px-3 text-gray-900 rounded hover:bg-pink-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-500 md:p-0 dark:text-white "
-                >
-                    About Us
-                </Link>
-            </li>
-            <li>
-                <a
-                    href="#"
-                    className="block py-2 px-3 text-gray-900 rounded hover:bg-pink-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-500 md:p-0 dark:text-white"
-                >
-                    Find Your Pet
-                </a>
-            </li>
-            <li>
-                <Link to='/donate'
-                    className="block py-2 px-3 text-gray-900 rounded hover:bg-pink-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-500 md:p-0 dark:text-white"
-                >
-                    Donate
-                </Link>
-            </li>
-        </ul>
+
+                {/* Center navigation links */}
+                <div className={`${isOpen ? 'block' : 'hidden'} w-full md:flex md:items-center md:justify-center md:w-auto`} id="navbar-default">
+                    <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 justify-center">
+                        <li>
+                            <Link to='/'
+                                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                aria-current="page"
+                            >
+                                Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/about-us'
+                                className="block py-2 px-3 text-gray-900 rounded hover:bg-pink-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-500 md:p-0 dark:text-white"
+                            >
+                                About Us
+                            </Link>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                className="block py-2 px-3 text-gray-900 rounded hover:bg-pink-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-500 md:p-0 dark:text-white"
+                            >
+                                Find Your Pet
+                            </a>
+                        </li>
+                        <li>
+                            <Link to='/donate'
+                                className="block py-2 px-3 text-gray-900 rounded hover:bg-pink-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-500 md:p-0 dark:text-white"
+                            >
+                                Donate
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
+
+                {/* Right-aligned login/register/logout */}
+                <div className="flex items-center">
+    <Link to='/login' className="text-gray-700 hover:text-pink-500 dark:text-white px-4">
+        Login
+    </Link>
+    <Link to='/register' className="text-gray-700 hover:text-pink-500 dark:text-white px-4">
+        Register
+    </Link>
+    <Link to='/logout' className="text-gray-700 hover:text-pink-500 dark:text-white px-4">
+        Logout
+    </Link>
+</div>
             </div>
         </nav>
     );

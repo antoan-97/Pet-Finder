@@ -53,9 +53,9 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div>
-                            <h4 className="text-lg font-bold mb-4">Follow Us</h4>
+                            <h4 className="text-lg font-bold mb-4 ">Follow Us</h4>
                             <div className="flex space-x-4">
-                                <a href="https://www.facebook.com/groups/1472732316295842" className="hover:text-pink-500">
+                                <a href="https://www.facebook.com/groups/1472732316295842" className="hover:text-pink-500 ">
                                     <i className="fab fa-facebook fa-lg" />
                                 </a>
 
