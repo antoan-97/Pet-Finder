@@ -7,7 +7,7 @@ export default function Footer() {
                 rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
             />
-            <footer className="bg-blue-400 text-white py-8">
+            <footer className="bg-green-400 text-white py-8">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div>
@@ -36,7 +36,7 @@ export default function Footer() {
                                 </li>
                                 <li>
                                     <Link to='/guide' className="hover:text-gray-300">
-                                    Pet Adoption Starter Guide
+                                        Pet Adoption Starter Guide
                                     </Link>
                                 </li>
                             </ul>
@@ -66,7 +66,8 @@ export default function Footer() {
                         </div>
                     </div>
                     <div className="text-center mt-8">
-                        <p>© 2024 PawFinder. All rights reserved.</p>
+                        <Link to='/'>© 2024 PawFinder. All rights reserved.</Link>
+                        <p></p>
                     </div>
                 </div>
             </footer>

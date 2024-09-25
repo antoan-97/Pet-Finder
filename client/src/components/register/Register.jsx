@@ -14,24 +14,24 @@ export default function Register() {
                     />
                     PawFinder
                 </Link>
-                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-blue-400 dark:border-blue-600">
+                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-50 dark:border-white-50">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-gray">
                             Create an account
                         </h1>
                         <form className="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <label
                                     htmlFor="email"
-                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    className="flex mb-2 text-sm font-medium text-gray-900 dark:text-gray"
                                 >
-                                    Your email
+                                    Email
                                 </label>
                                 <input
                                     type="email"
                                     name="email"
                                     id="email"
-                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-blue-600 dark:border-blue-400 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-400 dark:focus:border-blue-400"
+                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-white dark:focus:ring-white-50 dark:focus:border-white-50"
                                     placeholder="name@company.com"
                                     required=""
                                 />
@@ -39,7 +39,7 @@ export default function Register() {
                             <div>
                                 <label
                                     htmlFor="password"
-                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    className="flex mb-2 text-sm font-medium text-gray-900 dark:text-gray"
                                 >
                                     Password
                                 </label>
@@ -48,14 +48,14 @@ export default function Register() {
                                     name="password"
                                     id="password"
                                     placeholder="••••••••"
-                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-blue-600 dark:border-blue-400 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-400 dark:focus:border-blue-400"
+                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-white dark:focus:ring-white-50 dark:focus:border-white-50"
                                     required=""
                                 />
                             </div>
                             <div>
                                 <label
                                     htmlFor="confirm-password"
-                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    className="flex mb-2 text-sm font-medium text-gray-900 dark:text-gray"
                                 >
                                     Confirm password
                                 </label>
@@ -64,7 +64,7 @@ export default function Register() {
                                     name="confirm-password"
                                     id="confirm-password"
                                     placeholder="••••••••"
-                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-blue-600 dark:border-blue-400 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-400 dark:focus:border-blue-400"
+                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-white dark:focus:ring-white-50 dark:focus:border-white-50"
                                     required=""
                                 />
                             </div>
@@ -81,11 +81,11 @@ export default function Register() {
                                 <div className="ml-3 text-sm">
                                     <label
                                         htmlFor="terms"
-                                        className="font-light text-gray-500 dark:text-gray-300"
+                                        className="font-light text-gray-500 dark:text-gray-500"
                                     >
                                         I accept the{" "}
                                         <Link to='/terms'
-                                            className="font-medium text-blue-600 hover:underline dark:text-blue-300"
+                                            className="font-medium text-blue-600 hover:underline dark:text-blue-400"
                                         >
                                             Terms and Conditions
                                         </Link>
@@ -98,10 +98,10 @@ export default function Register() {
                             >
                                 Create an account
                             </button>
-                            <p className="text-sm font-light text-gray-500 dark:text-white">
+                            <p className="text-sm font-light text-gray-500 dark:text-gray-500">
                                 Already have an account?{" "}
                                 <Link to='/login'
-                                    className="font-medium text-blue-600 hover:underline dark:text-blue-300"
+                                    className="font-medium text-blue-600 hover:underline dark:text-blue-400"
                                 >
                                     Login here
                                 </Link>

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function AboutUs() {
     return (
-        <section className="bg-blue-500 py-12">
+        <section className="bg-green-500 py-12">
             <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-4xl font-bold text-center text-white mb-8">
                     About Us
@@ -42,7 +42,7 @@ export default function AboutUs() {
 
                 <div className="text-center mt-10">
                     <Link to='/donate'
-                        className="inline-block px-6 py-3 text-white bg-pink-500 rounded-lg hover:bg-pink-600 transition duration-300 ease-in-out"
+                        className="inline-block px-6 py-3 text-white bg-blue-500 rounded-lg hover:bg-pink-600 transition duration-300 ease-in-out"
                     >
                         Support with Donation
                     </Link>
