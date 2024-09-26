@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-          'login-bg': "url('/images/dog-bg.jpg')", // Background image
+        'login-bg': "url('/images/dog-bg.webp')", // Background image
       },
     },
   },

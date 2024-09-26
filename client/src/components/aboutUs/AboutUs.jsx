@@ -14,7 +14,7 @@ export default function AboutUs() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <Link to='/' className="bg-pink-200 rounded-lg shadow-md p-4">
                         <img
-                            src="images/459158606_10161467394044451_4092756725960921795_n.jpg"
+                            src="images/459158606_10161467394044451_4092756725960921795_n.webp"
                             alt="Dog in need of adoption"
                             className="w-full h-48 object-cover rounded-lg"
                         />
@@ -27,7 +27,7 @@ export default function AboutUs() {
                     </Link>
                     <Link to='/' className="bg-pink-200 rounded-lg shadow-md p-4">
                         <img
-                            src="images/458920877_2688140651389056_8486540629879217644_n.jpg"
+                            src="images/458920877_2688140651389056_8486540629879217644_n.webp"
                             alt="Cat in need of adoption"
                             className="w-full h-48 object-cover rounded-lg"
                         />
