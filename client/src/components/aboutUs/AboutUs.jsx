@@ -12,7 +12,7 @@ export default function AboutUs() {
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <Link to='/' className="bg-pink-200 rounded-lg shadow-md p-4">
+                    <Link to='/' className="bg-pink-100 rounded-lg shadow-md p-4">
                         <img
                             src="images/459158606_10161467394044451_4092756725960921795_n.webp"
                             alt="Dog in need of adoption"
@@ -25,7 +25,7 @@ export default function AboutUs() {
                             Dogs looking for a forever home or temporary support. Adopt or donate to help them!
                         </p>
                     </Link>
-                    <Link to='/' className="bg-pink-200 rounded-lg shadow-md p-4">
+                    <Link to='/' className="bg-pink-100 rounded-lg shadow-md p-4">
                         <img
                             src="images/458920877_2688140651389056_8486540629879217644_n.webp"
                             alt="Cat in need of adoption"

@@ -35,6 +35,8 @@ export default function PetAdoptionStarterGuide() {
                     <a
                         href="https://en.wikipedia.org/wiki/Pet_adoption"
                         className="inline-block px-6 py-3 text-white bg-blue-500 rounded-lg hover:bg-pink-600 transition duration-300 ease-in-out"
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
                         Learn More About Pet Adoption
                     </a>
