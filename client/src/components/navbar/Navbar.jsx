@@ -9,7 +9,7 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="bg-white border-blue-400 dark:bg-green-400">
+        <nav className="bg-white border-green-400 dark:bg-green-400">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to='/'
                     className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -56,7 +56,7 @@ export default function Navbar() {
                     <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 justify-center">
                         <li>
                             <Link to='/'
-                                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                className="block py-2 px-3 text-gray-900 rounded hover:bg-pink-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-500 md:p-0 dark:text-white"
                                 aria-current="page"
                             >
                                 Home
@@ -91,13 +91,13 @@ export default function Navbar() {
 
                 {/* Right-aligned login/register/logout */}
                 <div className="flex items-center">
-                    <Link to='/login' className="text-gray-700 hover:text-pink-500 dark:text-white px-4">
+                    <Link to='/login' className="bg-blue-500 text-white rounded px-4 m-1 py-2 hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
                         Login
                     </Link>
-                    <Link to='/register' className="text-gray-700 hover:text-pink-500 dark:text-white px-4">
+                    <Link to='/register' className="bg-blue-500 text-white rounded px-4 m-1 py-2 hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
                         Register
                     </Link>
-                    <Link to='/logout' className="text-gray-700 hover:text-pink-500 dark:text-white px-4">
+                    <Link to='/logout' className="bg-blue-500 text-white rounded px-4 m-1 py-2 hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
                         Logout
                     </Link>
                 </div>

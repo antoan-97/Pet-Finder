@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function PetAdoptionStarterGuide() {
     return (
         <section className="bg-green-500 py-12">
@@ -34,13 +36,24 @@ export default function PetAdoptionStarterGuide() {
                 <div className="text-center">
                     <a
                         href="https://en.wikipedia.org/wiki/Pet_adoption"
-                        className="inline-block px-6 py-3 text-white bg-blue-500 rounded-lg hover:bg-pink-600 transition duration-300 ease-in-out"
+                        className="inline-block px-6 py-3 text-white bg-gradient-to-r from-pink-500 to-pink-700 rounded-lg shadow-lg hover:from-pink-600 hover:to-pink-800 transition duration-300 ease-in-out transform hover:scale-105"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
                         Learn More About Pet Adoption
                     </a>
                 </div>
+
+                <div className="text-center">
+                    <Link
+                        to='/donate'
+                        className="inline-block px-6 mt-2 py-3 text-white bg-gradient-to-r from-blue-500 to-blue-700 rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-800 transition duration-300 ease-in-out transform hover:scale-105"
+                    >
+                        Report Missing or Found Pets
+                    </Link>
+                </div>
+
+
             </div>
         </section>
     );

@@ -19,35 +19,40 @@ export default function Footer() {
                             <h4 className="text-lg font-bold mb-4">Quick Links</h4>
                             <ul className="space-y-2">
                                 <li>
-                                    <a href="#" className="hover:text-gray-300">
-                                        Our Animals
+                                    <a href="#" className="hover:text-pink-500">
+                                        Adopt a Pet
                                     </a>
                                 </li>
                                 <li>
-                                    <Link to='/guide' className="hover:text-gray-300">
-                                        Adoption Starter Guide
-                                    </Link>
+                                    <a href="#" className="hover:text-pink-500">
+                                        Lost & Found Pets
+                                    </a>
                                 </li>
                                 <li>
-                                    <Link to='about-us' className="hover:text-gray-300">
-                                        About us
+                                    <Link to='/guide' className="hover:text-pink-500">
+                                        Adoption Starter Guide
                                     </Link>
                                 </li>
                                 <a
                                     href="https://dari.four-paws.bg/s/?_ga=2.50020911.802577102.1630308141-1149300567.1591961121"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="hover:text-gray-300"
+                                    className="hover:text-pink-500"
                                 >
                                     Support Four Paws
                                 </a>
+                                <li>
+                                    <Link to='about-us' className="hover:text-pink-500">
+                                        About us
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                         <div>
                             <h4 className="text-lg font-bold mb-4">Contact Us</h4>
                             <ul className="space-y-2">
                                 <li>
-                                    <a href="mailto:pawfinder@abv.bg" className="hover:text-gray-300">
+                                    <a href="mailto:pawfinder@abv.bg" className="hover:text-pink-500">
                                         pawfinder@abv.bg
                                     </a>
                                 </li>
