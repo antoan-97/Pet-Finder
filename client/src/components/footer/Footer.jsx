@@ -33,6 +33,14 @@ export default function Footer() {
                                         About us
                                     </Link>
                                 </li>
+                                <a
+                                    href="https://dari.four-paws.bg/s/?_ga=2.50020911.802577102.1630308141-1149300567.1591961121"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-gray-300"
+                                >
+                                    Support Four Paws
+                                </a>
                             </ul>
                         </div>
                         <div>
