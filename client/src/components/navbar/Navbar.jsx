@@ -74,31 +74,33 @@ export default function Navbar() {
                                 href="#"
                                 className="block py-2 px-3 text-gray-900 rounded hover:bg-pink-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-500 md:p-0 dark:text-white"
                             >
-                                Find Your Pet
+                                Adopt a Pet
                             </a>
                         </li>
                         <li>
-                            <Link to='/donate'
+                            <a
+                                href="#"
                                 className="block py-2 px-3 text-gray-900 rounded hover:bg-pink-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-500 md:p-0 dark:text-white"
                             >
-                                Donate
-                            </Link>
+                                Lost & Found Pets
+                            </a>
                         </li>
+
                     </ul>
                 </div>
 
                 {/* Right-aligned login/register/logout */}
                 <div className="flex items-center">
-    <Link to='/login' className="text-gray-700 hover:text-pink-500 dark:text-white px-4">
-        Login
-    </Link>
-    <Link to='/register' className="text-gray-700 hover:text-pink-500 dark:text-white px-4">
-        Register
-    </Link>
-    <Link to='/logout' className="text-gray-700 hover:text-pink-500 dark:text-white px-4">
-        Logout
-    </Link>
-</div>
+                    <Link to='/login' className="text-gray-700 hover:text-pink-500 dark:text-white px-4">
+                        Login
+                    </Link>
+                    <Link to='/register' className="text-gray-700 hover:text-pink-500 dark:text-white px-4">
+                        Register
+                    </Link>
+                    <Link to='/logout' className="text-gray-700 hover:text-pink-500 dark:text-white px-4">
+                        Logout
+                    </Link>
+                </div>
             </div>
         </nav>
     );

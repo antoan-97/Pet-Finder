@@ -13,8 +13,7 @@ export default function Footer() {
                         <div>
                             <h4 className="text-lg font-bold mb-4">PawFinder</h4>
                             <p>
-                                PawFinder is your dedicated platform for finding and adopting homeless dogs and cats.
-                            </p>
+                                PawFinder is your dedicated platform for adopting homeless pets and helping reunite lost pets with their families.                            </p>
                         </div>
                         <div>
                             <h4 className="text-lg font-bold mb-4">Quick Links</h4>
@@ -25,18 +24,13 @@ export default function Footer() {
                                     </a>
                                 </li>
                                 <li>
+                                    <Link to='/guide' className="hover:text-gray-300">
+                                        Adoption Starter Guide
+                                    </Link>
+                                </li>
+                                <li>
                                     <Link to='about-us' className="hover:text-gray-300">
                                         About us
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to='/donate' className="hover:text-gray-300">
-                                        Support Us
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to='/guide' className="hover:text-gray-300">
-                                        Pet Adoption Starter Guide
                                     </Link>
                                 </li>
                             </ul>

@@ -3,7 +3,7 @@ export default function PetAdoptionStarterGuide() {
         <section className="bg-green-500 py-12">
             <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-4xl font-bold text-center text-white mb-8">
-                    Pet Adoption Starter Guide
+                    Adoption Starter Guide
                 </h2>
                 <p className="text-lg text-white text-center mb-6 max-w-3xl mx-auto">
                     Adopting a pet is a rewarding experience, but it comes with responsibilities. If you're new to caring for a dog or cat, this guide will help you get started. From preparing your home to understanding your pet’s needs, we provide tips to ensure a smooth transition for both you and your new companion.

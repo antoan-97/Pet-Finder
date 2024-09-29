@@ -22,7 +22,7 @@ export default function Register() {
                                     name="email"
                                     id="email"
                                     className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-white dark:focus:ring-white-50 dark:focus:border-white-50"
-                                    placeholder="name@company.com"
+                                    placeholder="name@example.com"
                                     required=""
                                 />
                             </div>

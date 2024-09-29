@@ -8,8 +8,7 @@ export default function AboutUs() {
                     About Us
                 </h2>
                 <p className="text-lg text-white text-center mb-6 max-w-3xl mx-auto">
-                    Welcome to Paw Finder, a place where you can find homeless or temporary shelter animals in need of a loving home. You can help these animals through adoption or support them with donations. Together, we can make a difference in their lives and provide them with the care they deserve.
-                </p>
+                    Welcome to PawFinder, a platform dedicated to helping both homeless animals and pets that have gone missing. You can find pets in need of a loving home, or help reunite lost pets with their families by posting information about missing or found pets, including location and contact details. Whether you're looking to adopt or to assist in reuniting a pet with its owner, together we can make a difference in their lives and provide the care and support they deserve.                </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <Link to='/' className="bg-pink-100 rounded-lg shadow-md p-4">
@@ -22,8 +21,7 @@ export default function AboutUs() {
                             Meet Our Dogs
                         </h3>
                         <p className="text-gray-600 mt-2 text-center">
-                            Dogs looking for a forever home or temporary support. Adopt or donate to help them!
-                        </p>
+                            Dogs looking for a forever home. Adopt one today!                        </p>
                     </Link>
                     <Link to='/' className="bg-pink-100 rounded-lg shadow-md p-4">
                         <img
@@ -35,8 +33,7 @@ export default function AboutUs() {
                             Meet Our Cats
                         </h3>
                         <p className="text-gray-600 mt-2 text-center">
-                            Cats in need of love and care. You can adopt them or offer your support through donations.
-                        </p>
+                            Cats in need of love and care. Find your new furry friend!                        </p>
                     </Link>
                 </div>
 
@@ -44,7 +41,7 @@ export default function AboutUs() {
                     <Link to='/donate'
                         className="inline-block px-6 py-3 text-white bg-blue-500 rounded-lg hover:bg-pink-600 transition duration-300 ease-in-out"
                     >
-                        Support with Donation
+                        Report Missing or Found Pets
                     </Link>
                 </div>
             </div>
