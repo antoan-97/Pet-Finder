@@ -1,6 +1,27 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Register() {
+
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        confirmPassword: '',
+    });
+
+    const onChange = (e) => {
+        setFormData(formData => ({
+            ...formData,
+            [e.target.name]: e.target.value
+        }));
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        console.log('test');
+
+    }
+
     return (
         <section className="bg-login-bg bg-cover bg-center">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -9,7 +30,7 @@ export default function Register() {
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-gray">
                             Create an account
                         </h1>
-                        <form className="space-y-4 md:space-y-6" action="#">
+                        <form onSubmit={onSubmit} className="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <label
                                     htmlFor="email"
@@ -18,10 +39,12 @@ export default function Register() {
                                     Email
                                 </label>
                                 <input
+                                    onChange={onChange}
                                     type="email"
                                     name="email"
                                     id="email"
-                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-white dark:focus:ring-white-50 dark:focus:border-white-50"
+                                    value={formData.email}
+                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-white-50 dark:focus:border-white-50"
                                     placeholder="name@example.com"
                                     required=""
                                 />
@@ -34,11 +57,13 @@ export default function Register() {
                                     Password
                                 </label>
                                 <input
+                                    onChange={onChange}
                                     type="password"
                                     name="password"
                                     id="password"
+                                    value={formData.password}
                                     placeholder="••••••••"
-                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-white dark:focus:ring-white-50 dark:focus:border-white-50"
+                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-white-50 dark:focus:border-white-50"
                                     required=""
                                 />
                             </div>
@@ -50,11 +75,13 @@ export default function Register() {
                                     Confirm password
                                 </label>
                                 <input
+                                    onChange={onChange}
                                     type="confirm-password"
-                                    name="confirm-password"
+                                    name="confirmPassword"
                                     id="confirm-password"
+                                    value={formData.confirmPassword}
                                     placeholder="••••••••"
-                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-white dark:focus:ring-white-50 dark:focus:border-white-50"
+                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-white-50 dark:focus:border-white-50"
                                     required=""
                                 />
                             </div>
