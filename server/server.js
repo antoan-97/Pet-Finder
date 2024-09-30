@@ -23,6 +23,8 @@ app.get('/', (req, res) => {
 });
 
 const petRoutes = require('./routes/petRoutes');
+const userRoutes = require('./routes/userRoutes');
+app.use('/api/users', userRoutes);
 app.use('/api/pets', petRoutes);
 
 // Start server
