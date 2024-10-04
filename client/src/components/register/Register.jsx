@@ -108,11 +108,14 @@ export default function Register() {
                                         className="font-light text-gray-500 dark:text-gray-500"
                                     >
                                         I accept the{" "}
-                                        <Link to='/terms'
-                                            className="font-medium text-blue-600 hover:underline dark:text-blue-400"
-                                        >
-                                            Terms and Conditions
-                                        </Link>
+                                        <a
+                                    href="/terms" // Link to your Terms of Service
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="font-medium text-blue-600 hover:underline dark:text-blue-400"
+                                >
+                                    Terms of Service
+                                </a>
                                     </label>
                                 </div>
                             </div>
