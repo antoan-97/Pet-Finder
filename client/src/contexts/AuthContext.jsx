@@ -2,7 +2,6 @@ import { createContext, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import Cookies from 'js-cookie'
-
 import * as api from '../services/api'
 
 const AuthContext = createContext();
@@ -65,7 +64,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logoutSubmitHandler = () => {
-        Cookies.remove('accessToken ');
+        Cookies.remove('accessToken');
         Cookies.remove('email');
         setAuth({});
         navigate('/login');

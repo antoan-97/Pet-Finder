@@ -46,4 +46,10 @@ const login = async (req, res) => {
     }
 };
 
-module.exports = { register, login };
+const logout = async (req, res) => {
+    // You can handle any server-side logout logic here, if needed.
+
+    res.status(204).send(); 
+};
+
+module.exports = { register, login, logout };

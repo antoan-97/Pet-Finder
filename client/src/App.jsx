@@ -9,6 +9,7 @@ import Register from './components/register/Register'
 import Login from './components/Login/Login'
 import TermsOfCondition from '../src/components/terms/Terms'
 import { AuthProvider } from './contexts/AuthContext'
+import Logout from './components/logout/Logout'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='/register' element={<Register />}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/terms' element={<TermsOfCondition />}></Route>
+          <Route path='/logout' element={<Logout />}></Route>
         </Routes>
       </AuthProvider>
       <Footer />
