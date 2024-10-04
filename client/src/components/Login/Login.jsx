@@ -1,14 +1,25 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 
 export default function Login() {
     const { loginSubmitHandler } = useContext(AuthContext);
 
+    const [rememberMe, setRememberMe] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
+
+    useEffect(() => {
+        // Check local storage for saved users
+        const savedEmail = localStorage.getItem('savedEmail');
+        if (savedEmail) {
+            setFormData({ email: savedEmail });
+            setRememberMe(true);
+        }
+    }, []);
+
 
     const onChange = (e) => {
         setFormData(formData => ({
@@ -17,9 +28,18 @@ export default function Login() {
         }));
     };
 
+    const onRememberMeChange = (e) => {
+        setRememberMe(e.target.checked); // Update rememberMe state based on checkbox
+    };
+
     const onSubmit = (e) => {
         e.preventDefault();
-        loginSubmitHandler(formData)
+        loginSubmitHandler(formData, rememberMe);
+        if (rememberMe) {
+            localStorage.setItem('savedEmail', formData.email); // Save only the email
+        } else {
+            localStorage.removeItem('savedEmail');
+        }
     };
     return (
         <section className="bg-login-bg bg-cover bg-center">
@@ -70,6 +90,8 @@ export default function Login() {
                                         <input
                                             id="remember"
                                             type="checkbox"
+                                            checked={rememberMe}
+                                            onChange={onRememberMeChange}
                                             className="w-4 h-4 border border-blue-300 rounded bg-blue-50 focus:ring-3 focus:ring-blue-300 dark:bg-blue-600 dark:border-blue-400 dark:focus:ring-blue-400 dark:ring-offset-blue-800"
                                             required=""
                                         />
