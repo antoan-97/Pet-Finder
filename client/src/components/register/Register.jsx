@@ -78,7 +78,7 @@ export default function Register() {
                                 </label>
                                 <input
                                     onChange={onChange}
-                                    type="confirm-password"
+                                    type="password"
                                     name="confirmPassword"
                                     id="confirm-password"
                                     value={formData.confirmPassword}

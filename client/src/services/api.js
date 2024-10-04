@@ -35,15 +35,29 @@ export const register = async (email, password) => {
 }
 // Login
 export const login = async (email, password) => {
-    try {
-        const response = await axios.post(`${baseURL}/login`, {
+    const token = getToken(); // 
+    console.log('Base URL:', baseURL); // Debugging line
+    const response = await fetch(`${baseURL}/login`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${token}`, 
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
             email,
             password,
-        });
-        return response.data;
-    } catch (error) {
-        throw new Error(error.response.data.message || 'Login failed');
+        })
+    });
+
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message);
     }
+
+    const data = await response.json();
+
+    return data; 
 };
 
 export const logout = async () => {

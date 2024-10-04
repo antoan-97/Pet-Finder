@@ -1,26 +1,35 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../../contexts/AuthContext";
 
 export default function Login() {
+    const { loginSubmitHandler } = useContext(AuthContext);
+
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
+
+    const onChange = (e) => {
+        setFormData(formData => ({
+            ...formData,
+            [e.target.name]: e.target.value
+        }));
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        loginSubmitHandler(formData)
+    };
     return (
         <section className="bg-login-bg bg-cover bg-center">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                {/* <a
-                    href="/"
-                    className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
-                >
-                    <img
-                        className="w-8 h-8 mr-2"
-                        src="/images/login.logo.jpg"
-                        alt="logo"
-                    />
-                    PawFinder
-                </a> */}
                 <div className="w-full bg-white bg-opacity-80 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-50 dark:border-white-600">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-gray">
                             Sign in to your account
                         </h1>
-                        <form className="space-y-4 md:space-y-6" action="#">
+                        <form onSubmit={onSubmit} className="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <label
                                     htmlFor="email"
@@ -28,11 +37,12 @@ export default function Login() {
                                 >
                                     Email
                                 </label>
-                                <input
+                                <input onChange={onChange}
                                     type="email"
                                     name="email"
                                     id="email"
-                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-white dark:focus:ring-white-50 dark:focus:border-white-50"
+                                    value={formData.email}
+                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-white-50 dark:focus:border-white-50"
                                     placeholder="name@example.com"
                                     required=""
                                 />
@@ -44,12 +54,13 @@ export default function Login() {
                                 >
                                     Password
                                 </label>
-                                <input
+                                <input onChange={onChange}
                                     type="password"
                                     name="password"
                                     id="password"
+                                    value={formData.password}
                                     placeholder="••••••••"
-                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-blue-400 dark:placeholder-gray-500 dark:text-white dark:focus:ring-white-50 dark:focus:border-white-50"
+                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-blue-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-white-50 dark:focus:border-white-50"
                                     required=""
                                 />
                             </div>
