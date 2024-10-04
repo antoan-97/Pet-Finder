@@ -5,7 +5,7 @@ import AuthContext from "../../contexts/AuthContext";
 export default function Register() {
 
     const { registerSubmitHandler } = useContext(AuthContext)
-
+    const [termsAccepted, setTermsAccepted] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -17,6 +17,10 @@ export default function Register() {
             ...formData,
             [e.target.name]: e.target.value
         }));
+    }
+
+    const handleCheckboxChange = (e) => {
+        setTermsAccepted(e.target.checked);
     }
 
     const onSubmit = (e) => {
@@ -93,6 +97,7 @@ export default function Register() {
                                         id="terms"
                                         aria-describedby="terms"
                                         type="checkbox"
+                                        onChange={handleCheckboxChange}
                                         className="w-4 h-4 border border-blue-300 rounded bg-blue-50 focus:ring-3 focus:ring-blue-300 dark:bg-blue-600 dark:border-blue-400 dark:focus:ring-blue-400 dark:ring-offset-blue-800"
                                         required=""
                                     />
@@ -113,7 +118,7 @@ export default function Register() {
                             </div>
                             <button
                                 type="submit"
-                                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
+                                className={`w-full text-white ${termsAccepted ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 cursor-not-allowed'} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800`}                                disabled={!termsAccepted} // Step 3: Disable button based on checkbox
                             >
                                 Create an account
                             </button>
