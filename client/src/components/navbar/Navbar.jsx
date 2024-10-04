@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../contexts/AuthContext';
 
 export default function Navbar() {
+    const { isAuthenticated } = useContext(AuthContext)
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -91,15 +93,24 @@ export default function Navbar() {
 
                 {/* Right-aligned login/register/logout */}
                 <div className="flex items-center">
-                    <Link to='/login' className="bg-blue-500 text-white rounded px-4 m-1 py-2 hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
-                        Login
-                    </Link>
-                    <Link to='/register' className="bg-blue-500 text-white rounded px-4 m-1 py-2 hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
-                        Register
-                    </Link>
-                    <Link to='/logout' className="bg-blue-500 text-white rounded px-4 m-1 py-2 hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
-                        Logout
-                    </Link>
+                    {!isAuthenticated && (
+                        <>
+                            <Link to='/login' className="bg-blue-500 text-white rounded px-4 m-1 py-2 hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
+                                Login
+                            </Link>
+                            <Link to='/register' className="bg-blue-500 text-white rounded px-4 m-1 py-2 hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
+                                Register
+                            </Link>
+                        </>
+                    )}
+                    {isAuthenticated && (
+                        <>
+                            <Link to='/logout' className="bg-blue-500 text-white rounded px-4 m-1 py-2 hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
+                                Logout
+                            </Link>
+                        </>
+                    )}
+
                 </div>
             </div>
         </nav>

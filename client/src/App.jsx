@@ -15,8 +15,8 @@ function App() {
 
   return (
     <div className='bg-blue-300' >
-      <Navbar />
       <AuthProvider>
+      <Navbar />
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/about-us' element={<AboutUs />}></Route>
