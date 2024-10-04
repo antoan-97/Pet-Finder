@@ -1,31 +1,38 @@
-import axios from 'axios'
-
-const baseUrl = import.meta.env.VITE_BASE_URL;
+const baseURL = import.meta.env.VITE_BASE_URL + '/api/users';
 //Register
 export const register = async (email, password) => {
-    try {
-        const response = await axios.post(`${baseUrl}/api/users/register`, {
+    console.log('Base URL:', baseURL); // Debugging line
+    const response = await fetch(`${baseURL}/register`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            // 'Authorization': 'Bearer 71|sbOBnrse0bTr5pwN6OWDuXG0P7WtzCmVJ9P7bu7w76a67677',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
             email,
             password,
-        });
-        return response.data
-    } catch (error) {
-        console.error('Error registering user:', error);
-        throw error;
+        })
+    })
+    if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.message)
     }
-};
 
+    const data = await response.json();
+
+    return data
+}
 // Login
 export const login = async (email, password) => {
     try {
-        const response = await axios.post(`${baseUrl}/api/users/login`, {
+        const response = await axios.post(`${baseUrl}/login`, {
             email,
             password,
         });
         return response.data;
     } catch (error) {
-        console.error('Error logging in:', error);
-        throw error;
+        throw new Error(error.response.data.message || 'Login failed');
     }
 };
 

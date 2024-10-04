@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../../contexts/AuthContext";
 
 export default function Register() {
+
+    const { registerSubmitHandler } = useContext(AuthContext)
 
     const [formData, setFormData] = useState({
         email: '',
@@ -18,8 +21,7 @@ export default function Register() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('test');
-
+        registerSubmitHandler(formData);
     }
 
     return (
