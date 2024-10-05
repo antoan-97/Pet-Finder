@@ -93,6 +93,8 @@ export const logout = async () => {
     }
 }
 
+
+
 // export const getAllPets = async () => {
 //     try {
 //         const response = await axios.get('/api');

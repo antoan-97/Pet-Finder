@@ -1,6 +1,6 @@
 const User = require('../models/User');
-const bcrypt = require('bcrypt'); 
-const jwt = require('jsonwebtoken'); 
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
     const { email, password } = req.body;
@@ -49,7 +49,8 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
     // You can handle any server-side logout logic here, if needed.
 
-    res.status(204).send(); 
+    res.status(204).send();
 };
+
 
 module.exports = { register, login, logout };

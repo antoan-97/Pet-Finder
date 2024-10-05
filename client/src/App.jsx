@@ -14,6 +14,7 @@ import TermsOfCondition from '../src/components/terms/Terms'
 import AuthGuard from './guards/AuthGuard'
 import GuestGuard from './guards/GuestGuard'
 
+
 function App() {
 
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/about-us' element={<AboutUs />}></Route>
           <Route path='/guide' element={<PetAdoptionStarterGuide />}></Route>
           <Route path='/terms' element={<TermsOfCondition />}></Route>
+
 
           <Route element={<GuestGuard />}>
             <Route path='/register' element={<Register />}></Route>
