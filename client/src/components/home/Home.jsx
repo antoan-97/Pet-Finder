@@ -1,11 +1,13 @@
 export default function Home() {
     return (
-        <div>
-
-            <h1 className="text-3xl fond-bold bg-green-400 text-white">Find your new best friend</h1>
-
-
-
+        <section className="bg-login-bg bg-cover bg-center">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+         
         </div>
+    </section>
+
+
+
+
     );
 }
