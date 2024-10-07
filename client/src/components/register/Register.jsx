@@ -31,7 +31,7 @@ export default function Register() {
     return (
         <section className="bg-login-bg bg-cover bg-center">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <div className="w-full bg-white bg-opacity-80 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-50 dark:border-white-50">
+                <div className="w-full bg-white bg-opacity-80 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-50 dark:border-white-600">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-gray">
                             Create an account
@@ -50,7 +50,7 @@ export default function Register() {
                                     name="email"
                                     id="email"
                                     value={formData.email}
-                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-white-50 dark:focus:border-white-50"
+                                    className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
                                     placeholder="name@example.com"
                                     required=""
                                 />
@@ -69,7 +69,7 @@ export default function Register() {
                                     id="password"
                                     value={formData.password}
                                     placeholder="••••••••"
-                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-white-50 dark:focus:border-white-50"
+                                    className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
                                     required=""
                                 />
                             </div>
@@ -87,7 +87,7 @@ export default function Register() {
                                     id="confirm-password"
                                     value={formData.confirmPassword}
                                     placeholder="••••••••"
-                                    className="bg-blue-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-white-50 focus:border-white-50 block w-full p-2.5 dark:bg-white-50 dark:border-white-50 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-white-50 dark:focus:border-white-50"
+                                    className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
                                     required=""
                                 />
                             </div>
@@ -98,7 +98,7 @@ export default function Register() {
                                         aria-describedby="terms"
                                         type="checkbox"
                                         onChange={handleCheckboxChange}
-                                        className="w-4 h-4 border border-blue-300 rounded bg-blue-50 focus:ring-3 focus:ring-blue-300 dark:bg-blue-600 dark:border-blue-400 dark:focus:ring-blue-400 dark:ring-offset-blue-800"
+                                        className="w-4 h-4 border border-green-300 rounded bg-green-50 focus:ring-3 focus:ring-green-300 dark:bg-green-600 dark:border-green-400 dark:focus:ring-green-400 dark:ring-offset-green-800"
                                         required=""
                                     />
                                 </div>
@@ -109,26 +109,27 @@ export default function Register() {
                                     >
                                         I accept the{" "}
                                         <a
-                                    href="/terms" // Link to your Terms of Service
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="font-medium text-blue-600 hover:underline dark:text-blue-400"
-                                >
-                                    Terms of Service
-                                </a>
+                                            href="/terms" // Link to your Terms of Service
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="font-medium text-green-600 hover:underline dark:text-green-500"
+                                        >
+                                            Terms of Service
+                                        </a>
                                     </label>
                                 </div>
                             </div>
                             <button
                                 type="submit"
-                                className={`w-full text-white ${termsAccepted ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 cursor-not-allowed'} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800`}                                disabled={!termsAccepted} // Step 3: Disable button based on checkbox
+                                className={`w-full text-white ${termsAccepted ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-400 cursor-not-allowed'} focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800`}
+                                disabled={!termsAccepted} // Step 3: Disable button based on checkbox
                             >
                                 Create an account
                             </button>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-500">
                                 Already have an account?{" "}
                                 <Link to='/login'
-                                    className="font-medium text-blue-600 hover:underline dark:text-blue-400"
+                                    className="font-medium text-green-600 hover:underline dark:text-green-500"
                                 >
                                     Login here
                                 </Link>
@@ -138,6 +139,6 @@ export default function Register() {
                 </div>
             </div>
         </section>
-
     );
+    
 }
