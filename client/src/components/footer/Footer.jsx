@@ -73,12 +73,14 @@ export default function Footer() {
                             <div className="flex space-x-4">
                                 <a
                                     href="https://www.facebook.com/groups/1472732316295842"
+                                    target="_blank"
                                     className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300"
                                 >
                                     <i className="fab fa-facebook fa-lg" />
                                 </a>
                                 <a
                                     href="https://www.instagram.com/four_paws_international/?hl=bg"
+                                    target="_blank"
                                     className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300"
                                 >
                                     <i className="fab fa-instagram fa-lg" />
