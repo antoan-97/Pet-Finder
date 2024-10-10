@@ -80,12 +80,12 @@ export default function Navbar() {
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="#"
+                            <Link to='/lost-found'
+                            
                                 className="block py-2 px-3 text-gray-700 rounded hover:bg-green-200 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white dark:hover:text-green-300"
                             >
                                 Lost & Found Pets
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

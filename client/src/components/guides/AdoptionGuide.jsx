@@ -4,7 +4,7 @@ export default function PetAdoptionStarterGuide() {
     return (
         <section className="bg-custom-gradient py-12">
             <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-4xl font-bold text-center text-green-700 mb-8">
+                <h2 className="text-4xl font-bold text-center text-white mb-8">
                     Adoption Starter Guide
                 </h2>
                 <p className="text-lg text-gray-700 text-center mb-6 max-w-3xl mx-auto leading-relaxed">

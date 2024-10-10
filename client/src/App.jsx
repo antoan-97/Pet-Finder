@@ -13,6 +13,7 @@ import Logout from './components/logout/Logout'
 import TermsOfCondition from '../src/components/terms/Terms'
 import AuthGuard from './guards/AuthGuard'
 import GuestGuard from './guards/GuestGuard'
+import LostFoundPets from './components/lost&foundPets/Lost&FoundPets'
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path='/about-us' element={<AboutUs />}></Route>
           <Route path='/guide' element={<PetAdoptionStarterGuide />}></Route>
           <Route path='/terms' element={<TermsOfCondition />}></Route>
+          <Route path='/lost-found' element={<LostFoundPets />}></Route>
 
 
           <Route element={<GuestGuard />}>
