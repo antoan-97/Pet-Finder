@@ -111,7 +111,7 @@ export default function Navbar() {
     {isAuthenticated && (
         <Link
             to='/logout'
-            className="bg-red-500 text-white rounded px-4 m-1 py-2 hover:bg-red-600 transition duration-300 ease-in-out transform hover:scale-105"
+            className="bg-green-600 text-white rounded px-4 m-1 py-2 hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
         >
             Logout
         </Link>
