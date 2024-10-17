@@ -1,4 +1,4 @@
-const baseURL = import.meta.env.VITE_BASE_URL + '/api/users';
+const baseURL = import.meta.env.VITE_BASE_URL + '/api';
 import Cookies from 'js-cookie';
 
 const getToken = () => {
@@ -12,7 +12,7 @@ const getToken = () => {
 export const register = async (email, password) => {
     const token = getToken();
     console.log('Base URL:', baseURL); // Debugging line
-    const response = await fetch(`${baseURL}/register`, {
+    const response = await fetch(`${baseURL}/users/register`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
@@ -37,7 +37,7 @@ export const register = async (email, password) => {
 export const login = async (email, password) => {
     const token = getToken(); // 
     console.log('Base URL:', baseURL); // Debugging line
-    const response = await fetch(`${baseURL}/login`, {
+    const response = await fetch(`${baseURL}/users/login`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
@@ -72,7 +72,7 @@ export const logout = async () => {
 
 
     try {
-        const response = await fetch(`${baseURL}/logout`, {
+        const response = await fetch(`${baseURL}/users/logout`, {
             method: 'POST',
             headers: headers,
         });
@@ -93,6 +93,38 @@ export const logout = async () => {
     }
 }
 
+export const addFoundPet = async (formData) => {
+    const token = getToken();
+
+    const form = new FormData();
+    form.append('kind', formData.kind);
+    form.append('location', formData.location);
+    form.append('breed', formData.breed);
+    form.append('phone', formData.phone);
+    form.append('description', formData.description);
+    form.append('image', formData.image);
+
+    try {
+        const response = await fetch(`${baseURL}/pets/addFoundPet`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+            body: form,
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Failed to submit found pet information');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error while submitting found pet:', error);
+        throw error;
+    }
+};
 
 
 // export const getAllPets = async () => {

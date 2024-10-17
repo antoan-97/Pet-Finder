@@ -1,7 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { addFoundPet } from "../../../services/api";
+import { useNavigate } from "react-router-dom";
+
 
 export default function FoundPetForm() {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         kind: '',
         location: '',
@@ -10,46 +13,34 @@ export default function FoundPetForm() {
         description: '',
         image: null,
     });
-    const [error, setError] = useState('');
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-    };
-
-    const handleFileChange = (e) => {
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            image: e.target.files[0],
+        const { name, value, files } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: files ? files[0] : value
         }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError('');
-
-        // Log the formData to check if the image is present
-        console.log('Form data before submission:', formData);
-
         try {
+            console.log('Form data before submission:', formData);
             const response = await addFoundPet(formData);
-            if (response.success) {
-                alert('Pet information submitted successfully!');
-                // Reset the form here
-                setFormData({
-                    kind: '',
-                    location: '',
-                    breed: '',
-                    phone: '',
-                    description: '',
-                    image: null,
-                });
-            } else {
-                throw new Error(response.message || 'Failed to submit pet information');
-            }
-        } catch (err) {
-            console.error('Error:', err);
-            setError(err.message || 'An error occurred while submitting the form');
+            console.log('Server response:', response);
+            navigate('/found-pets')
+            // Reset form or redirect
+            setFormData({
+                kind: '',
+                location: '',
+                breed: '',
+                phone: '',
+                description: '',
+                image: null,
+            });
+        } catch (error) {
+            console.error('Failed to report pet:', error);
+            alert(error.message || 'Failed to submit pet information. Please try again.');
         }
     };
 
@@ -62,7 +53,6 @@ export default function FoundPetForm() {
                             Add Found Pet
                         </h1>
                         <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4 md:space-y-6">
-                            {error && <p className="text-red-500">{error}</p>}
                             <div>
                                 <label className="flex mb-2 text-sm font-medium text-gray-900 dark:text-gray">Pet Kind</label>
                                 <input
@@ -99,7 +89,7 @@ export default function FoundPetForm() {
                             <div>
                                 <label className="flex mb-2 text-sm font-medium text-gray-900 dark:text-gray">Phone</label>
                                 <input
-                                    type="text"
+                                    type="tel"
                                     name="phone"
                                     value={formData.phone}
                                     onChange={handleChange}
@@ -123,7 +113,7 @@ export default function FoundPetForm() {
                                     name="image"
                                     id="image"
                                     accept="image/*"
-                                    onChange={handleFileChange}
+                                    onChange={handleChange}
                                     required
                                 />
                             </div>
