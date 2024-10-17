@@ -2,8 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const path = require('path');
 
-dotenv.config();
+// Load environment variables from .env file
+dotenv.config({ path: path.join(__dirname, '.env') });
+
+// Add this line to load Cloudinary configuration
+require('./config/cloudinary');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -27,9 +32,10 @@ app.get('/', (req, res) => {
 });
 
 const petRoutes = require('./routes/petRoutes');
+app.use('/api/pets', petRoutes);
+
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
-app.use('/api/pets', petRoutes);
 
 // Start server
 app.listen(PORT, () => {
@@ -37,3 +43,5 @@ app.listen(PORT, () => {
 });
 console.log(process.env.MONGODB_URI)
 console.log("JWT_SECRET:", process.env.JWT_SECRET); // Check if JWT_SECRET is loaded
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
