@@ -1,24 +1,44 @@
-const Pet = require('../models/Pet');
+const FoundPet = require('../models/FoundPet');
+const cloudinary = require('../config/cloudinary');
+const fs = require('fs');
+const path = require('path');
 
-// Get all pets
-const getAllPets = async (req, res) => {
+// Add found pet (with image upload to Cloudinary)
+const addFoundPet = async (req, res) => {
     try {
-        const pets = await Pet.find();
-        res.status(200).json(pets);
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch pets' });
-    }
-};
+        const { kind, location, breed, phone, description } = req.body;
+        
+        let imgUrl = '';
+        if (req.file) {
+            console.log('Uploading file:', req.file.path);
+            // Upload image to Cloudinary
+            const result = await cloudinary.uploader.upload(req.file.path, {
+                folder: 'found_pets',
+            });
+            imgUrl = result.secure_url;
 
-// Add a new pet
-const addPet = async (req, res) => {
-    try {
-        const newPet = new Pet(req.body);
+            // Delete the file from the uploads folder after uploading to Cloudinary
+            fs.unlinkSync(req.file.path);
+        } else {
+            console.log('No file uploaded');
+        }
+
+        // Create a new pet with the uploaded image URL
+        const newPet = new FoundPet({
+            kind,
+            location,
+            breed,
+            phone,
+            description,
+            imgUrl,
+        });
+
         await newPet.save();
         res.status(201).json(newPet);
     } catch (error) {
-        res.status(400).json({ error: 'Failed to add pet' });
+        console.error('Error in addFoundPet:', error);
+        res.status(400).json({ error: 'Failed to add found pet', details: error.message });
     }
 };
 
-module.exports = { getAllPets, addPet };
+module.exports = { addFoundPet };
