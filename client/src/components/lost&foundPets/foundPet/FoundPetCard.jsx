@@ -27,7 +27,7 @@ export default function FoundPetCard({ _id, kind, location, breed, phone, descri
                 <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">Description: {truncateDescription(description, 100)}</p>
                 <p className="text-gray-700 font-semibold mb-4 group-hover:text-gray-800 transition-colors duration-300">Contact: {phone}</p>
                 <Link 
-                    to={`/pet/${_id}`} 
+                    to={`/pet/${_id.toString()}`}  // Ensure _id is converted to string
                     className="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors duration-300"
                 >
                     View Details

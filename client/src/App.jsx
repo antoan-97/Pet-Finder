@@ -16,6 +16,7 @@ import GuestGuard from './guards/GuestGuard'
 import LostFoundPets from './components/lost&foundPets/Lost&FoundPets'
 import FoundPetForm from './components/lost&foundPets/foundPet/FoundPetForm'
 import FoundPetsList from './components/lost&foundPets/foundPet/FoundPetsList'
+import FoundPetDetails from './components/lost&foundPets/foundPet/details/FoundPetDetails'
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path='/lost-found' element={<LostFoundPets />}></Route>
           <Route path='/found-pets' element={<FoundPetsList />}></Route>
           <Route path='/form' element={<FoundPetForm />}></Route>
+          <Route path="/pet/:id" element={<FoundPetDetails />} />
 
 
           <Route element={<GuestGuard />}>

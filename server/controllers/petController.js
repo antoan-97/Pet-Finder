@@ -2,6 +2,7 @@ const FoundPet = require('../models/FoundPet');
 const cloudinary = require('../config/cloudinary');
 const fs = require('fs');
 const path = require('path');
+const mongoose = require('mongoose');
 
 // Add found pet (with image upload to Cloudinary)
 const addFoundPet = async (req, res) => {
@@ -51,4 +52,28 @@ const getAllPets = async (req, res) => {
     }
 };
 
-module.exports = { addFoundPet, getAllPets };  // Add getAllPets to the exports
+const getOnePet = async (req, res) => {
+    try {
+        const { id } = req.params;
+        console.log('Fetching pet with id:', id);
+
+        // Check if the id is a valid MongoDB ObjectId
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ error: 'Invalid pet ID format' });
+        }
+
+        const pet = await FoundPet.findById(id);
+        console.log('Found pet:', pet);
+
+        if (!pet) {
+            return res.status(404).json({ error: 'Pet not found' });
+        }
+
+        res.status(200).json(pet);
+    } catch (error) {
+        console.error('Error in getOnePet:', error);
+        res.status(500).json({ error: 'Failed to fetch pet', details: error.message });
+    }
+};
+
+module.exports = { addFoundPet, getAllPets, getOnePet };

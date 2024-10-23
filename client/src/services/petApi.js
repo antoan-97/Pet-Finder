@@ -58,3 +58,22 @@ export const getAll = async () => {
     const result = await response.json();
     return result;
 };
+
+export const getOne = async (id) => {
+    if (!id) {
+        throw new Error('Pet ID is required');
+    }
+    console.log('Fetching pet with ID:', id);  // Add this line for debugging
+    const response = await fetch(`${baseURL}/pets/${id}`, {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json'
+        },
+    });
+    if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+    }
+
+    const result = await response.json();
+    return result;
+};
