@@ -49,7 +49,7 @@ export default function AboutUs() {
                     </Link>
                 </div>
                 <div className="text-center mt-16">
-                    <Link to='/report'
+                    <Link to='/lost-found'
                         className="inline-block px-8 py-4 text-lg font-semibold text-white bg-green-600 rounded-full shadow-lg hover:bg-green-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                     >
                         Report Missing or Found Pets
