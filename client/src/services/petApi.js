@@ -1,6 +1,14 @@
-import { getToken } from './api';
+// import { getToken } from './api';
 
+import Cookies from 'js-cookie';
 const baseURL = import.meta.env.VITE_BASE_URL + '/api';
+
+
+export const getToken = () => {
+    const token = Cookies.get('accessToken');
+    console.log('Retrieved token:', token);
+    return token;
+};
 
 export const addFoundPet = async (formData) => {
     const token = getToken();
