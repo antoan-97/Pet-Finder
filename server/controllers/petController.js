@@ -41,4 +41,14 @@ const addFoundPet = async (req, res) => {
     }
 };
 
-module.exports = { addFoundPet };
+const getAllPets = async (req, res) => {
+    try {
+        const pets = await FoundPet.find().sort({ createdAt: -1 });  // Sort by creation date, newest first
+        res.status(200).json(pets);
+    } catch (error) {
+        console.error('Error in getAllPets:', error);
+        res.status(500).json({ error: 'Failed to fetch pets', details: error.message });
+    }
+};
+
+module.exports = { addFoundPet, getAllPets };  // Add getAllPets to the exports
