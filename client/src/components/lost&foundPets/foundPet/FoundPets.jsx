@@ -2,7 +2,7 @@ import AuthContext from "../../../contexts/AuthContext";
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import * as api from '../../../services/api';
+import * as petApi from '../../../services/petApi';
 import FoundPetCard from "./FoundPetCard";
 
 export default function FoundPets() {
@@ -10,7 +10,7 @@ export default function FoundPets() {
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
-    api.getAll()
+    petApi.getAll()
       .then(result => setPets(result))
       .catch(err => {
         console.log(err);
