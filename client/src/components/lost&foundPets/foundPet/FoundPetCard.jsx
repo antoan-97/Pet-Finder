@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 
 export default function FoundPetCard({ _id, kind, location, breed, phone, description, imgUrl }) {
+    // Function to truncate description
+    const truncateDescription = (text, maxLength) => {
+        if (text.length <= maxLength) return text;
+        return text.substr(0, maxLength) + '...';
+    };
+
     return (
         <div className="group bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
             <div className="relative h-64 overflow-hidden">
@@ -18,7 +24,7 @@ export default function FoundPetCard({ _id, kind, location, breed, phone, descri
             <div className="p-6">
                 <h4 className="text-xl font-semibold text-green-700 mb-2 group-hover:text-green-800 transition-colors duration-300">Breed: {breed} </h4>
                 <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">Location: {location}</p>
-                <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">Description: {description}</p>
+                <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">Description: {truncateDescription(description, 100)}</p>
                 <p className="text-gray-700 font-semibold mb-4 group-hover:text-gray-800 transition-colors duration-300">Contact: {phone}</p>
                 <Link 
                     to={`/pet/${_id}`} 
