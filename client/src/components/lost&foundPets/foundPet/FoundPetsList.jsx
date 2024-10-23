@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import * as petApi from '../../../services/petApi';
 import FoundPetCard from "./FoundPetCard";
 
-export default function FoundPets() {
+export default function FoundPetsList() {
   const { isAuthenticated } = useContext(AuthContext);
   const [pets, setPets] = useState([]);
 
