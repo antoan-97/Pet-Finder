@@ -11,7 +11,7 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="bg-green-100 border-b border-green-400 dark:bg-green-500">
+        <nav className="bg-green-500">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to='/'
                     className="flex items-center space-x-3 rtl:space-x-reverse"

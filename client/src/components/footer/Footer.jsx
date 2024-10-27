@@ -7,7 +7,7 @@ export default function Footer() {
                 rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
             />
-            <footer className="bg-green-100 text-green-900 dark:bg-green-500 dark:text-white py-8">
+            <footer className="bg-green-500 text-green-900 dark:text-white py-8">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {/* About PawFinder */}
