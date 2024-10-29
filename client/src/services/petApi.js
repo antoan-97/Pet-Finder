@@ -1,8 +1,15 @@
-// import { getToken } from './api';
-
+import axios from 'axios';
 import Cookies from 'js-cookie';
+
 const baseURL = import.meta.env.VITE_BASE_URL + '/api';
 
+// Create axios instance for pets
+const petApi = axios.create({
+    baseURL,
+    headers: {
+        'Content-Type': 'application/json'
+    }
+});
 
 export const getToken = () => {
     const token = Cookies.get('accessToken');
@@ -22,58 +29,42 @@ export const addFoundPet = async (formData) => {
     form.append('image', formData.image);
 
     try {
-        const response = await fetch(`${baseURL}/pets/addFoundPet`, {
-            method: 'POST',
+        const response = await petApi.post('/pets/addFoundPet', form, {
             headers: {
                 'Authorization': `Bearer ${token}`,
-            },
-            body: form,
+                'Content-Type': 'multipart/form-data' // Important for file upload
+            }
         });
-
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message || 'Failed to submit found pet information');
-        }
-
-        const data = await response.json();
-        return data;
+        return response.data;
     } catch (error) {
         console.error('Error while submitting found pet:', error);
-        throw error;
+        throw error.response?.data || error;
     }
 };
 
-
 export const getAll = async () => {
-    const response = await fetch(`${baseURL}/pets?sortBy=_createdOn desc`, {  // Changed this line
-        method: 'GET',
-        headers: {
-            'content-type': 'application/json'
-        },
-    });
-    if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
+    try {
+        const response = await petApi.get('/pets', {
+            params: {
+                sortBy: '_createdOn desc'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error('Network response was not ok ' + error.response?.statusText);
     }
-
-    const result = await response.json();
-    return result;
 };
 
 export const getOne = async (id) => {
     if (!id) {
         throw new Error('Pet ID is required');
     }
-    console.log('Fetching pet with ID:', id);  // Add this line for debugging
-    const response = await fetch(`${baseURL}/pets/${id}`, {
-        method: 'GET',
-        headers: {
-            'content-type': 'application/json'
-        },
-    });
-    if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-    }
+    console.log('Fetching pet with ID:', id);
 
-    const result = await response.json();
-    return result;
+    try {
+        const response = await petApi.get(`/pets/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error('Network response was not ok ' + error.response?.statusText);
+    }
 };
