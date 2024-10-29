@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Remove any custom background color definitions since we're using the gradient from tailwind config */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
