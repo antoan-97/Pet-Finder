@@ -9,54 +9,57 @@ export const getToken = () => {
 
 // User-related API calls (register, login, logout) stay here
 export const register = async (email, password) => {
-    const token = getToken();
-    console.log('Base URL:', baseURL); // Debugging line
-    const response = await fetch(`${baseURL}/users/register`, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-            email,
-            password,
-        })
-    })
-    if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.message)
+    try {
+        const response = await fetch(`${baseURL}/users/register`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                password,
+            })
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Registration error:', error);
+        throw error;
     }
-
-    const data = await response.json();
-
-    return data
-}
+};
 
 export const login = async (email, password) => {
-    const token = getToken(); // 
-    console.log('Base URL:', baseURL); // Debugging line
-    const response = await fetch(`${baseURL}/users/login`, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-            email,
-            password,
-        })
-    });
+    try {
+        const response = await fetch(`${baseURL}/users/login`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                password,
+            })
+        });
 
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message);
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Login error:', error);
+        throw error;
     }
-
-    const data = await response.json();
-
-    return data;
 };
 
 export const logout = async () => {

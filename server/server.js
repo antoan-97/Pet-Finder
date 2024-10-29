@@ -14,8 +14,15 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: 'http://localhost:5173', // Allow client app's origin
-  credentials: true, // If you're using cookies or sessions
+  origin: function(origin, callback) {
+    // Allow requests from localhost on ports 5173-5179
+    if (!origin || /^http:\/\/localhost:(517[3-9])$/.test(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
 
 // Middleware
@@ -45,3 +52,8 @@ console.log(process.env.MONGODB_URI)
 console.log("JWT_SECRET:", process.env.JWT_SECRET); // Check if JWT_SECRET is loaded
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Add these console logs at the start of your server.js
+console.log('Server PORT:', process.env.PORT);
+console.log('MongoDB URI:', process.env.MONGODB_URI);
+console.log('CORS Origin:', process.env.CORS_ORIGIN || 'http://localhost:5173');
