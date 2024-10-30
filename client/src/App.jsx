@@ -17,8 +17,8 @@ import LostAndFoundPets from './components/lost&foundPets/Lost&FoundPets'
 import FoundPetForm from './components/lost&foundPets/foundPet/FoundPetForm'
 import FoundPetsList from './components/lost&foundPets/foundPet/FoundPetsList'
 import FoundPetDetails from './components/lost&foundPets/foundPet/details/FoundPetDetails'
-
-
+import LostPetsList from './components/lost&foundPets/lostPet/LostPetsList'
+import LostPetForm from './components/lost&foundPets/lostPet/LostPetForm'
 function App() {
 
   return (
@@ -33,7 +33,9 @@ function App() {
             <Route path='/terms' element={<TermsOfCondition />}></Route>
             <Route path='/lost-found' element={<LostAndFoundPets />}></Route>
             <Route path='/found-pets' element={<FoundPetsList />}></Route>
-            <Route path='/form' element={<FoundPetForm />}></Route>
+            <Route path='/lost-pets' element={<LostPetsList />}></Route>
+            <Route path='/found-form' element={<FoundPetForm />}></Route>
+            <Route path='/lost-form' element={<LostPetForm />}></Route>
             <Route path="/pet/:id" element={<FoundPetDetails />} />
 
             <Route element={<GuestGuard />}>

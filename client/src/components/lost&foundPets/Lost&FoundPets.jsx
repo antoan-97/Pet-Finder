@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 
 export default function LostAndFoundPets () {
     return (
-        <section className="bg-custom-gradient h-screen py-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-5xl font-extrabold text-center text-white mb-8 tracking-tight">
+        <section className="bg-custom-gradient flex-1 py-12 px-4">
+            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-white mb-8 tracking-tight">
                     Lost & Found Pets
                 </h2>
-                <p className="text-xl text-gray-700 text-center mb-12 max-w-3xl mx-auto leading-relaxed">
-                    Choose whether you want to help find a missing pet or post about a pet you’ve found.
+                <p className="text-lg sm:text-xl text-gray-700 text-center mb-12 max-w-3xl mx-auto leading-relaxed">
+                    Choose whether you want to help find a missing pet or post about a pet you've found.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10">
                     {/* Lost Pets Card */}
                     <Link to="/lost-pets" className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-48 sm:h-64 overflow-hidden">
