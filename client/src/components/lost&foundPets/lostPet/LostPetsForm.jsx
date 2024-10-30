@@ -17,17 +17,36 @@ export default function LostPetForm() {
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: files ? files[0] : value
-        }));
+        
+        // Format the date when it's selected
+        if (name === 'lastSeenDate') {
+            const formattedDate = new Date(value);
+            formattedDate.setHours(12, 0, 0, 0); // Set to noon to avoid timezone issues
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: formattedDate.toISOString().split('T')[0] // Format as YYYY-MM-DD
+            }));
+        } else {
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: files ? files[0] : value
+            }));
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log('Form data before submission:', formData);
-            const response = await addLostPet(formData);
+            // Create a new FormData object with the formatted date
+            const submissionData = { ...formData };
+            if (submissionData.lastSeenDate) {
+                const date = new Date(submissionData.lastSeenDate);
+                date.setHours(12, 0, 0, 0); // Set to noon to avoid timezone issues
+                submissionData.lastSeenDate = date.toISOString();
+            }
+
+            console.log('Form data before submission:', submissionData);
+            const response = await addLostPet(submissionData);
             console.log('Server response:', response);
             navigate('/lost-pets')
             setFormData({
@@ -45,6 +64,9 @@ export default function LostPetForm() {
             alert(error.message || 'Failed to submit pet information. Please try again.');
         }
     }
+
+    // Get today's date for max attribute
+    const today = new Date().toISOString().split('T')[0];
 
     return (
         <section className="bg-login-bg bg-cover bg-center py-12">
@@ -99,6 +121,7 @@ export default function LostPetForm() {
                                     name="lastSeenDate"
                                     value={formData.lastSeenDate}
                                     onChange={handleChange}
+                                    max={today} // Prevent future dates
                                     className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
                                     required
                                 />

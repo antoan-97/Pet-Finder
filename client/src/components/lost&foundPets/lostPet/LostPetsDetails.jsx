@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import * as petApi from '../../../services/petApi';
+
 export default function LostPetsDetails() {
     const [pet, setPet] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { id } = useParams();
+
+    const formatDate = (dateString) => {
+        const options = { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        };
+        return new Date(dateString).toLocaleDateString('en-US', options);
+    };
 
     useEffect(() => {
         if (id) {
@@ -40,7 +52,10 @@ export default function LostPetsDetails() {
                         </div>
                     )}
                     <div className="space-y-4">
-                        <p className="text-xl"><strong className="text-green-600">Location:</strong> {pet.location}</p>
+                        <p className="text-xl"><strong className="text-green-600">Last Seen Location:</strong> {pet.lastSeenLocation}</p>
+                        <p className="text-xl">
+                            <strong className="text-green-600">Last Seen Date:</strong> {formatDate(pet.lastSeenDate)}
+                        </p>
                         <p className="text-xl"><strong className="text-green-600">Description:</strong> {pet.description}</p>
                         <p className="text-xl"><strong className="text-green-600">Contact:</strong> {pet.phone}</p>
                     </div>
