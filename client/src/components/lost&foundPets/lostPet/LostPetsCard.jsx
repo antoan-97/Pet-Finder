@@ -54,7 +54,7 @@ export default function LostPetsCard({
                     Contact: {phone}
                 </p>
                 <Link 
-                    to={`/pet/${_id.toString()}`}
+                    to={`/lost-pet/${_id.toString()}`}
                     className="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors duration-300"
                 >
                     View Details

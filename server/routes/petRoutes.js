@@ -8,6 +8,7 @@ router.post('/addFoundPet', upload.single('image'), petController.addFoundPet);
 router.post('/addLostPet', upload.single('image'), petController.addLostPet);   
 router.get('/found', petController.getAllPets);
 router.get('/lost', petController.getAllLost);
-router.get('/:id', petController.getOnePet);
+router.get('/found/:id', petController.getOneFound);
+router.get('/lost/:id', petController.getOneLost);
 
 module.exports = router;

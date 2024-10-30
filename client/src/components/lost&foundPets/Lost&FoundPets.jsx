@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function LostAndFoundPets () {
     return (
         <section className="bg-custom-gradient flex-1 min-h-screen py-12 px-4">
-            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-20">
                 <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-white mb-8 tracking-tight">
                     Lost and Found Pets
                 </h2>
@@ -49,6 +49,14 @@ export default function LostAndFoundPets () {
                                 Found a pet? Post it here and help them find their way home.
                             </p>
                         </div>
+                    </Link>
+                </div>
+
+                <div className="text-center mt-16">
+                    <Link to='/adopt'
+                        className="inline-block px-8 py-4 text-lg font-semibold text-white bg-green-600 rounded-full shadow-lg hover:bg-green-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                    >
+                        Looking to Adopt a Pet?
                     </Link>
                 </div>
             </div>

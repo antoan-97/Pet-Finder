@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import * as petApi from '../../../../services/petApi';
+import * as petApi from '../../../services/petApi';
 
 export default function FoundPetDetails() {
     const [pet, setPet] = useState(null);
@@ -10,7 +10,7 @@ export default function FoundPetDetails() {
 
     useEffect(() => {
         if (id) {
-            petApi.getOne(id)
+            petApi.getOneFound(id)
                 .then(data => {
                     setPet(data);
                     setLoading(false);

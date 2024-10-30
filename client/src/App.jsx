@@ -16,9 +16,10 @@ import GuestGuard from './guards/GuestGuard'
 import LostAndFoundPets from './components/lost&foundPets/Lost&FoundPets'
 import FoundPetForm from './components/lost&foundPets/foundPet/FoundPetForm'
 import FoundPetsList from './components/lost&foundPets/foundPet/FoundPetsList'
-import FoundPetDetails from './components/lost&foundPets/foundPet/details/FoundPetDetails'
+import FoundPetDetails from './components/lost&foundPets/foundPet/FoundPetDetails'
 import LostPetsList from './components/lost&foundPets/lostPet/LostPetsList'
-import LostPetForm from './components/lost&foundPets/lostPet/LostPetForm'
+import LostPetForm from './components/lost&foundPets/lostPet/LostPetsForm'
+import LostPetsDetails from './components/lost&foundPets/lostPet/LostPetsDetails'
 function App() {
 
   return (
@@ -36,7 +37,8 @@ function App() {
             <Route path='/lost-pets' element={<LostPetsList />}></Route>
             <Route path='/found-form' element={<FoundPetForm />}></Route>
             <Route path='/lost-form' element={<LostPetForm />}></Route>
-            <Route path="/pet/:id" element={<FoundPetDetails />} />
+            <Route path="/found-pet/:id" element={<FoundPetDetails />} />
+            <Route path="/lost-pet/:id" element={<LostPetsDetails />} />
 
             <Route element={<GuestGuard />}>
               <Route path='/register' element={<Register />}></Route>

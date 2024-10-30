@@ -94,16 +94,29 @@ export const getAllLost = async () => {
     }
 };
 
-export const getOne = async (id) => {
+export const getOneFound = async (id) => {
     if (!id) {
         throw new Error('Pet ID is required');
     }
     console.log('Fetching pet with ID:', id);
 
     try {
-        const response = await petApi.get(`/pets/${id}`);
+        const response = await petApi.get(`/pets/found/${id}`);
         return response.data;
     } catch (error) {
         throw new Error('Network response was not ok ' + error.response?.statusText);
     }
 };
+
+export const getOneLost = async (id) => {
+    if (!id) {
+        throw new Error('Pet ID is required');
+    }
+    console.log('Fetching pet with ID:', id);
+    try {
+            const response = await petApi.get(`/pets/lost/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error('Network response was not ok ' + error.response?.statusText);
+    }
+}

@@ -101,12 +101,11 @@ const getAllLost = async (req, res) => {
     }
 };
 
-const getOnePet = async (req, res) => {
+const getOneFound = async (req, res) => {
     try {
         const { id } = req.params;
-        console.log('Fetching pet with id:', id);
+        console.log('Fetching found pet with id:', id);
 
-        // Check if the id is a valid MongoDB ObjectId
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ error: 'Invalid pet ID format' });
         }
@@ -120,9 +119,32 @@ const getOnePet = async (req, res) => {
 
         res.status(200).json(pet);
     } catch (error) {
-        console.error('Error in getOnePet:', error);
-        res.status(500).json({ error: 'Failed to fetch pet', details: error.message });
+        console.error('Error in getOneFound:', error);
+        res.status(500).json({ error: 'Failed to fetch found pet', details: error.message });
     }
 };
 
-module.exports = { addFoundPet, addLostPet, getAllPets, getAllLost, getOnePet };
+const getOneLost = async (req, res) => {
+    try {
+        const { id } = req.params;
+        console.log('Fetching lost pet with id:', id);
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ error: 'Invalid pet ID format' });
+        }
+
+        const pet = await LostPet.findById(id);
+        console.log('Lost pet:', pet);
+
+        if (!pet) {
+            return res.status(404).json({ error: 'Pet not found' });
+        }
+
+        res.status(200).json(pet);
+    } catch (error) {
+        console.error('Error in getOneLost:', error);
+        res.status(500).json({ error: 'Failed to fetch lost pet', details: error.message });
+    }
+};
+
+module.exports = { addFoundPet, addLostPet, getAllPets, getAllLost, getOneFound, getOneLost };

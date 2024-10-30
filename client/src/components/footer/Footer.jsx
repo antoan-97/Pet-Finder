@@ -28,9 +28,9 @@ export default function Footer() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300">
+                                    <Link to='/lost-found' className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300">
                                         Lost & Found Pets
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <Link to='/guide' className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300">
