@@ -42,9 +42,48 @@ export const addFoundPet = async (formData) => {
     }
 };
 
-export const getAll = async () => {
+export const addLostPet = async (formData) => {
+    const token = getToken();
+    const form = new FormData();
+    form.append('name', formData.name);
+    form.append('kind', formData.kind);
+    form.append('breed', formData.breed);
+    form.append('lastSeenLocation', formData.lastSeenLocation);
+    form.append('lastSeenDate', formData.lastSeenDate);
+    form.append('phone', formData.phone);
+    form.append('description', formData.description);
+    form.append('image', formData.image); 
+
     try {
-        const response = await petApi.get('/pets', {
+        const response = await petApi.post('/pets/addLostPet', form, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error while submitting lost pet:', error);
+        throw error.response?.data || error;
+    }
+};  
+
+export const getAllFound = async () => {
+    try {
+        const response = await petApi.get('/pets/found', {
+            params: {
+                sortBy: '_createdOn desc'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error('Network response was not ok ' + error.response?.statusText);
+    }
+};
+
+export const getAllLost = async () => {
+    try {
+        const response = await petApi.get('/pets/lost', {
             params: {
                 sortBy: '_createdOn desc'
             }
