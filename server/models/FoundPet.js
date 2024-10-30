@@ -21,5 +21,5 @@ const petSchema = new mongoose.Schema({
     imgUrl: String,
 })
 
-const FoundPet = mongoose.model('Pet', petSchema)
+const FoundPet = mongoose.model('FoundPet', petSchema)
 module.exports = FoundPet
