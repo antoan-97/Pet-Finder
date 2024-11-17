@@ -11,7 +11,7 @@ export default function AdoptAPet() {
                     Choose whether you want to adopt a dog or a cat.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10">
-                    <Link to="/" className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <Link to="/dog-adoption" className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-48 sm:h-64 overflow-hidden">
                             <img
                                 src="images/dog-adoption.jpg"
@@ -30,8 +30,7 @@ export default function AdoptAPet() {
                         </div>
                     </Link>
 
-                    {/* Found Pets Card */}
-                    <Link to="/found-pets" className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <Link to="/cat-adoption" className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-48 sm:h-64 overflow-hidden">
                             <img
                                 src="images/cat-adoption.jpg"
