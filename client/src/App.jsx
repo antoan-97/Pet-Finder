@@ -21,6 +21,8 @@ import LostPetsList from './components/lost&foundPets/lostPet/LostPetsList'
 import LostPetForm from './components/lost&foundPets/lostPet/LostPetsForm'
 import LostPetsDetails from './components/lost&foundPets/lostPet/LostPetsDetails'
 import AdoptAPet from './components/adoptPet/AdoptAPet'
+import DogAdoptionList from './components/adoptPet/dogAdoption/DogAdoptionList'
+import DogAdoptionForm from './components/adoptPet/dogAdoption/DogAdoptionForm'
 function App() {
 
   return (
@@ -34,13 +36,19 @@ function App() {
             <Route path='/guide' element={<PetAdoptionStarterGuide />}></Route>
             <Route path='/terms' element={<TermsOfCondition />}></Route>
             <Route path='/lost-found' element={<LostAndFoundPets />}></Route>
-            <Route path='/found-pets' element={<FoundPetsList />}></Route>
-            <Route path='/lost-pets' element={<LostPetsList />}></Route>
-            <Route path='/found-form' element={<FoundPetForm />}></Route>
-            <Route path='/lost-form' element={<LostPetForm />}></Route>
-            <Route path="/found-pet/:id" element={<FoundPetDetails />} />
-            <Route path="/lost-pet/:id" element={<LostPetsDetails />} />
             <Route path='/adopt-pet' element={<AdoptAPet />} />
+
+            <Route path='/found-pets' element={<FoundPetsList />}></Route>
+            <Route path='/found-form' element={<FoundPetForm />}></Route>
+            <Route path="/found-pet/:id" element={<FoundPetDetails />} />
+
+            <Route path='/lost-pets' element={<LostPetsList />}></Route>
+            <Route path='/lost-form' element={<LostPetForm />}></Route>
+            <Route path="/lost-pet/:id" element={<LostPetsDetails />} />
+
+            <Route path='/dog-adoption' element={<DogAdoptionList />} />
+            <Route path='/dog-adoption-form' element={<DogAdoptionForm />}></Route>
+
 
             <Route element={<GuestGuard />}>
               <Route path='/register' element={<Register />}></Route>
