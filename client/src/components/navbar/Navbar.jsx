@@ -72,12 +72,12 @@ export default function Navbar() {
                             </Link>
                         </li>
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                to='/adopt-pet'
                                 className="block py-2 px-3 text-gray-700 rounded hover:bg-green-200 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white dark:hover:text-green-300"
                             >
                                 Adopt a Pet
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <Link to='/lost-found'
