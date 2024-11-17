@@ -41,6 +41,10 @@ app.get('/', (req, res) => {
 const petRoutes = require('./routes/petRoutes');
 app.use('/api/pets', petRoutes);
 
+const adoptionRoutes = require('./routes/adoptionRoutes');
+app.use('/api/adoption', adoptionRoutes);
+
+
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
 
