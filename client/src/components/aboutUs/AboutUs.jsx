@@ -4,10 +4,10 @@ export default function AboutUs() {
     return (
         <section className="bg-custom-gradient min-h-screen py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-                <h2 className="text-5xl font-extrabold text-center text-white mb-8 tracking-tight">
+                <h2 className="text-5xl font-comic font-bold text-center text-white mb-8 tracking-tight">
                     About Us
                 </h2>
-                <p className="text-xl text-gray-700 text-center mb-12 max-w-3xl mx-auto leading-relaxed">
+                <p className="text-xl font-comic text-gray-700 text-center mb-12 max-w-3xl mx-auto leading-relaxed">
                     Welcome to PawFinder, a platform dedicated to helping both homeless animals and pets that have gone missing. You can find pets in need of a loving home, or help reunite lost pets with their families by posting information about missing or found pets, including location and contact details. Whether you're looking to adopt or to assist in reuniting a pet with its owner, together we can make a difference in their lives and provide the care and support they deserve.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

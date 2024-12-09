@@ -19,3 +19,11 @@ body {
     display: flex;
     flex-direction: column;
 }
+@layer base {
+    p {
+      @apply font-comic;
+    }
+    h2 {
+      @apply font-comic;
+    }
+  }
