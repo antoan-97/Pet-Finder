@@ -5,19 +5,19 @@ import { Link } from "react-router-dom";
 
 import * as petApi from '../../../services/petApi';
 
-export default function LostPetsList(){
-    const { isAuthenticated } = useContext(AuthContext);
-    const [pets, setPets] = useState([]);
+export default function LostPetsList() {
+  const { isAuthenticated } = useContext(AuthContext);
+  const [pets, setPets] = useState([]);
 
-    useEffect(() => {
-        petApi.getAllLost()
-            .then(result => setPets(result))
-            .catch(err => {
-                console.log(err);
-            })
-    }, [])
+  useEffect(() => {
+    petApi.getAllLost()
+      .then(result => setPets(result))
+      .catch(err => {
+        console.log(err);
+      })
+  }, [])
 
-    return (
+  return (
     <section className="bg-custom-gradient min-h-screen py-12 overflow-y-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
         <h2 className="text-5xl font-extrabold text-center text-white mb-8 tracking-tight">

@@ -69,7 +69,7 @@ export default function LostPetForm() {
     const today = new Date().toISOString().split('T')[0];
 
     return (
-        <section className="bg-login-bg bg-cover bg-center py-12">
+        <section className="bg-login-bg bg-cover bg-center py-12 h-screen">
             <div className="container mx-auto px-4 max-w-md">
                 <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-6">
                     <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">
