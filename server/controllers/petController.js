@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
-const path = require('path');
-const fs = require('fs');
+
 const FoundPet = require('../models/FoundPet');
 const LostPet = require('../models/LostPet');
+
 const cloudinary = require('../config/cloudinary');
+const path = require('path');
+const fs = require('fs');
 
 // Add found pet (with image upload to Cloudinary)
 const addFoundPet = async (req, res) => {

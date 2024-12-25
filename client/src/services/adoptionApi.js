@@ -29,3 +29,19 @@ export const getAllDogs = async () => {
     }
 };
 
+export const addAdoptionDog = async (formData) => {
+    const token = getToken();
+    try {
+        const response = await adoptionApi.post('/adoption/addAdoptionDog', formData, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error while submitting dog for adoption:', error);
+        throw error.response?.data || error;
+    }
+};
+
