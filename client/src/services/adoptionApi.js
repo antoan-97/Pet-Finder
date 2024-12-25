@@ -18,14 +18,24 @@ export const getToken = () => {
 
 export const getAllDogs = async () => {
     try {
-        const response = adoptionApi.get('adoption/dogs', {
-            params: {
-                sortBy: '_createdOn desc'
-            }
-        });
+        console.log('Making API request to:', `${baseURL}/adoption/adoptionDog`);
+        const response = await adoptionApi.get('/adoption/adoptionDog');
+        console.log('Full API response:', response);
+        
+        if (!response.data) {
+            console.warn('No data in response:', response);
+            return [];
+        }
+        
         return response.data;
     } catch (error) {
-        throw new Error('Network response was not ok ' + error.response?.statusText);
+        console.error('API Error:', {
+            message: error.message,
+            response: error.response,
+            status: error.response?.status,
+            data: error.response?.data
+        });
+        throw error;
     }
 };
 
