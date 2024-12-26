@@ -23,6 +23,7 @@ import LostPetsDetails from './components/lost&foundPets/lostPet/LostPetsDetails
 import AdoptAPet from './components/adoptPet/AdoptAPet'
 import DogAdoptionList from './components/adoptPet/dogAdoption/DogAdoptionList'
 import DogAdoptionForm from './components/adoptPet/dogAdoption/DogAdoptionForm'
+import DogAdoptionDetails from './components/adoptPet/dogAdoption/DogAdoptionDetails'
 function App() {
 
   return (
@@ -47,8 +48,8 @@ function App() {
             <Route path="/lost-pet/:id" element={<LostPetsDetails />} />
 
             <Route path='/dog-adoption' element={<DogAdoptionList />} />
-            <Route path='/dog-adoption-form' element={<DogAdoptionForm />}></Route>
-
+            <Route path='/dog-adoption-form' element={<DogAdoptionForm />} />
+            <Route path='/adopt-dog/:id' element={<DogAdoptionDetails />} />
 
             <Route element={<GuestGuard />}>
               <Route path='/register' element={<Register />}></Route>
