@@ -17,7 +17,11 @@ const register = async (req, res) => {
         console.log("JWT_SECRET:", process.env.JWT_SECRET); // Debugging
         const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.status(201).json({ message: 'User registered successfully!', token });
+        res.status(201).json({ 
+            message: 'User registered successfully!', 
+            token,
+            userId: newUser._id
+        });
     } catch (error) {
         res.status(500).json({ message: error.message, error });
     }
@@ -40,7 +44,11 @@ const login = async (req, res) => {
         console.log("JWT_SECRET:", process.env.JWT_SECRET); // Debugging
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.status(200).json({ token, message: 'Login successful' });
+        res.status(200).json({ 
+            token, 
+            message: 'Login successful',
+            userId: user._id
+        });
     } catch (error) {
         res.status(500).json({ message: 'Error logging in', error });
     }

@@ -8,3 +8,10 @@ server/node_modules/.package-lock.json
 /server/node_modules
 /server/node_modules
 server/.env
+server/uploads/image-1735239922659.jpg
+server/uploads/image-1735239870479.jpg
+server/uploads/image-1735239969350.jpg
+server/uploads/image-1735241265041.jpg
+server/uploads/image-1735240572652.jpg
+server/uploads/image-1735240324593.jpg
+*.jpg
