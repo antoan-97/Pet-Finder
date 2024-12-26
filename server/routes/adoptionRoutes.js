@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post('/addAdoptionDog', upload.single('image'), adoptionController.addAdoptionDog);
 router.get('/adoptionDog', adoptionController.getAllDogs);
+router.get('/adoptionDog/:id', adoptionController.getOneAdoptionDog);
 
 
 module.exports = router
