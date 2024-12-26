@@ -11,14 +11,17 @@ export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(() => {
         const accessToken = Cookies.get('accessToken');
         const email = Cookies.get('email');
-        return accessToken  && email ? { accessToken , email } : {};
+        const userId = Cookies.get('userId');
+        return accessToken && email ? { accessToken, email, userId } : {};
     });
 
     const registerSubmitHandler = async (values) => {
         try {
             const result = await api.register(values.email, values.password);
 
-            const accessToken = result.token; // Assuming the token is returned here
+            const accessToken = result.token;
+            const userId = result.userId;
+            
             Cookies.set('accessToken', accessToken, {
                 expires: 1,
                 secure: true,
@@ -29,10 +32,14 @@ export const AuthProvider = ({ children }) => {
                 secure: true,
                 sameSite: 'Strict'
             });
-            setAuth({ accessToken, email: values.email });
-
+            Cookies.set('userId', userId, {
+                expires: 1,
+                secure: true,
+                sameSite: 'Strict'
+            });
+            
+            setAuth({ accessToken, email: values.email, userId });
             navigate('/');
-            console.log('Registration successful:', result);
         } catch (error) {
             console.error('Registration failed:', error.message);
         }
@@ -43,6 +50,8 @@ export const AuthProvider = ({ children }) => {
             const result = await api.login(values.email, values.password);
 
             const accessToken = result.token;
+            const userId = result.userId;
+            
             Cookies.set('accessToken', accessToken, {
                 expires: 1,
                 secure: true,
@@ -53,9 +62,13 @@ export const AuthProvider = ({ children }) => {
                 secure: true,
                 sameSite: 'Strict'
             });
+            Cookies.set('userId', userId, {
+                expires: 1,
+                secure: true,
+                sameSite: 'Strict'
+            });
 
-            setAuth({ accessToken, email: values.email });
-            console.log('Login successful:', result);
+            setAuth({ accessToken, email: values.email, userId });
             navigate('/');
         } catch (error) {
             setAuth({});
@@ -66,6 +79,7 @@ export const AuthProvider = ({ children }) => {
     const logoutSubmitHandler = () => {
         Cookies.remove('accessToken');
         Cookies.remove('email');
+        Cookies.remove('userId');
         setAuth({});
         navigate('/login');
     };
@@ -75,6 +89,7 @@ export const AuthProvider = ({ children }) => {
         loginSubmitHandler,
         logoutSubmitHandler,
         email: auth?.email || null,
+        userId: auth?.userId || null,
         isAuthenticated: !!auth.accessToken,
     };
 
