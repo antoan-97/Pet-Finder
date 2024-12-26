@@ -17,6 +17,17 @@ const getAllDogs = async (req, res) => {
 
     }
 }
+
+const getOneAdoptionDog = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const pet = await AdoptionDog.findById(id);
+        res.status(200).json(pet);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch adoption dog', details: error.message });
+    }
+};
+
 const addAdoptionDog = async (req, res) => {
     try {
         const { name, breed, age, location, description } = req.body;
@@ -56,5 +67,6 @@ const addAdoptionDog = async (req, res) => {
 
 module.exports = {
     getAllDogs,
-    addAdoptionDog
+    addAdoptionDog,
+    getOneAdoptionDog
 }
