@@ -39,6 +39,21 @@ export const getAllDogs = async () => {
     }
 };
 
+export const getOneDog = async (id) => {
+    const token = getToken();
+    try {
+        const response = await adoptionApi.get(`/adoption/adoptionDog/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching dog details:', error);
+        throw error;
+    }
+};
+
 export const addAdoptionDog = async (formData) => {
     const token = getToken();
     try {
