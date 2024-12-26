@@ -67,7 +67,7 @@ export default function DogAdoptionList() {
               <DogAdoptionCard key={pet._id} {...pet} />
             ))
           ) : (
-            <div className="col-span-full text-center text-white text-xl">
+            <div className="col-span-full text-center text-blackL text-xl">
               No dogs available for adoption at the moment.
             </div>
           )}
