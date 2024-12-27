@@ -47,7 +47,7 @@ export default function PetAdoptionStarterGuide() {
     
                 <div className="text-center">
                     <Link
-                        to='/donate'
+                        to='/lost-found'
                         className="inline-block px-6 mt-2 py-3 text-white bg-gradient-to-r from-green-500 to-green-600 rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 transition duration-300 ease-in-out transform hover:scale-105"
                     >
                         Report Missing or Found Pets
