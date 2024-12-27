@@ -30,24 +30,19 @@ const getOneAdoptionDog = async (req, res) => {
 
 const addAdoptionDog = async (req, res) => {
     try {
-        const { name, breed, age, location, description } = req.body;
+        const { name, breed, age, location, description, ownerId } = req.body;
+        console.log('Received ownerId:', ownerId); // Debug log
 
         let imgUrl = '';
         if (req.file) {
-            console.log('Uploading file:', req.file.path);
-            // Upload image to Cloudinary
             const result = await cloudinary.uploader.upload(req.file.path, {
                 folder: 'adoption_dogs',
             });
             imgUrl = result.secure_url;
-
-            // Delete the file from the uploads folder after uploading to Cloudinary
             fs.unlinkSync(req.file.path);
-        } else {
-            console.log('No file uploaded');
         }
 
-        // Create a new pet with the uploaded image URL
+        // Create new dog with ownerId
         const newPet = new AdoptionDog({
             name,
             breed,
@@ -55,15 +50,20 @@ const addAdoptionDog = async (req, res) => {
             location,
             description,
             imgUrl,
+            ownerId, // Make sure this field exists in your schema
+            adopted: false
         });
 
-        await newPet.save();
-        res.status(201).json(newPet);
+        console.log('New pet before save:', newPet); // Debug log
+        const savedPet = await newPet.save();
+        console.log('Saved pet:', savedPet); // Debug log
+
+        res.status(201).json(savedPet);
     } catch (error) {
         console.error('Error in addAdoptionDog:', error);
         res.status(400).json({ error: 'Failed to add adopted dog', details: error.message });
     }
-}
+};
 
 module.exports = {
     getAllDogs,

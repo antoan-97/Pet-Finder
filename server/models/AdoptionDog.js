@@ -22,6 +22,10 @@ const petSchema = new mongoose.Schema({
     adopted: {
         type: Boolean,
         default: false
+    },
+    ownerId: {
+        type: String,
+        required: true
     }
 })
 
