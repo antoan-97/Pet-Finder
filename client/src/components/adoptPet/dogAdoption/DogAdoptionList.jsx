@@ -14,17 +14,13 @@ export default function DogAdoptionList() {
     const fetchDogs = async () => {
       try {
         setLoading(true);
-        console.log('Starting to fetch dogs...');
         const result = await adoptionApi.getAllDogs();
-        console.log('Raw API response:', result);
         
         if (!result) {
           console.log('No data received from API');
           return;
         }
-        
         setPets(result);
-        console.log('Dogs set in state:', result);
       } catch (err) {
         console.error('Error details:', {
           message: err.message,

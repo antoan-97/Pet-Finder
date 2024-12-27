@@ -30,7 +30,6 @@ export default function DogAdoptionDetails() {
     if (!pet) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">No pet found</div>;
 
     const isOwner = userId === pet?.ownerId;
-    console.log(isOwner, 'test');
 
     return (
         <div className="bg-custom-gradient min-h-screen py-12 px-4 sm:px-6 lg:px-8">

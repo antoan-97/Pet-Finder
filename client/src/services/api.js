@@ -15,7 +15,6 @@ const authApi = axios.create({
 
 export const getToken = () => {
     const token = Cookies.get('accessToken');
-    console.log('Retrieved token:', token);
     return token;
 };
 

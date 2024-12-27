@@ -45,9 +45,7 @@ export default function LostPetForm() {
                 submissionData.lastSeenDate = date.toISOString();
             }
 
-            console.log('Form data before submission:', submissionData);
             const response = await addLostPet(submissionData);
-            console.log('Server response:', response);
             navigate('/lost-pets')
             setFormData({
                 name: '',

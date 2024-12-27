@@ -24,9 +24,7 @@ export default function FoundPetForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log('Form data before submission:', formData);
             const response = await addFoundPet(formData);
-            console.log('Server response:', response);
             navigate('/found-pets')
             setFormData({
                 kind: '',

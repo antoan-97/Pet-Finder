@@ -14,7 +14,6 @@ const addFoundPet = async (req, res) => {
 
         let imgUrl = '';
         if (req.file) {
-            console.log('Uploading file:', req.file.path);
             // Upload image to Cloudinary
             const result = await cloudinary.uploader.upload(req.file.path, {
                 folder: 'found_pets',
@@ -50,7 +49,6 @@ const addLostPet = async (req, res) => {
 
         let imgUrl = '';
         if (req.file) {
-            console.log('Uploading file:', req.file.path);
             // Upload image to Cloudinary
             const result = await cloudinary.uploader.upload(req.file.path, {
                 folder: 'lost_pets',
@@ -106,15 +104,11 @@ const getAllLost = async (req, res) => {
 const getOneFound = async (req, res) => {
     try {
         const { id } = req.params;
-        console.log('Fetching found pet with id:', id);
-
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ error: 'Invalid pet ID format' });
         }
 
         const pet = await FoundPet.findById(id);
-        console.log('Found pet:', pet);
-
         if (!pet) {
             return res.status(404).json({ error: 'Pet not found' });
         }
@@ -129,15 +123,11 @@ const getOneFound = async (req, res) => {
 const getOneLost = async (req, res) => {
     try {
         const { id } = req.params;
-        console.log('Fetching lost pet with id:', id);
-
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ error: 'Invalid pet ID format' });
         }
 
         const pet = await LostPet.findById(id);
-        console.log('Lost pet:', pet);
-
         if (!pet) {
             return res.status(404).json({ error: 'Pet not found' });
         }

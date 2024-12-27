@@ -31,8 +31,6 @@ const getOneAdoptionDog = async (req, res) => {
 const addAdoptionDog = async (req, res) => {
     try {
         const { name, breed, age, location, description, ownerId } = req.body;
-        console.log('Received ownerId:', ownerId); // Debug log
-
         let imgUrl = '';
         if (req.file) {
             const result = await cloudinary.uploader.upload(req.file.path, {
@@ -53,11 +51,7 @@ const addAdoptionDog = async (req, res) => {
             ownerId, // Make sure this field exists in your schema
             adopted: false
         });
-
-        console.log('New pet before save:', newPet); // Debug log
         const savedPet = await newPet.save();
-        console.log('Saved pet:', savedPet); // Debug log
-
         res.status(201).json(savedPet);
     } catch (error) {
         console.error('Error in addAdoptionDog:', error);

@@ -52,9 +52,6 @@ app.use('/api/users', userRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-console.log(process.env.MONGODB_URI)
-console.log("JWT_SECRET:", process.env.JWT_SECRET); // Check if JWT_SECRET is loaded
-
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Add these console logs at the start of your server.js

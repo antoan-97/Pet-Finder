@@ -12,7 +12,6 @@ export default function Logout() {
         api.logout()
             .then(() => {
                 logoutSubmitHandler()
-                console.log("Logout successful");
                 navigate('/login'); // Redirect to login after successful logout
             })
             .catch((error) => {

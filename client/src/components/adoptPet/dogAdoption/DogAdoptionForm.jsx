@@ -6,7 +6,6 @@ import  AuthContext  from "../../../contexts/AuthContext";
 export default function DogAdoptionForm() {
     const navigate = useNavigate()
     const { userId } = useContext(AuthContext);
-    console.log('Form - Current userId:', userId);
 
     const [formData, setFormData] = useState({
         name: '',
@@ -47,7 +46,6 @@ export default function DogAdoptionForm() {
          
 
             const response = await adoptionApi.addAdoptionDog(form);
-            console.log('Server response:', response);
             navigate('/dog-adoption');
         } catch (error) {
             console.error('Failed to submit dog for adoption:', error);
