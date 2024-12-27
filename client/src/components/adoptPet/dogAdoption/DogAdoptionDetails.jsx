@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
+
 import * as adoptionApi from '../../../services/adoptionApi';
+import AuthContext from '../../../contexts/AuthContext';
 
 export default function DogAdoptionDetails() {
+    const { userId } = useContext(AuthContext);
     const [pet, setPet] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -26,6 +29,9 @@ export default function DogAdoptionDetails() {
     if (error) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Error: {error}</div>;
     if (!pet) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">No pet found</div>;
 
+    const isOwner = userId === pet?.ownerId;
+    console.log(isOwner, 'test');
+
     return (
         <div className="bg-custom-gradient min-h-screen py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto rounded-xl shadow-2xl overflow-hidden">
@@ -43,14 +49,14 @@ export default function DogAdoptionDetails() {
                 </div>
             </div>
             <div className="space-y-4">
-                        <p className="text-xl"><strong className="text-black">Breed:</strong> {pet.breed}</p>
-                        <p className="text-xl">
-                            <strong className="text-black">Age:</strong> {pet.age}  
-                        </p>
-                        <p className="text-xl"><strong className="text-black">Location:</strong> {pet.location}</p>
-                        <p className="text-xl"><strong className="text-black">Description:</strong> {pet.description}</p>
-                        <p className="text-xl"><strong className="text-black">Contact:</strong> {pet.phone}</p>
-                    </div>
+                <p className="text-xl"><strong className="text-black">Breed:</strong> {pet.breed}</p>
+                <p className="text-xl">
+                    <strong className="text-black">Age:</strong> {pet.age}
+                </p>
+                <p className="text-xl"><strong className="text-black">Location:</strong> {pet.location}</p>
+                <p className="text-xl"><strong className="text-black">Description:</strong> {pet.description}</p>
+                <p className="text-xl"><strong className="text-black">Contact:</strong> {pet.phone}</p>
+            </div>
             <div className="mt-8 flex justify-center">
                 <Link
                     to="/dog-adoption"
@@ -59,6 +65,26 @@ export default function DogAdoptionDetails() {
                     Back to Adoption Dogs
                 </Link>
             </div>
+            {isOwner && (
+                <div className="mt-8 flex justify-center">
+                    <Link
+                        to={`/dog-adoption/${pet._id}/edit`}
+                        className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
+                    >
+                        Edit
+                    </Link>
+                </div>
+            )}
+            {isOwner && (
+                <div className="mt-8 flex justify-center">
+                    <button
+                        // onClick={handleDelete}
+                        className="bg-red-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-md hover:shadow-lg"
+                    >
+                        Delete
+                    </button>
+                </div>
+            )}
         </div>
     );
 }
