@@ -66,10 +66,10 @@ export const addAdoptionDog = async (formData) => {
     }
 };
 
-export const deleteAdoptionDog = async (dogId) => {
+export const deleteAdoptionDog = async (id) => {
     const token = getToken();
     try {
-        const response = await adoptionApi.delete(`/adoption/adoptionDog/${dogId}`, {
+        const response = await adoptionApi.delete(`/adoption/adoptionDog/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

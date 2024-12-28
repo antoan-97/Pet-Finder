@@ -59,8 +59,31 @@ const addAdoptionDog = async (req, res) => {
     }
 };
 
+const deleteAdoptionDog = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const dog = await AdoptionDog.findById(id);
+        
+        if (!dog) {
+            return res.status(404).json({ error: 'Dog not found' });
+        }
+
+        // Optional: Check if the user is the owner
+        // if (dog.ownerId !== req.user.id) {
+        //     return res.status(403).json({ error: 'Not authorized' });
+        // }
+
+        await AdoptionDog.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Dog deleted successfully' });
+    } catch (error) {
+        console.error('Error in deleteAdoptionDog:', error);
+        res.status(500).json({ error: 'Failed to delete dog', details: error.message });
+    }
+};
+
 module.exports = {
     getAllDogs,
     addAdoptionDog,
-    getOneAdoptionDog
+    getOneAdoptionDog,
+    deleteAdoptionDog
 }
