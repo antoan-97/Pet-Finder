@@ -65,17 +65,13 @@ export default function DogAdoptionDetails() {
                 </Link>
             </div>
             {isOwner && (
-                <div className="mt-8 flex justify-center">
+                <div className="mt-8 flex justify-center gap-2">
                     <Link
                         to={`/dog-adoption/${pet._id}/edit`}
                         className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
                     >
                         Edit
                     </Link>
-                </div>
-            )}
-            {isOwner && (
-                <div className="mt-8 flex justify-center">
                     <button
                         // onClick={handleDelete}
                         className="bg-red-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-md hover:shadow-lg"
