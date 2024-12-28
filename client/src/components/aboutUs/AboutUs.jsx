@@ -11,7 +11,7 @@ export default function AboutUs() {
                     Welcome to PawFinder, a platform dedicated to helping both homeless animals and pets that have gone missing. You can find pets in need of a loving home, or help reunite lost pets with their families by posting information about missing or found pets, including location and contact details. Whether you're looking to adopt or to assist in reuniting a pet with its owner, together we can make a difference in their lives and provide the care and support they deserve.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <Link to='/' className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <Link to='/dog-adoption' className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-64 overflow-hidden">
                             <img
                                 src="images/459158606_10161467394044451_4092756725960921795_n.webp"
