@@ -17,7 +17,7 @@ export default function DogAdoptionCard({
     };
 
     return (
-        <div className="group bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+        <div className="group bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full flex flex-col">
             <div className="relative h-64 overflow-hidden">
                 {imgUrl && (
                     <>
@@ -37,24 +37,26 @@ export default function DogAdoptionCard({
                     {adopted ? 'Adopted' : 'Looking for a Home'}
                 </div>
             </div>
-            <div className="p-6">
-                <h4 className="text-xl font-semibold text-green-700 mb-2 group-hover:text-green-800 transition-colors duration-300">
-                    {name}
-                </h4>
-                <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                    Breed: {breed}
-                </p>
-                <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                    Age: {age}
-                </p>
-                {description && (
-                    <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
-                        Description: {truncateDescription(description, 100)}
+            <div className="p-6 flex flex-col flex-grow">
+                <div className="flex-grow">
+                    <h4 className="text-xl font-semibold text-green-700 mb-2 group-hover:text-green-800 transition-colors duration-300">
+                        {name}
+                    </h4>
+                    <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
+                        Breed: {breed}
                     </p>
-                )}
+                    <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
+                        Age: {age}
+                    </p>
+                    {description && (
+                        <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
+                            Description: {truncateDescription(description, 100)}
+                        </p>
+                    )}
+                </div>
                 <Link 
                     to={`/adopt-dog/${_id.toString()}`}
-                    className="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors duration-300"
+                    className="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors duration-300 mt-auto"
                 >
                     View Details
                 </Link>
