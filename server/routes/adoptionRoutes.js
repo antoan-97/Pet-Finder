@@ -1,7 +1,8 @@
 const express = require('express');
-const adoptionController = require('../controllers/adoptionController');
 const upload = require('../middlewares/multer');
 const { image } = require('../config/cloudinary');
+
+const adoptionController = require('../controllers/adoptionController');
 
 const router = express.Router();
 

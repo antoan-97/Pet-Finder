@@ -1,14 +1,16 @@
 const express = require('express');
-const petController = require('../controllers/petController')
 const upload = require('../middlewares/multer');
 
-const router = express.Router();
+const petController = require('../controllers/petController')
 
-router.post('/addFoundPet', upload.single('image'), petController.addFoundPet);
+const router = express.Router();
+//lost pets
 router.post('/addLostPet', upload.single('image'), petController.addLostPet);   
-router.get('/found', petController.getAllFound);
-router.get('/lost', petController.getAllLost);
-router.get('/found/:id', petController.getOneFound);
 router.get('/lost/:id', petController.getOneLost);
+router.get('/lost', petController.getAllLost);
+//found pets
+router.post('/addFoundPet', upload.single('image'), petController.addFoundPet);
+router.get('/found', petController.getAllFound);
+router.get('/found/:id', petController.getOneFound);
 
 module.exports = router;
