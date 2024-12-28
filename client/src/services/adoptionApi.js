@@ -66,3 +66,18 @@ export const addAdoptionDog = async (formData) => {
     }
 };
 
+export const deleteAdoptionDog = async (dogId) => {
+    const token = getToken();
+    try {
+        const response = await adoptionApi.delete(`/adoption/adoptionDog/${dogId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error deleting dog:', error);
+        throw error;
+    }
+};
+
