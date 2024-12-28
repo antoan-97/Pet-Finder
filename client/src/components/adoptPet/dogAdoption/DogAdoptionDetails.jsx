@@ -1,15 +1,18 @@
 import { useState, useEffect, useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import * as adoptionApi from '../../../services/adoptionApi';
 import AuthContext from '../../../contexts/AuthContext';
+import DeleteModal from '../../../modals/DeleteModal';
 
 export default function DogAdoptionDetails() {
     const { userId } = useContext(AuthContext);
     const [pet, setPet] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (id) {
@@ -24,6 +27,16 @@ export default function DogAdoptionDetails() {
                 });
         }
     }, [id]);
+
+    const handleDelete = async () => {
+        try {
+            await adoptionApi.deleteAdoptionDog(id);
+            navigate('/dog-adoption');
+        } catch (error) {
+            console.error('Error deleting dog:', error);
+            setError('Failed to delete dog');
+        }
+    };
 
     if (loading) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Loading...</div>;
     if (error) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Error: {error}</div>;
@@ -73,12 +86,20 @@ export default function DogAdoptionDetails() {
                         Edit
                     </Link>
                     <button
-                        // onClick={handleDelete}
+                        onClick={() => setShowDeleteModal(true)}
                         className="bg-red-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-md hover:shadow-lg"
                     >
                         Delete
                     </button>
                 </div>
+            )}
+
+            {showDeleteModal && (
+                <DeleteModal
+                    onClose={() => setShowDeleteModal(false)}
+                    onConfirm={handleDelete}
+                    message="Are you sure you want to delete this dog?"
+                />
             )}
         </div>
     );
