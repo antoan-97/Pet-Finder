@@ -41,7 +41,7 @@ function App() {
 
             <Route path='/found-pets' element={<FoundPetsList />}></Route>
             <Route path='/found-form' element={<FoundPetForm />}></Route>
-            <Route path="/found-pet/:id" element={<FoundPetDetails />} />
+            <Route path="/found-pets/:id" element={<FoundPetDetails />} />
 
             <Route path='/lost-pets' element={<LostPetsList />}></Route>
             <Route path='/lost-form' element={<LostPetForm />}></Route>
