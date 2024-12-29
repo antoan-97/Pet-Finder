@@ -118,3 +118,16 @@ export const getOneLost = async (id) => {
         throw new Error('Network response was not ok ' + error.response?.statusText);
     }
 }
+
+export const deleteFoundPet = async (id) => {
+    const token = getToken();
+    try {
+        const response = await petApi.delete(`/pets/found/${id}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error('Network response was not ok ' + error.response?.statusText);
+    }
+};
+

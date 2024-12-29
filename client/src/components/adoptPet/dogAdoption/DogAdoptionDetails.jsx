@@ -6,11 +6,11 @@ import AuthContext from '../../../contexts/AuthContext';
 import DeleteModal from '../../../modals/DeleteModal';
 
 export default function DogAdoptionDetails() {
-    const { userId } = useContext(AuthContext);
     const [pet, setPet] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const { userId } = useContext(AuthContext);
     const { id } = useParams();
     const navigate = useNavigate();
 
