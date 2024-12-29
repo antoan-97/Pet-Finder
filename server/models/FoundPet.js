@@ -19,6 +19,10 @@ const petSchema = new mongoose.Schema({
     },
     description: String,
     imgUrl: String,
+    ownerId: {
+        type: String,
+        required: true
+    }
 })
 
 const FoundPet = mongoose.model('FoundPet', petSchema)

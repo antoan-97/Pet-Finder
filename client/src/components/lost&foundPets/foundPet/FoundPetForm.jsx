@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { addFoundPet } from "../../../services/petApi";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../../contexts/AuthContext";
 
 export default function FoundPetForm() {
     const navigate = useNavigate()
+    const { userId } = useContext(AuthContext);
     const [formData, setFormData] = useState({
         kind: '',
         location: '',
@@ -11,6 +13,7 @@ export default function FoundPetForm() {
         phone: '',
         description: '',
         image: null,
+        ownerId: userId
     });
 
     const handleChange = (e) => {
@@ -33,6 +36,7 @@ export default function FoundPetForm() {
                 phone: '',
                 description: '',
                 image: null,
+                ownerId: userId
             });
         } catch (error) {
             console.error('Failed to report pet:', error);

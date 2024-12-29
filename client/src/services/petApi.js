@@ -26,6 +26,7 @@ export const addFoundPet = async (formData) => {
     form.append('phone', formData.phone);
     form.append('description', formData.description);
     form.append('image', formData.image);
+    form.append('ownerId', formData.ownerId);
 
     try {
         const response = await petApi.post('/pets/addFoundPet', form, {

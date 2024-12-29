@@ -48,7 +48,7 @@ const addAdoptionDog = async (req, res) => {
             location,
             description,
             imgUrl,
-            ownerId, // Make sure this field exists in your schema
+            ownerId,
             adopted: false
         });
         const savedPet = await newPet.save();

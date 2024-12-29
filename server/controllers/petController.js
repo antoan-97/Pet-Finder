@@ -10,7 +10,7 @@ const fs = require('fs');
 // Add found pet (with image upload to Cloudinary)
 const addFoundPet = async (req, res) => {
     try {
-        const { kind, location, breed, phone, description } = req.body;
+        const { kind, location, breed, phone, description, ownerId } = req.body;
 
         let imgUrl = '';
         if (req.file) {
@@ -34,6 +34,7 @@ const addFoundPet = async (req, res) => {
             phone,
             description,
             imgUrl,
+            ownerId
         });
 
         await newPet.save();
