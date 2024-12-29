@@ -140,4 +140,15 @@ const getOneLost = async (req, res) => {
     }
 };
 
-module.exports = { addFoundPet, addLostPet, getAllFound , getAllLost, getOneFound, getOneLost };
+const deleteFoundPet = async (req, res) => {    
+    try {
+        const { id } = req.params;
+        await FoundPet.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Pet deleted successfully' });
+    } catch (error) {
+        console.error('Error in deleteFoundPet:', error);
+        res.status(500).json({ error: 'Failed to delete pet', details: error.message });
+    }
+};
+
+module.exports = { addFoundPet, addLostPet, getAllFound , getAllLost, getOneFound, getOneLost, deleteFoundPet };
