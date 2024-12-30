@@ -19,7 +19,7 @@ export default function LostPetsCard({
     };
 
     return (
-        <div className="group bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+        <div className="group bg-white rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
             <div className="relative h-64 overflow-hidden">
                 {imgUrl && (
                     <>
@@ -32,33 +32,38 @@ export default function LostPetsCard({
                     </>
                 )}
             </div>
-            <div className="p-6">
-                <h4 className="text-xl font-semibold text-green-700 mb-2 group-hover:text-green-800 transition-colors duration-300">
-                    {name} - {kind}
-                </h4>
-                <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                    Breed: {breed}
-                </p>
-                <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                    Last Seen: {new Date(lastSeenDate).toLocaleDateString()}
-                </p>
-                <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                    Location: {lastSeenLocation}
-                </p>
-                {description && (
-                    <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
-                        Description: {truncateDescription(description, 100)}
+            <div className="p-6 flex flex-col flex-grow">
+                <div className="flex-grow">
+                    <h4 className="text-xl font-semibold text-green-700 mb-2 group-hover:text-green-800 transition-colors duration-300">
+                        {name} - {kind}
+                    </h4>
+                    <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
+                        Breed: {breed}
                     </p>
-                )}
-                <p className="text-gray-700 font-semibold mb-4 group-hover:text-gray-800 transition-colors duration-300">
-                    Contact: {phone}
-                </p>
-                <Link 
-                    to={`/lost-pet/${_id.toString()}`}
-                    className="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors duration-300"
-                >
-                    View Details
-                </Link>
+                    <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
+                        Last Seen: {new Date(lastSeenDate).toLocaleDateString()}
+                    </p>
+                    <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
+                        Location: {lastSeenLocation}
+                    </p>
+                    {description && (
+                        <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
+                            Description: {truncateDescription(description, 100)}
+                        </p>
+                    )}
+                    <p className="text-gray-700 font-semibold mb-4 group-hover:text-gray-800 transition-colors duration-300">
+                        Contact: {phone}
+                    </p>
+                </div>
+                
+                <div className="mt-4">
+                    <Link 
+                        to={`/lost-pet/${_id.toString()}`}
+                        className="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors duration-300"
+                    >
+                        View Details
+                    </Link>
+                </div>
             </div>
         </div>
     );
