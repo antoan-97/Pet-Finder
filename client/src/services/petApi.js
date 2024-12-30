@@ -132,3 +132,13 @@ export const deleteFoundPet = async (id) => {
     }
 };
 
+export const deleteLostPet = async (id) => {
+    const token = getToken();
+    try {
+        const response = await petApi.delete(`/pets/lost/${id}`, { headers: { 'Authorization': `Bearer ${token}` } });
+        return response.data;
+    } catch (error) {
+        throw new Error('Network response was not ok ' + error.response?.statusText);
+    }
+};
+
