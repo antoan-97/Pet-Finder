@@ -46,7 +46,7 @@ const addFoundPet = async (req, res) => {
 };
 const addLostPet = async (req, res) => {
     try {
-        const { name, kind, breed, lastSeenLocation, lastSeenDate, phone, description } = req.body;
+        const { name, kind, breed, lastSeenLocation, lastSeenDate, phone, description, ownerId } = req.body;
 
         let imgUrl = '';
         if (req.file) {
@@ -72,6 +72,7 @@ const addLostPet = async (req, res) => {
             phone,
             description,
             imgUrl,
+            ownerId
         });
 
         await newPet.save();
