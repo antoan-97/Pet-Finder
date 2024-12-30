@@ -13,5 +13,6 @@ router.post('/addFoundPet', upload.single('image'), petController.addFoundPet);
 router.get('/found', petController.getAllFound);
 router.get('/found/:id', petController.getOneFound);
 router.delete('/found/:id', petController.deleteFoundPet);
+router.delete('/lost/:id', petController.deleteLostPet);
 
 module.exports = router;
