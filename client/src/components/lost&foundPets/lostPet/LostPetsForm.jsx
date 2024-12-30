@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { addLostPet } from "../../../services/petApi";
 
+import AuthContext from "../../../contexts/AuthContext";
+
 export default function LostPetForm() {
     const navigate = useNavigate()
+    const { userId } = useContext(AuthContext);
     const [formData, setFormData] = useState({
         name: '',
         kind: '',
@@ -13,6 +16,7 @@ export default function LostPetForm() {
         phone: '',
         description: '',
         image: null,
+        ownerId: userId
     });
 
     const handleChange = (e) => {

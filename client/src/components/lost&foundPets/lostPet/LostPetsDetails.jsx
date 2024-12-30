@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+
 import * as petApi from '../../../services/petApi';
+import AuthContext from '../../../contexts/AuthContext';
+import DeleteModal from '../../../modals/DeleteModal';
 
 export default function LostPetsDetails() {
+    const navigate = useNavigate();
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [pet, setPet] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { userId } = useContext(AuthContext);
     const { id } = useParams();
 
     const formatDate = (dateString) => {
@@ -32,11 +38,23 @@ export default function LostPetsDetails() {
                 });
         }
     }, [id]);
+    
+    const handleDelete = async () => {
+        try {
+            await petApi.deleteLostPet(id);
+            navigate('/lost-pets');
+        } catch (error) {
+            console.error('Error deleting dog:', error);
+            setError('Failed to delete dog');
+        }
+    };
 
     if (loading) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Loading...</div>;
     if (error) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Error: {error}</div>;
     if (!pet) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">No pet found</div>;
 
+    const isOwner = userId === pet?.ownerId;
+    
     return(
         <div className="bg-custom-gradient min-h-screen py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto rounded-xl shadow-2xl overflow-hidden">
@@ -67,6 +85,30 @@ export default function LostPetsDetails() {
                             Back to Lost Pets
                         </Link>
                     </div>
+                    {isOwner && (
+                        <div className="mt-8 flex justify-center gap-2">
+                            <Link
+                                to={`/dog-adoption/${pet._id}/edit`}
+                                className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
+                            >
+                                Edit
+                            </Link>
+                            <button
+                                onClick={() => setShowDeleteModal(true)}
+                                className="bg-red-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-md hover:shadow-lg"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    )}
+
+                    {showDeleteModal && (
+                        <DeleteModal
+                            onClose={() => setShowDeleteModal(false)}
+                            onConfirm={handleDelete}
+                            message="Are you sure you want to delete this dog?"
+                        />
+                    )}
                 </div>
             </div>
         </div>

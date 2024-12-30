@@ -43,6 +43,7 @@ export default function FoundPetDetails() {
     if (loading) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Loading...</div>;
     if (error) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Error: {error}</div>;
     if (!pet) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">No pet found</div>;
+    
     const isOwner = userId === pet?.ownerId;
 
     return (
