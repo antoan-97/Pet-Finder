@@ -25,7 +25,7 @@ export default function FoundPetsList() {
         </h2>
         {isAuthenticated ? (
           <div className="flex justify-center mb-12">
-            <Link to="/found-form" className="bg-green-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300">
+            <Link to="/found-form" className="bg-green-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg">
               Add Found Pet
             </Link>
           </div>

@@ -8,7 +8,7 @@ export default function FoundPetCard({ _id, kind, location, breed, phone, descri
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
+        <div className="group bg-white rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
             <div className="relative h-64 overflow-hidden">
                 {imgUrl && (
                     <>
