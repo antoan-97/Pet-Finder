@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Remove any custom background color definitions since we're using the gradient from tailwind config */
 html, body, #root {
     min-height: 100vh;
     height: 100%;
