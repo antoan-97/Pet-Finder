@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
+import { LoadingProvider } from './contexts/LoadingContext'
 import './App.css'
 
 import Footer from './components/footer/Footer'
@@ -27,7 +28,7 @@ import DogAdoptionDetails from './components/adoptPet/dogAdoption/DogAdoptionDet
 function App() {
 
   return (
-    <div className='min-h-screen flex flex-col'>
+    <LoadingProvider>
       <AuthProvider>
         <Navbar />
         <main className="flex-grow">
@@ -63,7 +64,7 @@ function App() {
         </main>
         <Footer />
       </AuthProvider>
-    </div>
+    </LoadingProvider>
   )
 }
 
