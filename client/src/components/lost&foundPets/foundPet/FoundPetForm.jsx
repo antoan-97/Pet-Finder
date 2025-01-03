@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import { addFoundPet } from "../../../services/petApi";
 import { useNavigate } from "react-router-dom";
+import { useLoading } from "../../../contexts/LoadingContext";
 import AuthContext from "../../../contexts/AuthContext";
+import Spinner from "../../common/Spinner";
 
 export default function FoundPetForm() {
     const navigate = useNavigate()
@@ -16,6 +18,8 @@ export default function FoundPetForm() {
         ownerId: userId
     });
 
+    const { isLoading, setIsLoading } = useLoading();
+
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         setFormData(prevState => ({
@@ -26,6 +30,7 @@ export default function FoundPetForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         try {
             const response = await addFoundPet(formData);
             navigate('/found-pets')
@@ -41,7 +46,10 @@ export default function FoundPetForm() {
         } catch (error) {
             console.error('Failed to report pet:', error);
             alert(error.message || 'Failed to submit pet information. Please try again.');
+        } finally {
+            setIsLoading(false);
         }
+
     };
 
     return (
@@ -126,9 +134,10 @@ export default function FoundPetForm() {
 
                         <button
                             type="submit"
+                            disabled={isLoading}
                             className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200"
                         >
-                            Submit
+                            {isLoading ? <Spinner /> : 'Submit'}
                         </button>
                     </form>
                 </div>
