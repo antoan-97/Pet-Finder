@@ -1,12 +1,15 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { addLostPet } from "../../../services/petApi";
+import { useLoading } from "../../../contexts/LoadingContext";
+import Spinner from "../../common/Spinner";
 
 import AuthContext from "../../../contexts/AuthContext";
 
 export default function LostPetForm() {
     const navigate = useNavigate()
     const { userId } = useContext(AuthContext);
+    const { isLoading, setIsLoading } = useLoading();
     const [formData, setFormData] = useState({
         name: '',
         kind: '',
@@ -40,6 +43,7 @@ export default function LostPetForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         try {
             // Create a new FormData object with the formatted date
             const submissionData = { ...formData };
@@ -64,6 +68,8 @@ export default function LostPetForm() {
         } catch (error) {
             console.error('Failed to report pet:', error);
             alert(error.message || 'Failed to submit pet information. Please try again.');
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -179,8 +185,9 @@ export default function LostPetForm() {
                         <button
                             type="submit"
                             className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200"
+                            disabled={isLoading}
                         >
-                            Submit
+                            {isLoading ? <Spinner /> : 'Submit'}
                         </button>
                     </form>
                 </div>
