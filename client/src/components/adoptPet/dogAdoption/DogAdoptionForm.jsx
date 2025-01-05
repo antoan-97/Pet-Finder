@@ -1,11 +1,14 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLoading } from "../../../contexts/LoadingContext";
 import * as adoptionApi from "../../../services/adoptionApi";
 import  AuthContext  from "../../../contexts/AuthContext";
+import Spinner from "../../common/Spinner";
 
 export default function DogAdoptionForm() {
     const navigate = useNavigate()
     const { userId } = useContext(AuthContext);
+    const { isLoading, setIsLoading } = useLoading();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -28,6 +31,7 @@ export default function DogAdoptionForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         try {
             if (!userId) {
                 throw new Error('You must be logged in to add a dog');
@@ -50,6 +54,8 @@ export default function DogAdoptionForm() {
         } catch (error) {
             console.error('Failed to submit dog for adoption:', error);
             alert(error.message || 'Failed to submit pet information. Please try again.');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -135,9 +141,11 @@ export default function DogAdoptionForm() {
 
                         <button
                             type="submit"
+                            disabled={isLoading}
+
                             className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200"
                         >
-                            Submit
+                            {isLoading ? <Spinner /> : 'Submit'}
                         </button>
                     </form>
                 </div>
