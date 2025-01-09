@@ -29,7 +29,7 @@ export default function AboutUs() {
                             </p>
                         </div>
                     </Link>
-                    <Link to='/' className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <Link to='/cat-adoption' className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-64 overflow-hidden">
                             <img
                                 src="images/458920877_2688140651389056_8486540629879217644_n.webp"
