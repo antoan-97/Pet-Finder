@@ -8,12 +8,10 @@ import DogAdoptionCard from "./DogAdoptionCard";
 export default function DogAdoptionList() {
   const { isAuthenticated } = useContext(AuthContext);
   const [pets, setPets] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDogs = async () => {
       try {
-        setLoading(true);
         const result = await adoptionApi.getAllDogs();
         
         if (!result) {
@@ -27,17 +25,11 @@ export default function DogAdoptionList() {
           response: err.response,
           stack: err.stack
         });
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchDogs();
   }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <section className="bg-custom-gradient min-h-screen py-12 overflow-y-auto">

@@ -22,11 +22,8 @@ export default function CatAdoptionList() {
                 });
             } 
         };
-
         fetchCats();
     }, []);
-
-   
 
     return (
         <section className="bg-custom-gradient min-h-screen py-12 overflow-y-auto">
