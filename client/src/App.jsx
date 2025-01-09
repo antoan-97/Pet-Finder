@@ -3,28 +3,36 @@ import { AuthProvider } from './contexts/AuthContext'
 import { LoadingProvider } from './contexts/LoadingContext'
 import './App.css'
 
-import Footer from './components/footer/Footer'
-import Home from './components/home/Home'
 import Navbar from './components/navbar/Navbar'
+import Home from './components/home/Home'
+import Footer from './components/footer/Footer'
 import AboutUs from './components/aboutUs/AboutUs'
-import PetAdoptionStarterGuide from './components/guides/AdoptionGuide'
-import Register from './components/register/Register'
 import Login from './components/Login/Login'
 import Logout from './components/logout/Logout'
+import Register from './components/register/Register'
 import TermsOfCondition from '../src/components/terms/Terms'
+import PetAdoptionStarterGuide from './components/guides/AdoptionGuide'
+//guards
 import AuthGuard from './guards/AuthGuard'
 import GuestGuard from './guards/GuestGuard'
+//lost&found pet
 import LostAndFoundPets from './components/lost&foundPets/Lost&FoundPets'
+//found pet
 import FoundPetForm from './components/lost&foundPets/foundPet/FoundPetForm'
 import FoundPetsList from './components/lost&foundPets/foundPet/FoundPetsList'
 import FoundPetDetails from './components/lost&foundPets/foundPet/FoundPetDetails'
+//adopt pet
+import AdoptAPet from './components/adoptPet/AdoptAPet'
+//lost pet
 import LostPetsList from './components/lost&foundPets/lostPet/LostPetsList'
 import LostPetForm from './components/lost&foundPets/lostPet/LostPetsForm'
 import LostPetsDetails from './components/lost&foundPets/lostPet/LostPetsDetails'
-import AdoptAPet from './components/adoptPet/AdoptAPet'
+//dog adoption
 import DogAdoptionList from './components/adoptPet/dogAdoption/DogAdoptionList'
 import DogAdoptionForm from './components/adoptPet/dogAdoption/DogAdoptionForm'
 import DogAdoptionDetails from './components/adoptPet/dogAdoption/DogAdoptionDetails'
+//cat adoption
+import CatAdoptionList from './components/adoptPet/catAdoption/CatAdoptionList'
 function App() {
 
   return (
@@ -51,6 +59,8 @@ function App() {
             <Route path='/dog-adoption' element={<DogAdoptionList />} />
             <Route path='/dog-adoption-form' element={<DogAdoptionForm />} />
             <Route path='/adopt-dog/:id' element={<DogAdoptionDetails />} />
+
+            <Route path='/cat-adoption' element={<CatAdoptionList />} />
 
             <Route element={<GuestGuard />}>
               <Route path='/register' element={<Register />}></Route>
