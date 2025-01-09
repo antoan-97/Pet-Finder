@@ -8,12 +8,10 @@ import CatAdoptionCard from "./CatAdoptionCard";
 export default function CatAdoptionList() {
     const { isAuthenticated } = useContext(AuthContext);
     const [pets, setPets] = useState([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchCats = async () => {
             try {
-                setLoading(true);
                 const result = await adoptionApi.getAllCats();
                 setPets(result);
             } catch (err) {
@@ -22,17 +20,13 @@ export default function CatAdoptionList() {
                     response: err.response,
                     stack: err.stack
                 });
-            } finally {
-                setLoading(false);
-            }
+            } 
         };
 
         fetchCats();
     }, []);
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+   
 
     return (
         <section className="bg-custom-gradient min-h-screen py-12 overflow-y-auto">
