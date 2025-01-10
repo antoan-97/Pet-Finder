@@ -2,11 +2,11 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoading } from "../../../contexts/LoadingContext";
 
-import  AuthContext  from "../../../contexts/AuthContext";
+import AuthContext from "../../../contexts/AuthContext";
 import Spinner from "../../common/Spinner";
 import * as adoptionApi from "../../../services/adoptionApi";
 
-export default function DogAdoptionForm() {
+export default function CatAdoptionForm() {
     const navigate = useNavigate()
     const { userId } = useContext(AuthContext);
     const { isLoading, setIsLoading } = useLoading();
@@ -35,7 +35,7 @@ export default function DogAdoptionForm() {
         setIsLoading(true);
         try {
             if (!userId) {
-                throw new Error('You must be logged in to add a dog');
+                throw new Error('You must be logged in to add a cat');
             }
 
             const form = new FormData();
@@ -48,25 +48,22 @@ export default function DogAdoptionForm() {
                 form.append('image', formData.image);
             }
             form.append('ownerId', userId.toString());
-         
 
-            const response = await adoptionApi.addAdoptionDog(form);
-            navigate('/dog-adoption');
+            navigate('/cat-adoption');
         } catch (error) {
-            console.error('Failed to submit dog for adoption:', error);
+            console.error('Failed to submit cat for adoption:', error);
             alert(error.message || 'Failed to submit pet information. Please try again.');
         } finally {
             setIsLoading(false);
         }
     };
 
-
     return (
         <section className="bg-login-bg bg-cover bg-center py-12 h-full">
             <div className="container mx-auto px-4 max-w-md">
                 <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-6">
                     <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                        Add Dog for Adoption
+                        Add Cat for Adoption
                     </h1>
                     <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
                         <div>
