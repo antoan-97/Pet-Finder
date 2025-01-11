@@ -1,9 +1,13 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useLoading } from "../../contexts/LoadingContext";
 import AuthContext from "../../contexts/AuthContext";
+import Spinner from "../common/Spinner";
+
 
 export default function Login() {
     const { loginSubmitHandler } = useContext(AuthContext);
+    const { isLoading, setIsLoading } = useLoading()
 
     const [rememberMe, setRememberMe] = useState(false);
     const [formData, setFormData] = useState({
@@ -32,13 +36,21 @@ export default function Login() {
         setRememberMe(e.target.checked); // Update rememberMe state based on checkbox
     };
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        loginSubmitHandler(formData, rememberMe);
-        if (rememberMe) {
-            localStorage.setItem('savedEmail', formData.email); // Save only the email
-        } else {
-            localStorage.removeItem('savedEmail');
+        setIsLoading(true);
+        try {
+            await loginSubmitHandler(formData, rememberMe);
+            
+            if (rememberMe) {
+                localStorage.setItem('savedEmail', formData.email);
+            } else {
+                localStorage.removeItem('savedEmail');
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+        } finally {
+            setIsLoading(false);
         }
     };
     return (
@@ -110,9 +122,10 @@ export default function Login() {
                             </div>
                             <button
                                 type="submit"
+                                disabled={isLoading}
                                 className="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800"
                             >
-                                Sign in
+                                {isLoading ? <Spinner /> : 'Sign in'}
                             </button>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-500">
                                 Don’t have an account yet?{" "}

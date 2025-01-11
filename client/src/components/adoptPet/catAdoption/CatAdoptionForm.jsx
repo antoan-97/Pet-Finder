@@ -48,7 +48,8 @@ export default function CatAdoptionForm() {
                 form.append('image', formData.image);
             }
             form.append('ownerId', userId.toString());
-
+            
+            const response = await adoptionApi.addAdoptionCat(form);
             navigate('/cat-adoption');
         } catch (error) {
             console.error('Failed to submit cat for adoption:', error);

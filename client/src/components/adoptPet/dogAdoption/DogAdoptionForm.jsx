@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoading } from "../../../contexts/LoadingContext";
 
-import  AuthContext  from "../../../contexts/AuthContext";
+import AuthContext from "../../../contexts/AuthContext";
 import Spinner from "../../common/Spinner";
 import * as adoptionApi from "../../../services/adoptionApi";
 
@@ -48,7 +48,7 @@ export default function DogAdoptionForm() {
                 form.append('image', formData.image);
             }
             form.append('ownerId', userId.toString());
-         
+
 
             const response = await adoptionApi.addAdoptionDog(form);
             navigate('/dog-adoption');
@@ -59,7 +59,6 @@ export default function DogAdoptionForm() {
             setIsLoading(false);
         }
     };
-
 
     return (
         <section className="bg-login-bg bg-cover bg-center py-12 h-full">
@@ -146,7 +145,7 @@ export default function DogAdoptionForm() {
 
                             className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200"
                         >
-                            {isLoading ? <Spinner /> : 'Submit'}
+                            {isLoading} ? <Spinner /> : 'Submit'
                         </button>
                     </form>
                 </div>
