@@ -1,10 +1,14 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { useLoading } from "../../contexts/LoadingContext";
+
+import Spinner from "../common/Spinner";
 import AuthContext from "../../contexts/AuthContext";
 
 export default function Register() {
 
     const { registerSubmitHandler } = useContext(AuthContext)
+    const { isLoading, setIsLoading } = useLoading()
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
@@ -23,9 +27,16 @@ export default function Register() {
         setTermsAccepted(e.target.checked);
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        registerSubmitHandler(formData);
+        try {
+            setIsLoading(true);
+            await registerSubmitHandler(formData);
+        } catch (error) {
+            console.error('Registration failed:', error);
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     return (
@@ -131,7 +142,7 @@ export default function Register() {
                                 <Link to='/login'
                                     className="font-medium text-green-600 hover:underline dark:text-green-500"
                                 >
-                                    Login here
+                                    {isLoading ? <Spinner /> : 'Login here'}
                                 </Link>
                             </p>
                         </form>
