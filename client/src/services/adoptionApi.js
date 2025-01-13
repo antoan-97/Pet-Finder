@@ -66,6 +66,22 @@ export const addAdoptionDog = async (formData) => {
     }
 };
 
+export const addAdoptionCat = async (formData) => {
+    const token = getToken();
+    try {
+        const response = await adoptionApi.post('/adoption/addAdoptionCat', formData, {
+            headers: {
+                'Authorization': `Bearer ${token}`, 
+                'Content-Type': 'multipart/form-data'
+            }    
+        });
+        return response.data;    
+    } catch (error) {
+        console.error('Error while submitting cat for adoption:', error);
+        throw error;
+    }
+};
+
 export const deleteAdoptionDog = async (id) => {
     const token = getToken();
     try {
