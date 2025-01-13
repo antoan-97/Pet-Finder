@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const AdoptionDog = require('../models/AdoptionDog');
+const AdoptionCat = require('../models/AdoptionCat');
 
 const cloudinary = require('../config/cloudinary');
 const path = require('path');
@@ -59,6 +60,37 @@ const addAdoptionDog = async (req, res) => {
     }
 };
 
+const addAdoptionCat = async (req, res) => {
+    try {
+        const { name, breed, age, location, description, ownerId } = req.body;
+        let imgUrl = '';
+        if (req.file) {
+            const result = await cloudinary.uploader.upload(req.file.path, {
+                folder: 'adoption_cats',
+            });
+            imgUrl = result.secure_url;
+            fs.unlinkSync(req.file.path);
+        }
+
+        // Create new cat with ownerId
+        const newPet = new AdoptionCat({
+            name,
+            breed,
+            age,
+            location,
+            description,
+            imgUrl,
+            ownerId,
+            adopted: false
+        });
+        const savedPet = await newPet.save();
+        res.status(201).json(savedPet);
+    } catch (error) {
+        console.error('Error in addAdoptionCat:', error);
+        res.status(400).json({ error: 'Failed to add adopted cat', details: error.message });
+    }
+};
+
 const deleteAdoptionDog = async (req, res) => {
     try {
         const { id } = req.params;
@@ -85,5 +117,6 @@ module.exports = {
     getAllDogs,
     addAdoptionDog,
     getOneAdoptionDog,
-    deleteAdoptionDog
+    deleteAdoptionDog,
+    addAdoptionCat
 }
