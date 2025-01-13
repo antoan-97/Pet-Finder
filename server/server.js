@@ -14,15 +14,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: function(origin, callback) {
-    // Allow requests from localhost on ports 5173-5179
-    if (!origin || /^http:\/\/localhost:(517[3-9])$/.test(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
+    origin: [
+        'https://pet-finder-seven.vercel.app',
+        'http://localhost:5173'
+    ],
+    credentials: true
 }));
 
 // Middleware
@@ -30,12 +26,12 @@ app.use(express.json());
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
-  
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
+
 // Define routes
 app.get('/', (req, res) => {
-  res.send('API is running...');
+    res.send('API is running...');
 });
 
 const petRoutes = require('./routes/petRoutes');
@@ -44,13 +40,12 @@ app.use('/api/pets', petRoutes);
 const adoptionRoutes = require('./routes/adoptionRoutes');
 app.use('/api/adoption', adoptionRoutes);
 
-
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
