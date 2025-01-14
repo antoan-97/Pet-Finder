@@ -12,6 +12,7 @@ router.get('/adoptionDog/:id', adoptionController.getOneAdoptionDog);
 router.delete('/adoptionDog/:id', adoptionController.deleteAdoptionDog);
 
 router.post('/addAdoptionCat', upload.single('image'), adoptionController.addAdoptionCat);
+router.get('/adoptionCat', adoptionController.getAllCats);
 
 
 module.exports = router
