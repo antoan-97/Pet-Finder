@@ -82,6 +82,25 @@ export const addAdoptionCat = async (formData) => {
     }
 };
 
+export const getallCats = async () => {
+    try {
+        const response = await adoptionApi.get('/adoption/adoptionCat');
+        if (!response.data) {
+            console.warn('No data in response:', response);
+            return [];
+        }
+        return response.data;
+    } catch (error) {
+        console.error('API Error:', {
+            message: error.message,
+            response: error.response,
+            status: error.response?.status,
+            data: error.response?.data
+        });
+        throw error;
+    }
+};
+
 export const deleteAdoptionDog = async (id) => {
     const token = getToken();
     try {
