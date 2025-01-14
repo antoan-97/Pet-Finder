@@ -5,6 +5,7 @@ const AdoptionCat = require('../models/AdoptionCat');
 const cloudinary = require('../config/cloudinary');
 const path = require('path');
 const fs = require('fs');
+const { get } = require('http');
 
 
 
@@ -14,7 +15,7 @@ const getAllDogs = async (req, res) => {
         res.status(200).json(dogs);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch dogs', details: error.message });
-        console.log('Error with fetching dogs:',error);
+        console.log('Error with fetching dogs:', error);
 
     }
 }
@@ -91,11 +92,21 @@ const addAdoptionCat = async (req, res) => {
     }
 };
 
+const getAllCats = async (req, res) => {
+    try {
+        const cats = await AdoptionCat.find().sort({ createdAt: -1 })
+        res.status(200).json(cats);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch cats', details: error.message });
+        console.log('Error with fetching cats:', error);
+    }
+}
+
 const deleteAdoptionDog = async (req, res) => {
     try {
         const { id } = req.params;
         const dog = await AdoptionDog.findById(id);
-        
+
         if (!dog) {
             return res.status(404).json({ error: 'Dog not found' });
         }
@@ -118,5 +129,6 @@ module.exports = {
     addAdoptionDog,
     getOneAdoptionDog,
     deleteAdoptionDog,
-    addAdoptionCat
+    addAdoptionCat,
+    getAllCats
 }
