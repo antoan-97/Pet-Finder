@@ -72,7 +72,7 @@ export default function Footer() {
                             <h4 className="text-lg font-bold mb-4">Follow Us</h4>
                             <div className="flex space-x-4">
                                 <a
-                                    href="https://www.facebook.com/groups/1472732316295842"
+                                    href="https://www.facebook.com/profile.php?id=61567282290739"
                                     target="_blank"
                                     className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300"
                                 >
