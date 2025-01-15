@@ -82,7 +82,7 @@ export const addAdoptionCat = async (formData) => {
     }
 };
 
-export const getallCats = async () => {
+export const getAllCats = async () => {
     try {
         const response = await adoptionApi.get('/adoption/adoptionCat');
         if (!response.data) {
