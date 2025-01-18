@@ -101,6 +101,21 @@ export const getAllCats = async () => {
     }
 };
 
+export const getOneCat = async (id) => {
+    const token = getToken();
+    try {
+        const response = await adoptionApi.get(`/adoption/adoptionCat/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching cat details:', error);
+        throw error;
+    }
+};
+
 export const deleteAdoptionDog = async (id) => {
     const token = getToken();
     try {
