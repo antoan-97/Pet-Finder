@@ -102,6 +102,16 @@ const getAllCats = async (req, res) => {
     }
 }
 
+const getOneCat = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const cat = await AdoptionCat.findById(id);
+        res.status(200).json(cat);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch cat', details: error.message });
+    }
+}
+
 const deleteAdoptionDog = async (req, res) => {
     try {
         const { id } = req.params;
@@ -130,5 +140,6 @@ module.exports = {
     getOneAdoptionDog,
     deleteAdoptionDog,
     addAdoptionCat,
-    getAllCats
+    getAllCats,
+    getOneCat
 }
