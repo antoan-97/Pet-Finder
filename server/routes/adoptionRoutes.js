@@ -13,6 +13,6 @@ router.delete('/adoptionDog/:id', adoptionController.deleteAdoptionDog);
 
 router.post('/addAdoptionCat', upload.single('image'), adoptionController.addAdoptionCat);
 router.get('/adoptionCat', adoptionController.getAllCats);
-
+router.get('/adoptionCat/:id', adoptionController.getOneCat);
 
 module.exports = router
