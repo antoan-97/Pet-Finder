@@ -34,6 +34,8 @@ import DogAdoptionDetails from './components/adoptPet/dogAdoption/DogAdoptionDet
 //cat adoption
 import CatAdoptionList from './components/adoptPet/catAdoption/CatAdoptionList'
 import CatAdoptionForm from './components/adoptPet/catAdoption/CatAdoptionForm'
+import CatAdoptionDetails from './components/adoptPet/catAdoption/CatAdoptionDetails'
+
 function App() {
 
   return (
@@ -63,6 +65,7 @@ function App() {
 
             <Route path='/cat-adoption' element={<CatAdoptionList />} />
             <Route path='/cat-adoption-form' element={<CatAdoptionForm />} />
+            <Route path='/adopt-cat/:id' element={<CatAdoptionDetails />} />
 
             <Route element={<GuestGuard />}>
               <Route path='/register' element={<Register />}></Route>
