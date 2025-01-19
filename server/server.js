@@ -16,9 +16,13 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
     origin: [
         'https://pet-finder-seven.vercel.app',
+        'https://pet-finder-git-main-antoans-projects-c5a7ae62.vercel.app',
         'http://localhost:5173'
     ],
-    credentials: true
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    optionsSuccessStatus: 200
 }));
 
 // Middleware
