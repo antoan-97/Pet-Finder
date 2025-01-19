@@ -5,15 +5,15 @@
       "src": "client/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "buildCommand": "cd client && npm install && npm run build",
-        "outputDirectory": "client/dist"
+        "buildCommand": "cd client && npm install && vite build",
+        "outputDirectory": "dist"
       }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/client/index.html"
+      "dest": "/index.html"
     }
   ]
 } 
