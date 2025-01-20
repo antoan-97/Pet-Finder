@@ -14,15 +14,13 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: [
-        'https://pet-finder-seven.vercel.app',
-        'https://pet-finder-git-main-antoans-projects-c5a7ae62.vercel.app',
-        'http://localhost:5173'
-    ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: true, // Allow all origins temporarily for debugging
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+    exposedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-    optionsSuccessStatus: 200
+    preflightContinue: false,
+    optionsSuccessStatus: 204
 }));
 
 // Middleware
@@ -57,3 +55,17 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 console.log('Server PORT:', process.env.PORT);
 console.log('MongoDB URI:', process.env.MONGODB_URI);
 console.log('CORS Origin:', process.env.CORS_ORIGIN || 'http://localhost:5173');
+
+// Add this at the end of your file, after all routes
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ 
+        message: 'Something went wrong!',
+        error: process.env.NODE_ENV === 'development' ? err.message : undefined
+    });
+});
+
+// Handle 404s
+app.use((req, res) => {
+    res.status(404).json({ message: 'Route not found' });
+});

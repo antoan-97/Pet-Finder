@@ -1,12 +1,14 @@
 import axios from "axios";
 import Cookies from 'js-cookie';
 
-const baseURL = import.meta.env.VITE_BASE_URL + '/api';
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 const adoptionApi = axios.create({
-    baseURL,
+    baseURL: baseURL + '/api',
+    withCredentials: true,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
     }
 });
 
@@ -18,19 +20,8 @@ export const getToken = () => {
 export const getAllDogs = async () => {
     try {
         const response = await adoptionApi.get('/adoption/adoptionDog');
-        if (!response.data) {
-            console.warn('No data in response:', response);
-            return [];
-        }
-        
         return response.data;
     } catch (error) {
-        console.error('API Error:', {
-            message: error.message,
-            response: error.response,
-            status: error.response?.status,
-            data: error.response?.data
-        });
         throw error;
     }
 };

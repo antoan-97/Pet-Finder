@@ -1,13 +1,15 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const baseURL = import.meta.env.VITE_BASE_URL + '/api';
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 // Create axios instance for pets
 const petApi = axios.create({
-    baseURL,
+    baseURL: baseURL + '/api',
+    withCredentials: true,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
     }
 });
 
@@ -139,6 +141,15 @@ export const deleteLostPet = async (id) => {
         return response.data;
     } catch (error) {
         throw new Error('Network response was not ok ' + error.response?.statusText);
+    }
+};
+
+export const getAllPets = async () => {
+    try {
+        const response = await petApi.get('/pets');
+        return response.data;
+    } catch (error) {
+        throw error;
     }
 };
 

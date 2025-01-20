@@ -1,12 +1,13 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const baseURL = import.meta.env.VITE_BASE_URL + '/api';
+// Remove '/api' from here since we're using axios baseURL
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 // Create axios instance for auth
 const authApi = axios.create({
-    baseURL,
-    withCredentials: true,  // This replaces credentials: 'include'
+    baseURL: baseURL + '/api',  // Add '/api' here once
+    withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -21,7 +22,8 @@ export const getToken = () => {
 // User-related API calls (register, login, logout) stay here
 export const register = async (email, password) => {
     try {
-        const response = await authApi.post(`${baseURL}/users/register`, {
+        // Now just use the endpoint without baseURL
+        const response = await authApi.post('/users/register', {
             email,
             password
         });
