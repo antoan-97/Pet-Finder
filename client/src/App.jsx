@@ -21,6 +21,7 @@ import LostAndFoundPets from './components/lost&foundPets/Lost&FoundPets'
 import FoundPetForm from './components/lost&foundPets/foundPet/FoundPetForm'
 import FoundPetsList from './components/lost&foundPets/foundPet/FoundPetsList'
 import FoundPetDetails from './components/lost&foundPets/foundPet/FoundPetDetails'
+import FoundPetUpdate from './components/lost&foundPets/foundPet/FoundPetUpdate'
 //adopt pet
 import AdoptAPet from './components/adoptPet/AdoptAPet'
 //lost pet
@@ -54,6 +55,7 @@ function App() {
             <Route path='/found-pets' element={<FoundPetsList />}></Route>
             <Route path='/found-form' element={<FoundPetForm />}></Route>
             <Route path="/found-pets/:id" element={<FoundPetDetails />} />
+            <Route path="/found-pets/:id/edit" element={<FoundPetUpdate />} />
 
             <Route path='/lost-pets' element={<LostPetsList />}></Route>
             <Route path='/lost-form' element={<LostPetForm />}></Route>

@@ -38,14 +38,14 @@ export default function FoundPetDetails() {
             setError('Failed to delete dog');
         }
     };
-
+    console.log('Pet:', pet);
+    // console.log('Pet ID:', pet._id);
 
     if (loading) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Loading...</div>;
     if (error) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Error: {error}</div>;
     if (!pet) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">No pet found</div>;
-    
-    const isOwner = userId === pet?.ownerId;
 
+    const isOwner = userId === pet?.ownerId;
     return (
         <div className="bg-custom-gradient min-h-screen py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto rounded-xl shadow-2xl overflow-hidden">
@@ -73,11 +73,13 @@ export default function FoundPetDetails() {
                             Back to Found Pets
                         </Link>
                     </div>
+
                     {isOwner && (
                         <div className="mt-8 flex justify-center gap-2">
                             <Link
-                                to={`/dog-adoption/${pet._id}/edit`}
+                                to={`/found-pets/${pet._id}/edit`}
                                 className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
+
                             >
                                 Edit
                             </Link>
