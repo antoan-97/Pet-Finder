@@ -144,13 +144,6 @@ export const deleteLostPet = async (id) => {
     }
 };
 
-export const getAllPets = async () => {
-    try {
-        const response = await petApi.get('/pets');
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
 export const updateFoundPet = async (id, formData) => {
     const token = getToken();
     const response = await petApi.put(`/pets/found/${id}`, formData, { headers: { 'Authorization': `Bearer ${token}` } });
