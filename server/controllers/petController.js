@@ -163,4 +163,16 @@ const deleteLostPet = async (req, res) => {
     }
 };
 
-module.exports = { addFoundPet, addLostPet, getAllFound , getAllLost, getOneFound, getOneLost, deleteFoundPet, deleteLostPet };
+const updateFoundPet = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { ...updatedFields } = req.body;
+        await FoundPet.findByIdAndUpdate(id, updatedFields);
+        res.status(200).json({ message: 'Pet updated successfully' });
+    } catch (error) {
+        console.error('Error in updateFoundPet:', error);
+        res.status(500).json({ error: 'Failed to update pet', details: error.message });
+    }
+};
+
+module.exports = { addFoundPet, addLostPet, getAllFound , getAllLost, getOneFound, getOneLost, deleteFoundPet, deleteLostPet, updateFoundPet };
