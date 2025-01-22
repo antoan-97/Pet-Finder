@@ -150,4 +150,8 @@ export const updateFoundPet = async (id, formData) => {
     return response.data;
 };
 
-
+export const updateLostPet = async (id, formData) => {
+    const token = getToken();
+    const response = await petApi.put(`/pets/lost/${id}`, formData, { headers: { 'Authorization': `Bearer ${token}` } });
+    return response.data;
+};
