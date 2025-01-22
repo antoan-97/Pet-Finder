@@ -28,6 +28,7 @@ import AdoptAPet from './components/adoptPet/AdoptAPet'
 import LostPetsList from './components/lost&foundPets/lostPet/LostPetsList'
 import LostPetForm from './components/lost&foundPets/lostPet/LostPetsForm'
 import LostPetsDetails from './components/lost&foundPets/lostPet/LostPetsDetails'
+import LostPetsUpdate from './components/lost&foundPets/lostPet/LostPetsUpdate'
 //dog adoption
 import DogAdoptionList from './components/adoptPet/dogAdoption/DogAdoptionList'
 import DogAdoptionForm from './components/adoptPet/dogAdoption/DogAdoptionForm'
@@ -60,6 +61,7 @@ function App() {
             <Route path='/lost-pets' element={<LostPetsList />}></Route>
             <Route path='/lost-form' element={<LostPetForm />}></Route>
             <Route path="/lost-pet/:id" element={<LostPetsDetails />} />
+            <Route path="/lost-pet/:id/edit" element={<LostPetsUpdate />} />
 
             <Route path='/dog-adoption' element={<DogAdoptionList />} />
             <Route path='/dog-adoption-form' element={<DogAdoptionForm />} />
