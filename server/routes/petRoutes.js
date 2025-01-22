@@ -9,6 +9,7 @@ router.post('/addLostPet', upload.single('image'), petController.addLostPet);
 router.get('/lost/:id', petController.getOneLost);
 router.get('/lost', petController.getAllLost);
 router.delete('/lost/:id', petController.deleteLostPet);
+router.put('/lost/:id', petController.updateLostPet);
 //found pets
 router.post('/addFoundPet', upload.single('image'), petController.addFoundPet);
 router.get('/found', petController.getAllFound);
