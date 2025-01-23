@@ -7,6 +7,9 @@ const cloudinary = require('../config/cloudinary');
 const path = require('path');
 const fs = require('fs');
 
+
+
+//Found Pets
 // Add found pet (with image upload to Cloudinary)
 const addFoundPet = async (req, res) => {
     try {
@@ -44,6 +47,61 @@ const addFoundPet = async (req, res) => {
         res.status(400).json({ error: 'Failed to add found pet', details: error.message });
     }
 };
+
+const getOneFound = async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ error: 'Invalid pet ID format' });
+        }
+
+        const pet = await FoundPet.findById(id);
+        if (!pet) {
+            return res.status(404).json({ error: 'Pet not found' });
+        }
+
+        res.status(200).json(pet);
+    } catch (error) {
+        console.error('Error in getOneFound:', error);
+        res.status(500).json({ error: 'Failed to fetch found pet', details: error.message });
+    }
+};
+
+const getAllFound  = async (req, res) => {
+    try {
+        const pets = await FoundPet.find().sort({ createdAt: -1 });  // Sort by creation date, newest first
+        res.status(200).json(pets);
+    } catch (error) {
+        console.error('Error in getAllFound :', error);
+        res.status(500).json({ error: 'Failed to fetch pets', details: error.message });
+    }
+};
+
+const deleteFoundPet = async (req, res) => {    
+    try {
+        const { id } = req.params;
+        await FoundPet.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Pet deleted successfully' });
+    } catch (error) {
+        console.error('Error in deleteFoundPet:', error);
+        res.status(500).json({ error: 'Failed to delete pet', details: error.message });
+    }
+};
+
+const updateFoundPet = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { ...updatedFields } = req.body;
+        await FoundPet.findByIdAndUpdate(id, updatedFields);
+        res.status(200).json({ message: 'Pet updated successfully' });
+    } catch (error) {
+        console.error('Error in updateFoundPet:', error);
+        res.status(500).json({ error: 'Failed to update pet', details: error.message });
+    }
+};
+
+
+//Lost Pets
 const addLostPet = async (req, res) => {
     try {
         const { name, kind, breed, lastSeenLocation, lastSeenDate, phone, description, ownerId } = req.body;
@@ -83,15 +141,7 @@ const addLostPet = async (req, res) => {
     }
 }
 
-const getAllFound  = async (req, res) => {
-    try {
-        const pets = await FoundPet.find().sort({ createdAt: -1 });  // Sort by creation date, newest first
-        res.status(200).json(pets);
-    } catch (error) {
-        console.error('Error in getAllFound :', error);
-        res.status(500).json({ error: 'Failed to fetch pets', details: error.message });
-    }
-};
+
 
 const getAllLost = async (req, res) => {
     try {
@@ -103,24 +153,7 @@ const getAllLost = async (req, res) => {
     }
 };
 
-const getOneFound = async (req, res) => {
-    try {
-        const { id } = req.params;
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ error: 'Invalid pet ID format' });
-        }
 
-        const pet = await FoundPet.findById(id);
-        if (!pet) {
-            return res.status(404).json({ error: 'Pet not found' });
-        }
-
-        res.status(200).json(pet);
-    } catch (error) {
-        console.error('Error in getOneFound:', error);
-        res.status(500).json({ error: 'Failed to fetch found pet', details: error.message });
-    }
-};
 
 const getOneLost = async (req, res) => {
     try {
@@ -141,16 +174,7 @@ const getOneLost = async (req, res) => {
     }
 };
 
-const deleteFoundPet = async (req, res) => {    
-    try {
-        const { id } = req.params;
-        await FoundPet.findByIdAndDelete(id);
-        res.status(200).json({ message: 'Pet deleted successfully' });
-    } catch (error) {
-        console.error('Error in deleteFoundPet:', error);
-        res.status(500).json({ error: 'Failed to delete pet', details: error.message });
-    }
-};
+
 
 const deleteLostPet = async (req, res) => {
     try {
@@ -163,17 +187,7 @@ const deleteLostPet = async (req, res) => {
     }
 };
 
-const updateFoundPet = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { ...updatedFields } = req.body;
-        await FoundPet.findByIdAndUpdate(id, updatedFields);
-        res.status(200).json({ message: 'Pet updated successfully' });
-    } catch (error) {
-        console.error('Error in updateFoundPet:', error);
-        res.status(500).json({ error: 'Failed to update pet', details: error.message });
-    }
-};
+
 
 const updateLostPet = async (req, res) => {
     try {
