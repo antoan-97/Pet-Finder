@@ -17,7 +17,7 @@ export default function Navbar() {
                     className="flex items-center space-x-3 rtl:space-x-reverse"
                 >
                     <img
-                        src="images/paw.png"
+                        src="images/paw.webp"
                         className="h-12 w-auto"
                         alt="PawFinder Logo"
                     />

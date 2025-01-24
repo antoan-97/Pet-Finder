@@ -14,7 +14,7 @@ export default function AdoptAPet() {
                     <Link to="/dog-adoption" className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-48 sm:h-64 overflow-hidden">
                             <img
-                                src="images/dog-adoption.jpg"
+                                src="images/dog-adoption.webp"
                                 alt="Adopt Dog"
                                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                             />
@@ -33,7 +33,7 @@ export default function AdoptAPet() {
                     <Link to="/cat-adoption" className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-48 sm:h-64 overflow-hidden">
                             <img
-                                src="images/cat-adoption.jpg"
+                                src="images/cat-adoption.webp"
                                 alt="Adopt Cat"
                                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                             />

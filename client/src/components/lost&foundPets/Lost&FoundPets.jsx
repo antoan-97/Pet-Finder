@@ -15,7 +15,7 @@ export default function LostAndFoundPets () {
                     <Link to="/lost-pets" className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-48 sm:h-64 overflow-hidden">
                             <img
-                                src="images/lost_pet.jpg"
+                                src="images/lost-pet.webp"
                                 alt="Lost Pets"
                                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                             />
@@ -35,7 +35,7 @@ export default function LostAndFoundPets () {
                     <Link to="/found-pets" className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-48 sm:h-64 overflow-hidden">
                             <img
-                                src="images/found-pet.jpg"
+                                src="images/found-pet.webp"
                                 alt="Found Pets"
                                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                             />
