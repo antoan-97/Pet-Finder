@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import LazyLoad from "react-lazyload";
 
 export default function PetAdoptionStarterGuide() {
     return (
-        
+
         <section className="bg-custom-gradient py-12 h-full">
             <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-4xl font-bold text-center text-white mb-8">
@@ -11,13 +12,16 @@ export default function PetAdoptionStarterGuide() {
                 <p className="text-lg text-gray-700 text-center mb-6 max-w-3xl mx-auto leading-relaxed">
                     Adopting a pet is a rewarding experience, but it comes with responsibilities. If you're new to caring for a dog or cat, this guide will help you get started. From preparing your home to understanding your pet’s needs, we provide tips to ensure a smooth transition for both you and your new companion.
                 </p>
-    
+
                 <div className="flex flex-col sm:flex-row items-center justify-center mb-8">
-                    <img
-                        src="images/dog-training-Tampa-1200x900.webp"
-                        alt="New pet owner with dog"
-                        className="w-full sm:w-1/2 h-64 object-cover rounded-lg shadow-lg mb-6 sm:mb-0 sm:mr-6"
-                    />
+                    <LazyLoad className="w-full  object-cover rounded-lg shadow-lg mb-6 sm:mb-0 sm:mr-6"
+                    >
+                        <img
+                            src="images/dog-training-Tampa-1200x900.webp"
+                            alt="New pet owner with dog"
+                            className="w-full  object-cover rounded-lg shadow-lg mb-6 sm:mb-0 sm:mr-6"
+                        />
+                    </LazyLoad>
                     <div className="sm:w-1/2">
                         <h3 className="text-2xl font-semibold text-green-700 mb-4">
                             Tips for First-Time Pet Owners
@@ -33,7 +37,7 @@ export default function PetAdoptionStarterGuide() {
                         </ul>
                     </div>
                 </div>
-    
+
                 <div className="text-center">
                     <a
                         href="https://en.wikipedia.org/wiki/Pet_adoption"
@@ -44,7 +48,7 @@ export default function PetAdoptionStarterGuide() {
                         Learn More About Pet Adoption
                     </a>
                 </div>
-    
+
                 <div className="text-center">
                     <Link
                         to='/lost-found'
@@ -56,7 +60,7 @@ export default function PetAdoptionStarterGuide() {
             </div>
         </section>
     );
-    
-    
-    
+
+
+
 }
