@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import LazyLoad from "react-lazyload";
 
 export default function AboutUs() {
     return (
@@ -13,11 +14,13 @@ export default function AboutUs() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <Link to='/dog-adoption' className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-64 overflow-hidden">
+                        <LazyLoad className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                             <img
                                 src="images/459158606_10161467394044451_4092756725960921795_n.webp"
                                 alt="Dog in need of adoption"
                                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                             />
+                        </LazyLoad>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                         <div className="p-6">
@@ -31,11 +34,13 @@ export default function AboutUs() {
                     </Link>
                     <Link to='/cat-adoption' className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-64 overflow-hidden">
+                        <LazyLoad className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                             <img
                                 src="images/458920877_2688140651389056_8486540629879217644_n.webp"
                                 alt="Cat in need of adoption"
                                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                             />
+                        </LazyLoad>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                         <div className="p-6">
