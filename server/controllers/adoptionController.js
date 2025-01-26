@@ -6,6 +6,7 @@ const cloudinary = require('../config/cloudinary');
 const path = require('path');
 const fs = require('fs');
 const { get } = require('http');
+const { log } = require('console');
 
 
 
@@ -134,11 +135,28 @@ const deleteAdoptionDog = async (req, res) => {
     }
 };
 
+const deleteAdoptionCat = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const cat = await AdoptionCat.findById(id);
+
+        if (!cat) {
+            return res.status(404).json({ error: 'Cat not found' });
+        }
+        await AdoptionCat.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Cat deleted successfully' });
+    } catch (error) {
+        console.log('Error in deleteAdoptionCat:', error);
+        res.status(500).json({ error: 'Failed to delete cat', details: error.message });
+    }
+}
+
 module.exports = {
     getAllDogs,
     addAdoptionDog,
     getOneAdoptionDog,
     deleteAdoptionDog,
+    deleteAdoptionCat,
     addAdoptionCat,
     getAllCats,
     getOneCat
