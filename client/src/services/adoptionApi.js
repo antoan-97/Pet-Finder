@@ -59,14 +59,16 @@ export const addAdoptionDog = async (formData) => {
 
 export const addAdoptionCat = async (formData) => {
     const token = getToken();
+    console.log('FORMDATA:', formData);
+
     try {
         const response = await adoptionApi.post('/adoption/addAdoptionCat', formData, {
             headers: {
-                'Authorization': `Bearer ${token}`, 
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data'
-            }    
+            }
         });
-        return response.data;    
+        return response.data;
     } catch (error) {
         console.error('Error while submitting cat for adoption:', error);
         throw error;
@@ -121,4 +123,19 @@ export const deleteAdoptionDog = async (id) => {
         throw error;
     }
 };
+
+export const deleteAdoptionCat = async (id) => {
+    const token = getToken();
+    try {
+        const response = await adoptionApi.delete(`/adoption/adoptionCat/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data
+    } catch (error) {
+        console.log('Error deleting cat:', error);
+        throw error;
+    }
+}
 
