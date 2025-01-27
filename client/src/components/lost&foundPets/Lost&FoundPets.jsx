@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import LazyLoad from "react-lazyload";
 
-export default function LostAndFoundPets () {
+export default function LostAndFoundPets() {
     return (
         <section className="bg-custom-gradient flex-1 min-h-screen py-12 px-4">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-20">
@@ -14,11 +15,13 @@ export default function LostAndFoundPets () {
                     {/* Lost Pets Card */}
                     <Link to="/lost-pets" className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-48 sm:h-64 overflow-hidden">
-                            <img
-                                src="images/lost-pet.webp"
-                                alt="Lost Pets"
-                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            />
+                            <LazyLoad className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img
+                                    src="images/lost-pet.webp"
+                                    alt="Lost Pets"
+                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                />
+                            </LazyLoad>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                         <div className="p-6">
@@ -34,11 +37,13 @@ export default function LostAndFoundPets () {
                     {/* Found Pets Card */}
                     <Link to="/found-pets" className="group bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         <div className="relative h-48 sm:h-64 overflow-hidden">
-                            <img
-                                src="images/found-pet.webp"
-                                alt="Found Pets"
-                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            />
+                            <LazyLoad className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img
+                                    src="images/found-pet.webp"
+                                    alt="Found Pets"
+                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                />
+                            </LazyLoad>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                         <div className="p-6">
