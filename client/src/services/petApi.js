@@ -54,7 +54,7 @@ export const addLostPet = async (formData) => {
     form.append('lastSeenDate', formData.lastSeenDate);
     form.append('phone', formData.phone);
     form.append('description', formData.description);
-    form.append('image', formData.image); 
+    form.append('image', formData.image);
     form.append('ownerId', formData.ownerId);
 
     try {
@@ -69,7 +69,7 @@ export const addLostPet = async (formData) => {
         console.error('Error while submitting lost pet:', error);
         throw error.response?.data || error;
     }
-};  
+};
 
 export const getAllFound = async () => {
     try {
@@ -115,7 +115,7 @@ export const getOneLost = async (id) => {
         throw new Error('Pet ID is required');
     }
     try {
-            const response = await petApi.get(`/pets/lost/${id}`);
+        const response = await petApi.get(`/pets/lost/${id}`);
         return response.data;
     } catch (error) {
         throw new Error('Network response was not ok ' + error.response?.statusText);
@@ -152,6 +152,16 @@ export const updateFoundPet = async (id, formData) => {
 
 export const updateLostPet = async (id, formData) => {
     const token = getToken();
-    const response = await petApi.put(`/pets/lost/${id}`, formData, { headers: { 'Authorization': `Bearer ${token}` } });
-    return response.data;
-};
+    try {
+        const response = await petApi.put(`/pets/lost/${id}`, formData, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error while updating lost pet:', error);
+        throw error.response?.data || error;
+    };
+}

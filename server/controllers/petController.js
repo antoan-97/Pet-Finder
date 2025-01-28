@@ -67,7 +67,7 @@ const getOneFound = async (req, res) => {
     }
 };
 
-const getAllFound  = async (req, res) => {
+const getAllFound = async (req, res) => {
     try {
         const pets = await FoundPet.find().sort({ createdAt: -1 });  // Sort by creation date, newest first
         res.status(200).json(pets);
@@ -77,7 +77,7 @@ const getAllFound  = async (req, res) => {
     }
 };
 
-const deleteFoundPet = async (req, res) => {    
+const deleteFoundPet = async (req, res) => {
     try {
         const { id } = req.params;
         await FoundPet.findByIdAndDelete(id);
@@ -193,7 +193,23 @@ const updateLostPet = async (req, res) => {
     try {
         const { id } = req.params;
         const { ...updatedFields } = req.body;
-        await LostPet.findByIdAndUpdate(id, updatedFields);
+        if (req.file) {
+            // Upload new image to Cloudinary
+            const result = await cloudinary.uploader.upload(req.file.path, {
+                folder: 'lost_pets',
+            });
+            updatedFields.imgUrl = result.secure_url;
+
+            // Delete the file from the uploads folder after uploading to Cloudinary
+            fs.unlinkSync(req.file.path);
+
+            const pet = await LostPet.findById(id);
+            if (pet.imgUrl) {
+                const publicId = pet.imgUrl.split('/').pop().split('.')[0];
+                await cloudinary.uploader.destroy(`lost_pets/${publicId}`);
+            }
+        }
+        await LostPet.findByIdAndUpdate(id, updatedFields, { new: true });
         res.status(200).json({ message: 'Pet updated successfully' });
     } catch (error) {
         console.error('Error in updateLostPet:', error);
@@ -201,4 +217,5 @@ const updateLostPet = async (req, res) => {
     }
 };
 
-module.exports = { addFoundPet, addLostPet, getAllFound , getAllLost, getOneFound, getOneLost, deleteFoundPet, deleteLostPet, updateFoundPet, updateLostPet };
+
+module.exports = { addFoundPet, addLostPet, getAllFound, getAllLost, getOneFound, getOneLost, deleteFoundPet, deleteLostPet, updateFoundPet, updateLostPet };
