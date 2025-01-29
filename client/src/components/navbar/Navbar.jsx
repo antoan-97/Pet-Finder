@@ -5,13 +5,19 @@ import AuthContext from '../../contexts/AuthContext';
 export default function Navbar() {
     const { isAuthenticated } = useContext(AuthContext)
     const [isOpen, setIsOpen] = useState(false);
+    const isHomePage = location.pathname === '/';
+
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
     return (
-        <nav className="bg-green-500">
+        <nav className={`fixed w-full z-50 transition-all duration-300 ${
+            isHomePage 
+                ? 'bg-black/30 backdrop-blur-sm' 
+                : 'bg-green-500'
+        }`}>
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 border-b border-dotted">
                 <Link to='/'
                     className="flex items-center space-x-3 rtl:space-x-reverse"
