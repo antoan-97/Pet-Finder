@@ -145,7 +145,7 @@ export default function DogAdoptionForm() {
 
                             className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200"
                         >
-                            {isLoading} ? <Spinner /> : 'Submit'
+                            {isLoading ? <Spinner /> : 'Submit'}
                         </button>
                     </form>
                 </div>
