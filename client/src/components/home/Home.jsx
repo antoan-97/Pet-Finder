@@ -121,6 +121,17 @@ export default function Home() {
                             Join our community and help create happy endings for pets and their families.
                         </p>
                         <div className="space-x-4">
+                            {isAuthenticated ? (
+                                <Link to="/adopt-pet"
+                                    className="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
+                                    Get Started Today
+                                </Link>
+                            ) : (
+                                <Link to="/register"
+                                    className="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
+                                    Get Started Today
+                                </Link>
+                            )}
                             <Link to="/about-us"
                                 className="inline-block bg-white hover:bg-gray-50 text-green-600 px-8 py-4 rounded-lg font-medium transition-all duration-200 border-2 border-green-600 hover:shadow-lg">
                                 Learn More
