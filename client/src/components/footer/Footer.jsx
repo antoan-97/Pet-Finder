@@ -47,11 +47,7 @@ export default function Footer() {
                                         Support Four Paws
                                     </a>
                                 </li>
-                                <li>
-                                    <Link to='about-us' className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300">
-                                        About Us
-                                    </Link>
-                                </li>
+                             
                             </ul>
                         </div>
 
