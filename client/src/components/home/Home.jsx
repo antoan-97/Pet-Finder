@@ -4,26 +4,26 @@ import { useContext } from 'react';
 export default function Home() {
     const { isAuthenticated } = useContext(AuthContext);
     return (
-        <div className="bg-login-bg bg-cover bg-center flex-1">
+        <div className="bg-login-bg bg-cover bg-fixed min-h-screen">
             {/* Hero Section */}
             <section className="relative h-[600px] bg-cover bg-center"
                 style={{ backgroundImage: "url('/images/hero-pets.jpg')" }}>
-                <div className="absolute inset-0 bg-black bg-opacity-50" />
+                <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
                 <div className="relative container mx-auto px-4 h-full flex items-center">
                     <div className="text-white max-w-2xl">
-                        <h1 className="text-5xl font-bold mb-4">
+                        <h1 className="text-5xl font-bold mb-4 drop-shadow-lg">
                             Find Your Perfect Pet Companion
                         </h1>
-                        <p className="text-xl mb-8">
+                        <p className="text-xl mb-8 text-white/90 drop-shadow">
                             Connect lost pets with their families and help animals find their forever homes.
                         </p>
                         <div className="space-x-4">
                             <Link to="/lost-found"
-                                className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                                className="bg-black/30 backdrop-blur-sm hover:bg-black/40 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 border border-white/20">
                                 Report Lost/Found Pet
                             </Link>
                             <Link to="/adopt-pet"
-                                className="bg-white hover:bg-gray-100 text-green-600 px-6 py-3 rounded-lg font-medium transition-colors">
+                                className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 border border-white/20">
                                 Adopt a Pet
                             </Link>
                         </div>
@@ -32,49 +32,53 @@ export default function Home() {
             </section>
 
             {/* Services Section */}
-            <section className="py-16 bg-gray-50">
-                <div className="container mx-auto px-4">
-                    <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
+            <section className="py-16 relative">
+                <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
+                <div className="container mx-auto px-4 relative z-10">
+                    <h2 className="text-3xl font-bold text-center mb-12 text-white drop-shadow-lg">Our Services</h2>
                     <div className="grid md:grid-cols-3 gap-8">
                         {/* Lost Pets */}
-                        <div className="bg-white p-6 rounded-lg shadow-md">
-                            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <div className="bg-black/20 backdrop-blur-sm p-6 rounded-xl border border-white/10">
+                            <div className="w-16 h-16 bg-red-100/90 rounded-full flex items-center justify-center mb-4">
                                 <i className="fas fa-search text-red-600 text-2xl"></i>
                             </div>
-                            <h3 className="text-xl font-semibold mb-2">Lost Pets</h3>
-                            <p className="text-gray-600 mb-4">
+                            <h3 className="text-xl font-semibold mb-2 text-white drop-shadow">Lost Pets</h3>
+                            <p className="text-white/90 mb-4 drop-shadow">
                                 Report your lost pet and increase the chances of finding them.
                             </p>
-                            <Link to="/lost-pets" className="text-red-600 hover:text-red-700 font-medium">
-                                Report Lost Pet →
+                            <Link to="/lost-pets" className="text-green-300 hover:text-green-200 font-medium inline-flex items-center">
+                                Report Lost Pet 
+                                <i className="fas fa-arrow-right ml-2"></i>
                             </Link>
                         </div>
 
                         {/* Found Pets */}
-                        <div className="bg-white p-6 rounded-lg shadow-md">
-                            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <div className="bg-black/20 backdrop-blur-sm p-6 rounded-xl border border-white/10">
+                            <div className="w-16 h-16 bg-blue-100/90 rounded-full flex items-center justify-center mb-4">
                                 <i className="fas fa-paw text-blue-600 text-2xl"></i>
                             </div>
-                            <h3 className="text-xl font-semibold mb-2">Found Pets</h3>
-                            <p className="text-gray-600 mb-4">
+                            <h3 className="text-xl font-semibold mb-2 text-white drop-shadow">Found Pets</h3>
+                            <p className="text-white/90 mb-4 drop-shadow">
                                 Help reunite found pets with their worried families.
                             </p>
-                            <Link to="/found-pets" className="text-blue-600 hover:text-blue-700 font-medium">
-                                Report Found Pet →
+                            <Link to="/found-pets" className="text-green-300 hover:text-green-200 font-medium inline-flex items-center">
+                                Report Found Pet
+                                <i className="fas fa-arrow-right ml-2"></i>
                             </Link>
                         </div>
 
                         {/* Adopt Pets */}
-                        <div className="bg-white p-6 rounded-lg shadow-md">
-                            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <div className="bg-black/20 backdrop-blur-sm p-6 rounded-xl border border-white/10">
+                            <div className="w-16 h-16 bg-green-100/90 rounded-full flex items-center justify-center mb-4">
                                 <i className="fas fa-heart text-green-600 text-2xl"></i>
                             </div>
-                            <h3 className="text-xl font-semibold mb-2">Pet Adoption</h3>
-                            <p className="text-gray-600 mb-4">
+                            <h3 className="text-xl font-semibold mb-2 text-white drop-shadow">Pet Adoption</h3>
+                            <p className="text-white/90 mb-4 drop-shadow">
                                 Give a loving home to pets waiting for adoption.
                             </p>
-                            <Link to="/adopt-pet" className="text-green-600 hover:text-green-700 font-medium">
-                                View Adoptable Pets →
+                            <Link to="/adopt-pet" className="text-green-300 hover:text-green-200 font-medium inline-flex items-center">
+                                View Adoptable Pets
+                                <i className="fas fa-arrow-right ml-2"></i>
                             </Link>
                         </div>
                     </div>
@@ -82,24 +86,25 @@ export default function Home() {
             </section>
 
             {/* Statistics Section */}
-            <section className="py-16 bg-green-600 text-white">
-                <div className="container mx-auto px-4">
+            <section className="py-16 relative">
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+                <div className="container mx-auto px-4 relative z-10">
                     <div className="grid md:grid-cols-4 gap-8 text-center">
-                        <div>
-                            <h3 className="text-4xl font-bold mb-2">500+</h3>
-                            <p>Pets Found</p>
+                        <div className="bg-black/20 backdrop-blur-sm p-6 rounded-xl border border-white/10">
+                            <h3 className="text-4xl font-bold mb-2 text-white drop-shadow-lg">500+</h3>
+                            <p className="text-white/90 drop-shadow">Pets Found</p>
                         </div>
-                        <div>
-                            <h3 className="text-4xl font-bold mb-2">300+</h3>
-                            <p>Happy Adoptions</p>
+                        <div className="bg-black/20 backdrop-blur-sm p-6 rounded-xl border border-white/10">
+                            <h3 className="text-4xl font-bold mb-2 text-white drop-shadow-lg">300+</h3>
+                            <p className="text-white/90 drop-shadow">Happy Adoptions</p>
                         </div>
-                        <div>
-                            <h3 className="text-4xl font-bold mb-2">1000+</h3>
-                            <p>Active Users</p>
+                        <div className="bg-black/20 backdrop-blur-sm p-6 rounded-xl border border-white/10">
+                            <h3 className="text-4xl font-bold mb-2 text-white drop-shadow-lg">1000+</h3>
+                            <p className="text-white/90 drop-shadow">Active Users</p>
                         </div>
-                        <div>
-                            <h3 className="text-4xl font-bold mb-2">50+</h3>
-                            <p>Partner Shelters</p>
+                        <div className="bg-black/20 backdrop-blur-sm p-6 rounded-xl border border-white/10">
+                            <h3 className="text-4xl font-bold mb-2 text-white drop-shadow-lg">50+</h3>
+                            <p className="text-white/90 drop-shadow">Partner Shelters</p>
                         </div>
                     </div>
                 </div>
