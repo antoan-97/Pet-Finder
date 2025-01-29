@@ -3,7 +3,7 @@ import LazyLoad from "react-lazyload";
 
 export default function LostAndFoundPets() {
     return (
-        <section className="bg-custom-gradient flex-1 min-h-screen py-12 px-4">
+        <section className="bg-custom-gradient flex-1 min-h-screen pt-24 px-4">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-20">
                 <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-white mb-8 tracking-tight">
                     Lost and Found Pets

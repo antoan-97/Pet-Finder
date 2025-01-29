@@ -23,7 +23,7 @@ export default function LostPetsList() {
   }, [])
 
   return (
-    <section className="bg-custom-gradient min-h-screen py-12 overflow-y-auto">
+    <section className="bg-custom-gradient min-h-screen pt-24 overflow-y-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
         <h2 className="text-5xl font-extrabold text-center text-white mb-8 tracking-tight">
           Lost Pets

@@ -3,7 +3,7 @@ import LazyLoad from "react-lazyload";
 
 export default function AboutUs() {
     return (
-        <section className="bg-custom-gradient min-h-screen py-12">
+        <section className="bg-custom-gradient min-h-screen pt-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
                 <h2 className="text-5xl font-comic font-bold text-center text-white mb-8 tracking-tight">
                     About Us
