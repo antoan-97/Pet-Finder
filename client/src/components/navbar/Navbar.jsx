@@ -13,12 +13,11 @@ export default function Navbar() {
     };
 
     return (
-        <nav className={`fixed w-full z-50 transition-all duration-300 ${
-            isHomePage 
-                ? 'bg-black/30 backdrop-blur-sm' 
-                : 'bg-green-500'
-        }`}>
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 border-b border-dotted">
+        <>
+        <div className="h-[76px]"></div>
+        
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm transition-all duration-300">
+            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 border-b border-white/20">
                 <Link to='/'
                     className="flex items-center space-x-3 rtl:space-x-reverse"
                 >
@@ -27,17 +26,15 @@ export default function Navbar() {
                         className="h-12 w-auto"
                         alt="PawFinder Logo"
                     />
-                    <span className="self-center text-xl font-semibold text-green-900 whitespace-nowrap dark:text-white">
+                    <span className="self-center text-xl font-semibold text-white whitespace-nowrap">
                         PawFinder
                     </span>
                 </Link>
 
                 {/* Mobile menu button */}
                 <button
-                    onClick={toggleMenu}
-                    data-collapse-toggle="navbar-default"
-                    type="button"
-                    className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-600 rounded-lg md:hidden hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-green-300 dark:text-gray-400 dark:hover:bg-green-600 dark:focus:ring-green-700"
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
                     aria-controls="navbar-default"
                     aria-expanded={isOpen ? 'true' : 'false'}
                 >
@@ -64,7 +61,7 @@ export default function Navbar() {
                     <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 justify-center">
                         <li>
                             <Link to='/'
-                                className="block py-2 px-3 text-gray-700 rounded hover:bg-green-200 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white dark:hover:text-green-300"
+                                className="block py-2 px-3 text-white rounded hover:bg-white/20 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
                                 aria-current="page"
                             >
                                 Home
@@ -72,23 +69,21 @@ export default function Navbar() {
                         </li>
                         <li>
                             <Link to='/about-us'
-                                className="block py-2 px-3 text-gray-700 rounded hover:bg-green-200 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white dark:hover:text-green-300"
+                                className="block py-2 px-3 text-white rounded hover:bg-white/20 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
                             >
                                 About Us
                             </Link>
                         </li>
                         <li>
-                            <Link
-                                to='/adopt-pet'
-                                className="block py-2 px-3 text-gray-700 rounded hover:bg-green-200 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white dark:hover:text-green-300"
+                            <Link to='/adopt-pet'
+                                className="block py-2 px-3 text-white rounded hover:bg-white/20 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
                             >
                                 Adopt a Pet
                             </Link>
                         </li>
                         <li>
                             <Link to='/lost-found'
-                            
-                                className="block py-2 px-3 text-gray-700 rounded hover:bg-green-200 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white dark:hover:text-green-300"
+                                className="block py-2 px-3 text-white rounded hover:bg-white/20 md:hover:bg-transparent md:hover:text-green-300 md:p-0"
                             >
                                 Lost & Found Pets
                             </Link>
@@ -98,33 +93,33 @@ export default function Navbar() {
 
                 {/* Right-aligned login/register/logout */}
                 <div className="flex items-center">
-    {!isAuthenticated && (
-        <>
-            <Link
-                to='/login'
-                className="bg-green-600 text-white rounded px-4 m-1 py-2 hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
-            >
-                Login
-            </Link>
-            <Link
-                to='/register'
-                className="bg-green-600 text-white rounded px-4 m-1 py-2 hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
-            >
-                Register
-            </Link>
-        </>
-    )}
-    {isAuthenticated && (
-        <Link
-            to='/logout'
-            className="bg-green-600 text-white rounded px-4 m-1 py-2 hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
-        >
-            Logout
-        </Link>
-    )}
-</div>
-
+                    {!isAuthenticated && (
+                        <>
+                            <Link
+                                to='/login'
+                                className="bg-white/20 hover:bg-white/30 text-white rounded px-4 m-1 py-2 transition duration-300 ease-in-out transform hover:scale-105"
+                            >
+                                Login
+                            </Link>
+                            <Link
+                                to='/register'
+                                className="bg-white/20 hover:bg-white/30 text-white rounded px-4 m-1 py-2 transition duration-300 ease-in-out transform hover:scale-105"
+                            >
+                                Register
+                            </Link>
+                        </>
+                    )}
+                    {isAuthenticated && (
+                        <Link
+                            to='/logout'
+                            className="bg-white/20 hover:bg-white/30 text-white rounded px-4 m-1 py-2 transition duration-300 ease-in-out transform hover:scale-105"
+                        >
+                            Logout
+                        </Link>
+                    )}
+                </div>
             </div>
         </nav>
+    </>
     );
 }
