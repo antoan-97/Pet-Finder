@@ -13,11 +13,6 @@ export default function DogAdoptionList() {
     const fetchDogs = async () => {
       try {
         const result = await adoptionApi.getAllDogs();
-        
-        if (!result) {
-          console.log('No data received from API');
-          return;
-        }
         setPets(result);
       } catch (err) {
         console.error('Error details:', {

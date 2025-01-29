@@ -26,7 +26,7 @@ const addFoundPet = async (req, res) => {
             // Delete the file from the uploads folder after uploading to Cloudinary
             fs.unlinkSync(req.file.path);
         } else {
-            console.log('No file uploaded');
+            console.error('No file uploaded');
         }
 
         // Create a new pet with the uploaded image URL
@@ -117,7 +117,7 @@ const addLostPet = async (req, res) => {
             // Delete the file from the uploads folder after uploading to Cloudinary
             fs.unlinkSync(req.file.path);
         } else {
-            console.log('No file uploaded');
+            console.error('No file uploaded');
         }
 
         // Create a new pet with the uploaded image URL

@@ -13,8 +13,13 @@ export default function FoundPetsList() {
     petApi.getAllFound()
       .then(result => setPets(result))
       .catch(err => {
-        console.log(err);
+        console.error('Error details:', {
+          message: err.message,
+          response: err.response,
+          stack: err.stack
+        });
       })
+
   }, [])
 
   return (

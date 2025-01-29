@@ -59,7 +59,6 @@ export const addAdoptionDog = async (formData) => {
 
 export const addAdoptionCat = async (formData) => {
     const token = getToken();
-    console.log('FORMDATA:', formData);
 
     try {
         const response = await adoptionApi.post('/adoption/addAdoptionCat', formData, {
@@ -134,7 +133,7 @@ export const deleteAdoptionCat = async (id) => {
         });
         return response.data
     } catch (error) {
-        console.log('Error deleting cat:', error);
+        console.error('Error deleting cat:', error);
         throw error;
     }
 }

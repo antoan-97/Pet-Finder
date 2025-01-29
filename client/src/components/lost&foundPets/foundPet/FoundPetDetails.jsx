@@ -38,8 +38,6 @@ export default function FoundPetDetails() {
             setError('Failed to delete dog');
         }
     };
-    console.log('Pet:', pet);
-    // console.log('Pet ID:', pet._id);
 
     if (loading) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Loading...</div>;
     if (error) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Error: {error}</div>;

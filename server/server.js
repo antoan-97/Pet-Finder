@@ -51,7 +51,6 @@ app.listen(PORT, () => {
 });
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Add these console logs at the start of your server.js
 console.log('Server PORT:', process.env.PORT);
 console.log('MongoDB URI:', process.env.MONGODB_URI);
 console.log('CORS Origin:', process.env.CORS_ORIGIN || 'http://localhost:5173');

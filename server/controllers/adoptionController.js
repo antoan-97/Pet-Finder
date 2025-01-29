@@ -16,7 +16,7 @@ const getAllDogs = async (req, res) => {
         res.status(200).json(dogs);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch dogs', details: error.message });
-        console.log('Error with fetching dogs:', error);
+        console.error('Error with fetching dogs:', error);
 
     }
 }
@@ -99,7 +99,7 @@ const getAllCats = async (req, res) => {
         res.status(200).json(cats);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch cats', details: error.message });
-        console.log('Error with fetching cats:', error);
+        console.error('Error with fetching cats:', error);
     }
 }
 
