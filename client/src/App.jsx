@@ -12,6 +12,7 @@ import Logout from './components/logout/Logout'
 import Register from './components/register/Register'
 import TermsOfCondition from '../src/components/terms/Terms'
 import PetAdoptionStarterGuide from './components/guides/AdoptionGuide'
+import ScrollToTop from './components/scrollToTop/ScrollToTop'
 //guards
 import AuthGuard from './guards/AuthGuard'
 import GuestGuard from './guards/GuestGuard'
@@ -44,9 +45,11 @@ function App() {
     <LoadingProvider>
       <AuthProvider>
         <Navbar />
+        <ScrollToTop />
         <main className="flex-grow">
           <Routes>
             <Route path='/' element={<Home />}></Route>
+
             <Route path='/about-us' element={<AboutUs />}></Route>
             <Route path='/guide' element={<PetAdoptionStarterGuide />}></Route>
             <Route path='/terms' element={<TermsOfCondition />}></Route>
