@@ -92,8 +92,25 @@ const updateFoundPet = async (req, res) => {
     try {
         const { id } = req.params;
         const { ...updatedFields } = req.body;
-        await FoundPet.findByIdAndUpdate(id, updatedFields);
+        if (req.file) {
+            // Upload new image to Cloudinary
+            const result = await cloudinary.uploader.upload(req.file.path, {
+                folder: 'found_pets',
+            });
+            updatedFields.imgUrl = result.secure_url;
+            // Delete the file from the uploads folder after uploading to Cloudinary
+            fs.unlinkSync(req.file.path);
+
+            // Get the old pet to delete its image
+            const pet = await FoundPet.findById(id);
+            if (pet.imgUrl) {
+                const publicId = pet.imgUrl.split('/').pop().split('.')[0];
+                await cloudinary.uploader.destroy(`found_pets/${publicId}`);
+            }
+        }
+        await FoundPet.findByIdAndUpdate(id, updatedFields, { new: true });
         res.status(200).json({ message: 'Pet updated successfully' });
+
     } catch (error) {
         console.error('Error in updateFoundPet:', error);
         res.status(500).json({ error: 'Failed to update pet', details: error.message });

@@ -139,17 +139,6 @@ export default function LostPetsUpdate() {
                                 className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
                             />
                         </div>
-
-                        {/* <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Update Image</label>
-                            <input
-                                type="file"
-                                name="image"
-                                accept="image/*"
-                                onChange={handleChange}
-                                className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-                            />
-                        </div> */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700">Current Image</label>
                             {formData.imgUrl && (

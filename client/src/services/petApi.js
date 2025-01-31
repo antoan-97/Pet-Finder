@@ -146,9 +146,20 @@ export const deleteLostPet = async (id) => {
 
 export const updateFoundPet = async (id, formData) => {
     const token = getToken();
-    const response = await petApi.put(`/pets/found/${id}`, formData, { headers: { 'Authorization': `Bearer ${token}` } });
-    return response.data;
+    try {
+        const response = await petApi.put(`/pets/found/${id}`, formData, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error while updating found pet:', error);
+        throw error.response?.data || error;
+    }
 };
+
 
 export const updateLostPet = async (id, formData) => {
     const token = getToken();
