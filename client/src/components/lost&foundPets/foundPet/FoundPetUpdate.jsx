@@ -16,6 +16,7 @@ export default function FoundPetUpdate() {
         phone: '',
         description: '',
         image: '',
+        imgUrl: ''
     });
 
     // Fetch pet data when component mounts
@@ -31,6 +32,7 @@ export default function FoundPetUpdate() {
                     phone: data.phone || '',
                     description: data.description || '',
                     image: data.image || '',
+                    imgUrl: data.imgUrl || ''
                 });
             } catch (err) {
                 console.error('Error fetching pet:', err);
@@ -48,7 +50,7 @@ export default function FoundPetUpdate() {
         if (name === 'image' && files) {
             setFormData(prev => ({
                 ...prev,
-                [name]: files[0]
+                [name]: files[0],
             }));
         } else {
             setFormData(prev => ({
@@ -65,15 +67,28 @@ export default function FoundPetUpdate() {
             const formDataToSend = new FormData();
             Object.keys(formData).forEach(key => {
                 if (key === 'image' && formData[key] instanceof File) {
+                    console.log('Appending image file:', formData[key]); // Debug log
                     formDataToSend.append('image', formData[key]);
                 } else if (key !== 'image') {
+                    console.log(`Appending ${key}:`, formData[key]); // Debug log
                     formDataToSend.append(key, formData[key]);
                 }
             });
+            
+            // // Add all text fields
+            // formDataToSend.append('kind', formData.kind);
+            // formDataToSend.append('breed', formData.breed);
+            // formDataToSend.append('location', formData.location);
+            // formDataToSend.append('phone', formData.phone);
+            // formDataToSend.append('description', formData.description);
 
-            await petApi.updateFoundPet(id, formDataToSend);
+           
+
+            const response = await petApi.updateFoundPet(id, formDataToSend);
+            console.log('Update response:', response); // Debug log
             navigate('/found-pets');
         } catch (error) {
+            console.error('Update error:', error); // Debug log
             setError(error.message);
         } finally {
             setIsLoading(false);
@@ -153,15 +168,23 @@ export default function FoundPetUpdate() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Update Image</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Current Image</label>
+                            {formData.imgUrl && (
+                                <img
+                                    src={formData.imgUrl}
+                                    alt="Current pet"
+                                    className="mt-2 mb-4 w-full h-64 object-cover rounded-md"
+                                />
+                            )}
+                            <label className="block text-sm font-medium text-gray-700 mb-1">New Image</label>
                             <input
                                 type="file"
                                 name="image"
-                                accept="image/*"
                                 onChange={handleChange}
                                 className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
                             />
                         </div>
+
 
                         <button
                             type="submit"
