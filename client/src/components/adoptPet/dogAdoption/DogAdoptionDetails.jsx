@@ -45,9 +45,10 @@ export default function DogAdoptionDetails() {
     const isOwner = userId === pet?.ownerId;
 
     return (
-        <div className="bg-custom-gradient min-h-screen pt-24 px-4 sm:px-6 lg:px-8">
+        <div className="bg-custom-gradient min-h-screen pt-24 pb-24 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto rounded-xl shadow-2xl overflow-hidden">
                 <div className="p-8">
+
                     <h2 className="text-3xl font-bold text-black mb-6 border-b pb-4">Name - {pet.name}</h2>
                     {pet.imgUrl && (
                         <div className="mb-8 flex justify-center">
