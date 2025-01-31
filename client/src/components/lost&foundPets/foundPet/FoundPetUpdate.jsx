@@ -75,15 +75,6 @@ export default function FoundPetUpdate() {
                 }
             });
             
-            // // Add all text fields
-            // formDataToSend.append('kind', formData.kind);
-            // formDataToSend.append('breed', formData.breed);
-            // formDataToSend.append('location', formData.location);
-            // formDataToSend.append('phone', formData.phone);
-            // formDataToSend.append('description', formData.description);
-
-           
-
             const response = await petApi.updateFoundPet(id, formDataToSend);
             console.log('Update response:', response); // Debug log
             navigate('/found-pets');
@@ -100,7 +91,7 @@ export default function FoundPetUpdate() {
     }
 
     return (
-        <section className="bg-login-bg bg-cover bg-center pt-24 px-4 h-full">
+        <section className="bg-login-bg bg-cover bg-center pt-24 pb-24 px-4 h-full">
             <div className="container mx-auto px-4 max-w-md">
                 <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-6">
                     <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">
