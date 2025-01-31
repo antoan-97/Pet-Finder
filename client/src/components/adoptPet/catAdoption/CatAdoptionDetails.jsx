@@ -58,39 +58,39 @@ export default function CatAdoptionDetails() {
                             />
                         </div>
                     )}
-                </div>
-                <div className="space-y-4">
-                    <p className="text-xl"><strong className="text-black">Breed:</strong> {pet.breed}</p>
-                    <p className="text-xl"><strong className="text-black">Age:</strong> {pet.age}</p>
-                    <p className="text-xl"><strong className="text-black">Location:</strong> {pet.location}</p>
-                    <p className="text-xl"><strong className="text-black">Description:</strong> {pet.description}</p>
-                    <p className="text-xl"><strong className="text-black">Contact:</strong> {pet.phone}</p>
+                    <div className="space-y-4">
+                        <p className="text-xl"><strong className="text-black">Breed:</strong> {pet.breed}</p>
+                        <p className="text-xl"><strong className="text-black">Age:</strong> {pet.age}</p>
+                        <p className="text-xl"><strong className="text-black">Location:</strong> {pet.location}</p>
+                        <p className="text-xl"><strong className="text-black">Description:</strong> {pet.description}</p>
+                        <p className="text-xl"><strong className="text-black">Contact:</strong> {pet.phone}</p>
+                    </div>
+                    <div className="mt-8 flex justify-center">
+                        <Link
+                            to="/cat-adoption"
+                            className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
+                        >
+                            Back to Adoption Cats
+                        </Link>
+                    </div>
+                    {isOwner && (
+                        <div className="mt-8 flex justify-center gap-2">
+                            <Link
+                                to={`/cat-adoption/${pet._id}/edit`}
+                                className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
+                            >
+                                Edit
+                            </Link>
+                            <button
+                                onClick={() => setShowDeleteModal(true)}
+                                className="bg-red-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-md hover:shadow-lg"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
-            <div className="mt-8 flex justify-center">
-                <Link
-                    to="/cat-adoption"
-                    className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
-                >
-                    Back to Adoption Cats
-                </Link>
-            </div>
-            {isOwner && (
-                <div className="mt-8 flex justify-center gap-2">
-                    <Link
-                        to={`/cat-adoption/${pet._id}/edit`}
-                        className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
-                    >
-                        Edit
-                    </Link>
-                    <button
-                        onClick={() => setShowDeleteModal(true)}
-                        className="bg-red-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-md hover:shadow-lg"
-                    >
-                        Delete
-                    </button>
-                </div>
-            )}
 
             {showDeleteModal && (
                 <DeleteModal
