@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 import { LoadingProvider } from './contexts/LoadingContext'
-import './App.css'
 
 import Navbar from './components/navbar/Navbar'
 import Home from './components/home/Home'
