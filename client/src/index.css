@@ -16,14 +16,50 @@ body {
 }
 
 #root {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
+
 @layer base {
     p {
-      @apply font-comic;
+        @apply font-comic;
     }
     h2 {
-      @apply font-comic;
+        @apply font-comic;
     }
-  }
+}
+
+/* Logo animations if needed */
+@layer components {
+    .logo {
+        @apply h-24 p-6 transition-all duration-300;
+    }
+    
+    .logo:hover {
+        filter: drop-shadow(0 0 2em #646cffaa);
+    }
+    
+    .logo.react:hover {
+        filter: drop-shadow(0 0 2em #61dafbaa);
+    }
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear;
+    }
+}
