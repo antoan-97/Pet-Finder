@@ -66,7 +66,7 @@ export default function Footer() {
                         {/* Social Media */}
                         <div>
                             <h4 className="text-lg font-bold mb-4">Follow Us</h4>
-                            <div className="flex space-x-4">
+                            <div className="flex justify-center space-x-4">
                                 <a
                                     href="https://www.facebook.com/profile.php?id=61567282290739"
                                     target="_blank"
