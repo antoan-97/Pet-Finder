@@ -33,8 +33,10 @@ import LostPetsUpdate from './components/lost&foundPets/lostPet/LostPetsUpdate'
 import DogAdoptionList from './components/adoptPet/dogAdoption/DogAdoptionList'
 import DogAdoptionForm from './components/adoptPet/dogAdoption/DogAdoptionForm'
 import DogAdoptionDetails from './components/adoptPet/dogAdoption/DogAdoptionDetails'
+import DogAdoptionUpdate from './components/adoptPet/dogAdoption/DogAdoptionUpdate'
 //cat adoption
 import CatAdoptionList from './components/adoptPet/catAdoption/CatAdoptionList'
+
 import CatAdoptionForm from './components/adoptPet/catAdoption/CatAdoptionForm'
 import CatAdoptionDetails from './components/adoptPet/catAdoption/CatAdoptionDetails'
 
@@ -68,6 +70,7 @@ function App() {
             <Route path='/dog-adoption' element={<DogAdoptionList />} />
             <Route path='/dog-adoption-form' element={<DogAdoptionForm />} />
             <Route path='/adopt-dog/:id' element={<DogAdoptionDetails />} />
+            <Route path='/adopt-dog/:id/edit' element={<DogAdoptionUpdate />} />
 
             <Route path='/cat-adoption' element={<CatAdoptionList />} />
             <Route path='/cat-adoption-form' element={<CatAdoptionForm />} />

@@ -77,7 +77,7 @@ export default function DogAdoptionDetails() {
                     {isOwner && (
                         <div className="mt-8 flex justify-center gap-2">
                             <Link
-                                to={`/dog-adoption/${pet._id}/edit`}
+                                to={`/adopt-dog/${pet._id}/edit`}
                                 className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
                             >
                                 Edit
