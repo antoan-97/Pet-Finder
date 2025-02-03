@@ -15,5 +15,5 @@ router.post('/addAdoptionCat', upload.single('image'), adoptionController.addAdo
 router.get('/adoptionCat', adoptionController.getAllCats);
 router.get('/adoptionCat/:id', adoptionController.getOneCat);
 router.delete('/adoptionCat/:id', adoptionController.deleteAdoptionCat);
-
+router.put('/adoptionDog/:id', upload.single('image'), adoptionController.updateAdoptionDog);
 module.exports = router

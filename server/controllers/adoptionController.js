@@ -122,16 +122,36 @@ const deleteAdoptionDog = async (req, res) => {
             return res.status(404).json({ error: 'Dog not found' });
         }
 
-        // Optional: Check if the user is the owner
-        // if (dog.ownerId !== req.user.id) {
-        //     return res.status(403).json({ error: 'Not authorized' });
-        // }
-
         await AdoptionDog.findByIdAndDelete(id);
         res.status(200).json({ message: 'Dog deleted successfully' });
     } catch (error) {
         console.error('Error in deleteAdoptionDog:', error);
         res.status(500).json({ error: 'Failed to delete dog', details: error.message });
+    }
+};
+
+const updateAdoptionDog = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { ...updatedFields } = req.body;
+        if (req.file) {
+            const result = await cloudinary.uploader.upload(req.file.path, {
+                folder: 'adoption_dogs',
+            });
+            updatedFields.imgUrl = result.secure_url;
+            fs.unlinkSync(req.file.path);
+
+            const pet = await AdoptionDog.findById(id);
+            if (pet.imgUrl) {
+                const publicId = pet.imgUrl.split('/').pop().split('.')[0];
+                await cloudinary.uploader.destroy(`adoption_dogs/${publicId}`);
+            }
+        }
+        await AdoptionDog.findByIdAndUpdate(id, updatedFields, { new: true });
+        res.status(200).json({ message: 'Dog updated successfully' });
+    } catch (error) {
+        console.error('Error in updateAdoptionDog:', error);
+        res.status(500).json({ error: 'Failed to update dog', details: error.message });
     }
 };
 
@@ -159,5 +179,6 @@ module.exports = {
     deleteAdoptionCat,
     addAdoptionCat,
     getAllCats,
-    getOneCat
+    getOneCat,
+    updateAdoptionDog
 }
