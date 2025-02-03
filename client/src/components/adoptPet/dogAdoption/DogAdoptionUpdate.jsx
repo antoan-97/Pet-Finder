@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import * as petApi from '../../../services/petApi';
+import * as adoptionApi from '../../../services/adoptionApi';
 import Spinner from "../../common/Spinner";
 
 export default function DogAdoptionUpdate() {
@@ -22,7 +22,7 @@ export default function DogAdoptionUpdate() {
     useEffect(() => {
         const fetchPet = async () => {
             try {
-                const data = await petApi.getOneAdoptionDog(id);
+                const data = await adoptionApi.getOneDog(id);
 
                 setFormData({
                     name: data.name || '',
@@ -72,7 +72,7 @@ export default function DogAdoptionUpdate() {
                 }
             });
 
-            const response = await petApi.updateAdoptionDog(id, formDataToSend);
+            const response = await adoptionApi.updateAdoptionDog(id, formDataToSend);
             navigate('/dog-adoption');
         } catch (error) {
             console.error('Update error:', error);
@@ -82,13 +82,6 @@ export default function DogAdoptionUpdate() {
         }
     };
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
-    if (isLoading) {
-        return <Spinner />;
-    }
 
     return (
         <section className="bg-login-bg bg-cover bg-center pt-24 pb-24 px-4 h-full">
@@ -108,7 +101,7 @@ export default function DogAdoptionUpdate() {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" 
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
                         </div>
                         <div>
