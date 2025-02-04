@@ -155,6 +155,31 @@ const updateAdoptionDog = async (req, res) => {
     }
 };
 
+const updateAdoptionCat = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { ...updatedFields } = req.body;
+        if (req.file) {
+            const result = await cloudinary.uploader.upload(req.file.path, {
+                folder: 'adoption_cats',
+            });
+            updatedFields.imgUrl = result.secure_url;
+            fs.unlinkSync(req.file.path);
+
+            const pet = await AdoptionCat.findById(id);
+            if (pet.imgUrl) {
+                const publicId = pet.imgUrl.split('/').pop().split('.')[0];
+                await cloudinary.uploader.destroy(`adoption_cats/${publicId}`);
+            }
+        }
+        await AdoptionCat.findByIdAndUpdate(id, updatedFields, { new: true });
+        res.status(200).json({ message: 'Cat updated successfully' });
+    } catch (error) {
+        console.error('Error in updateAdoptionCat:', error);
+        res.status(500).json({ error: 'Failed to update cat', details: error.message });
+    }
+}
+
 const deleteAdoptionCat = async (req, res) => {
     try {
         const { id } = req.params;
@@ -180,5 +205,6 @@ module.exports = {
     addAdoptionCat,
     getAllCats,
     getOneCat,
-    updateAdoptionDog
+    updateAdoptionDog,
+    updateAdoptionCat
 }
