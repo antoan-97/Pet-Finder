@@ -139,6 +139,22 @@ export const updateAdoptionDog = async (id, formData) => {
     }
 };
 
+export const updateAdoptionCat = async (id, formData) => {
+    const token = getToken();
+    try {
+        const response = await adoptionApi.put(`/adoption/adoptionCat/${id}`, formData, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error updating cat:', error);
+        throw error;
+    }
+};
+
 export const deleteAdoptionCat = async (id) => {
     const token = getToken();
     try {
