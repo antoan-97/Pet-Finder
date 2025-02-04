@@ -36,7 +36,7 @@ import DogAdoptionDetails from './components/adoptPet/dogAdoption/DogAdoptionDet
 import DogAdoptionUpdate from './components/adoptPet/dogAdoption/DogAdoptionUpdate'
 //cat adoption
 import CatAdoptionList from './components/adoptPet/catAdoption/CatAdoptionList'
-
+import CatAdoptionUpdate from './components/adoptPet/catAdoption/CatAdoptionUpdate'
 import CatAdoptionForm from './components/adoptPet/catAdoption/CatAdoptionForm'
 import CatAdoptionDetails from './components/adoptPet/catAdoption/CatAdoptionDetails'
 
@@ -75,7 +75,7 @@ function App() {
             <Route path='/cat-adoption' element={<CatAdoptionList />} />
             <Route path='/cat-adoption-form' element={<CatAdoptionForm />} />
             <Route path='/adopt-cat/:id' element={<CatAdoptionDetails />} />
-
+            <Route path='/adopt-cat/:id/edit' element={<CatAdoptionUpdate />} />
             <Route element={<GuestGuard />}>
               <Route path='/register' element={<Register />}></Route>
               <Route path='/login' element={<Login />}></Route>
