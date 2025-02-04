@@ -12,6 +12,7 @@ import Register from './components/register/Register'
 import TermsOfCondition from '../src/components/terms/Terms'
 import PetAdoptionStarterGuide from './components/guides/AdoptionGuide'
 import ScrollToTop from './components/scrollToTop/ScrollToTop'
+import ErrorPage from './components/errorPage/ErrorPage'
 //guards
 import AuthGuard from './guards/AuthGuard'
 import GuestGuard from './guards/GuestGuard'
@@ -84,6 +85,9 @@ function App() {
             <Route element={<AuthGuard />}>
               <Route path='/logout' element={<Logout />}></Route>
             </Route>
+            <Route path='/error-page' element={<ErrorPage />}></Route>
+            
+            <Route path='*' element={<ErrorPage />}></Route>
           </Routes>
         </main>
         <Footer />
