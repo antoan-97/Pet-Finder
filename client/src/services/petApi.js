@@ -71,22 +71,11 @@ export const addLostPet = async (formData) => {
     }
 };
 
+//Found Pets
+
 export const getAllFound = async () => {
     try {
         const response = await petApi.get('/pets/found', {
-            params: {
-                sortBy: '_createdOn desc'
-            }
-        });
-        return response.data;
-    } catch (error) {
-        throw new Error('Network response was not ok ' + error.response?.statusText);
-    }
-};
-
-export const getAllLost = async () => {
-    try {
-        const response = await petApi.get('/pets/lost', {
             params: {
                 sortBy: '_createdOn desc'
             }
@@ -110,40 +99,6 @@ export const getOneFound = async (id) => {
     }
 };
 
-export const getOneLost = async (id) => {
-    if (!id) {
-        throw new Error('Pet ID is required');
-    }
-    try {
-        const response = await petApi.get(`/pets/lost/${id}`);
-        return response.data;
-    } catch (error) {
-        throw new Error('Network response was not ok ' + error.response?.statusText);
-    }
-}
-
-export const deleteFoundPet = async (id) => {
-    const token = getToken();
-    try {
-        const response = await petApi.delete(`/pets/found/${id}`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
-        return response.data;
-    } catch (error) {
-        throw new Error('Network response was not ok ' + error.response?.statusText);
-    }
-};
-
-export const deleteLostPet = async (id) => {
-    const token = getToken();
-    try {
-        const response = await petApi.delete(`/pets/lost/${id}`, { headers: { 'Authorization': `Bearer ${token}` } });
-        return response.data;
-    } catch (error) {
-        throw new Error('Network response was not ok ' + error.response?.statusText);
-    }
-};
-
 export const updateFoundPet = async (id, formData) => {
     const token = getToken();
     try {
@@ -160,7 +115,44 @@ export const updateFoundPet = async (id, formData) => {
     }
 };
 
+export const deleteFoundPet = async (id) => {
+    const token = getToken();
+    try {
+        const response = await petApi.delete(`/pets/found/${id}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error('Network response was not ok ' + error.response?.statusText);
+    }
+};
 
+//Lost Pets
+export const getAllLost = async () => {
+    try {
+        const response = await petApi.get('/pets/lost', {
+            params: {
+                sortBy: '_createdOn desc'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error('Network response was not ok ' + error.response?.statusText);
+    }
+};
+
+
+export const getOneLost = async (id) => {
+    if (!id) {
+        throw new Error('Pet ID is required');
+    }
+    try {
+        const response = await petApi.get(`/pets/lost/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error('Network response was not ok ' + error.response?.statusText);
+    }
+}
 export const updateLostPet = async (id, formData) => {
     const token = getToken();
     try {
@@ -174,5 +166,21 @@ export const updateLostPet = async (id, formData) => {
     } catch (error) {
         console.error('Error while updating lost pet:', error);
         throw error.response?.data || error;
-    };
-}
+    }
+};
+
+export const deleteLostPet = async (id) => {
+    const token = getToken();
+    try {
+        const response = await petApi.delete(`/pets/lost/${id}`, { headers: { 'Authorization': `Bearer ${token}` } });
+        return response.data;
+    } catch (error) {
+        throw new Error('Network response was not ok ' + error.response?.statusText);
+    }
+};
+
+
+
+
+
+

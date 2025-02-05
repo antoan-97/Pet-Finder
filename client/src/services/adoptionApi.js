@@ -17,6 +17,7 @@ export const getToken = () => {
     return token;
 };
 
+//Dogs
 export const getAllDogs = async () => {
     try {
         const response = await adoptionApi.get('/adoption/adoptionDog');
@@ -56,6 +57,41 @@ export const addAdoptionDog = async (formData) => {
         throw error;
     }
 };
+
+
+export const deleteAdoptionDog = async (id) => {
+    const token = getToken();
+    try {
+        const response = await adoptionApi.delete(`/adoption/adoptionDog/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error deleting dog:', error);
+        throw error;
+    }
+};
+
+export const updateAdoptionDog = async (id, formData) => {
+    const token = getToken();
+    try {
+        const response = await adoptionApi.put(`/adoption/adoptionDog/${id}`, formData, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error updating dog:', error);
+        throw error;
+    }
+};
+
+
+//Cats
 
 export const addAdoptionCat = async (formData) => {
     const token = getToken();
@@ -108,36 +144,6 @@ export const getOneCat = async (id) => {
     }
 };
 
-export const deleteAdoptionDog = async (id) => {
-    const token = getToken();
-    try {
-        const response = await adoptionApi.delete(`/adoption/adoptionDog/${id}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        return response.data;
-    } catch (error) {
-        console.error('Error deleting dog:', error);
-        throw error;
-    }
-};
-
-export const updateAdoptionDog = async (id, formData) => {
-    const token = getToken();
-    try {
-        const response = await adoptionApi.put(`/adoption/adoptionDog/${id}`, formData, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'multipart/form-data'
-            }
-        });
-        return response.data;
-    } catch (error) {
-        console.error('Error updating dog:', error);
-        throw error;
-    }
-};
 
 export const updateAdoptionCat = async (id, formData) => {
     const token = getToken();
