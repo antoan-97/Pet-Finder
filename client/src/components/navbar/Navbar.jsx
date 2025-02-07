@@ -1,8 +1,10 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import AuthContext from '../../contexts/AuthContext';
 
 export default function Navbar() {
+    const { t, i18n } = useTranslation();
     const { isAuthenticated } = useContext(AuthContext)
     const [isOpen, setIsOpen] = useState(false);
     const isHomePage = location.pathname === '/';
@@ -63,14 +65,14 @@ export default function Navbar() {
                                 className="block py-2 px-3 text-gray-700 rounded hover:bg-green-200 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white dark:hover:text-green-300"
                                 aria-current="page"
                             >
-                                Home
+                                {t('nav.home')}
                             </Link>
                         </li>
                         <li>
                             <Link to='/about-us'
                                 className="block py-2 px-3 text-gray-700 rounded hover:bg-green-200 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white dark:hover:text-green-300"
                             >
-                                About Us
+                                {t('nav.about')}
                             </Link>
                         </li>
                         <li>
@@ -78,7 +80,7 @@ export default function Navbar() {
                                 to='/adopt-pet'
                                 className="block py-2 px-3 text-gray-700 rounded hover:bg-green-200 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white dark:hover:text-green-300"
                             >
-                                Adopt a Pet
+                                {t('nav.adopt')}
                             </Link>
                         </li>
                         <li>
@@ -86,7 +88,7 @@ export default function Navbar() {
                             
                                 className="block py-2 px-3 text-gray-700 rounded hover:bg-green-200 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white dark:hover:text-green-300"
                             >
-                                Lost & Found Pets
+                                {t('nav.lostAndFound')}
                             </Link>
                         </li>
                     </ul>

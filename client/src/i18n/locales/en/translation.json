@@ -1,0 +1,11 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "adopt": "Adopt",
+        "lostAndFound": "Lost & Found",
+        "login": "Login",
+        "register": "Register",
+        "logout": "Logout"
+    }
+}
