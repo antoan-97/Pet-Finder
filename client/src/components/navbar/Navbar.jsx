@@ -14,6 +14,11 @@ export default function Navbar() {
         setIsOpen(!isOpen);
     };
 
+    const toggleLanguage = () => {
+        const newLang = i18n.language === 'bg' ? 'en' : 'bg';
+        i18n.changeLanguage(newLang);
+    };
+
     return (
         <nav className="bg-green-500">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 border-b border-dotted">
@@ -85,7 +90,7 @@ export default function Navbar() {
                         </li>
                         <li>
                             <Link to='/lost-found'
-                            
+
                                 className="block py-2 px-3 text-gray-700 rounded hover:bg-green-200 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white dark:hover:text-green-300"
                             >
                                 {t('nav.lostAndFound')}
@@ -94,33 +99,56 @@ export default function Navbar() {
                     </ul>
                 </div>
 
-                {/* Right-aligned login/register/logout */}
+                {/* Language switcher - new position and styling */}
+                {/* <div className="flex items-center justify-center md:ml-4">
+           
+                </div> */}
+
+                {/* Auth buttons */}
                 <div className="flex items-center">
-    {!isAuthenticated && (
-        <>
-            <Link
-                to='/login'
-                className="bg-green-600 text-white rounded px-4 m-1 py-2 hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
-            >
-                Login
-            </Link>
-            <Link
-                to='/register'
-                className="bg-green-600 text-white rounded px-4 m-1 py-2 hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
-            >
-                Register
-            </Link>
-        </>
-    )}
-    {isAuthenticated && (
-        <Link
-            to='/logout'
-            className="bg-green-600 text-white rounded px-4 m-1 py-2 hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
-        >
-            Logout
-        </Link>
-    )}
-</div>
+                    {!isAuthenticated && (
+                        <>
+                            <Link
+                                to='/login'
+                                className="bg-green-600 text-white rounded px-4 m-1 py-2 hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
+                            >
+                                {t('nav.login')}
+                            </Link>
+                            <Link
+                                to='/register'
+                                className="bg-green-600 text-white rounded px-4 m-1 py-2 hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
+                            >
+                                {t('nav.register')}
+                            </Link>
+                        </>
+                    )}
+                    {isAuthenticated && (
+                        <Link
+                            to='/logout'
+                            className="bg-green-600 text-white rounded px-4 m-1 py-2 hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
+                        >
+                            {t('nav.logout')}
+                        </Link>
+                    )}
+                    <button
+                        onClick={toggleLanguage}
+                        className="flex items-center justify-center px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white transition duration-300 ease-in-out transform hover:scale-105"
+                    >
+                        <span className="text-base font-medium">
+                            {i18n.language === 'bg' ? (
+                                <span className="flex items-center">
+                                    <span className="mr-2 text-xl">🇬🇧</span>
+                                    <span className="font-semibold">EN</span>
+                                </span>
+                            ) : (
+                                <span className="flex items-center">
+                                    <span className="mr-2 text-xl">🇧🇬</span>
+                                    <span className="font-semibold">BG</span>
+                                </span>
+                            )}
+                        </span>
+                    </button>
+                </div>
 
             </div>
         </nav>
