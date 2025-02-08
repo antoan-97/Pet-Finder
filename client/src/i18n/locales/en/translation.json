@@ -18,5 +18,29 @@
         "followUs": "Follow Us",
         "description": "PawFinder is your dedicated platform for adopting homeless pets and helping reunite lost pets with their families.",
         "copyright": "All rights reserved."
+    },
+    "home": {
+        "title": "Find Your Forever Friend",
+        "titleDescription": "Connect lost pets with their families and help animals find their forever homes.",
+        "titleReportButton": "Report Lost/FoundPet",
+        "titleAdoptionButton": "Adopt a Pet",
+        "serviceTitle": "Our Services",
+        "foundPetsDescription": "Report a lost pet and increase the chances of finding them.",
+        "lostPetsDescription": "Report a lost pet and increase the chances of finding them.",
+        "adoptionDescription": "Adopt a pet waiting for adoption.",	
+        "lostPets": "Lost Pets",
+        "foundPets": "Found Pets",
+        "adoption": "Adoption",
+        "petFound": "Pet Found",
+        "happyAdoptions" : "Happy Adoptions",
+        "activeUsers": "Active Users",
+        "parners": "Partner Shelters",
+        "differencesTitle": "Ready to Make a Difference?",
+        "differencesDescription": "Join our community and help create happy endings for pets and their families",
+        "differencesButtonOne": "Get Started Today",
+        "differencesButtonTwo": "Learn More",
+        "lostPetsButton": "Report Lost Pet →",
+        "foundPetsButton": "Report Found Pet →",
+        "adoptionButton": "View Adoptable Pets →"
     }
 }
