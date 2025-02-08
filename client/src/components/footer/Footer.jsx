@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
+    const { t } = useTranslation();
     return (
         <>
             <link
@@ -14,27 +16,27 @@ export default function Footer() {
                         <div>
                             <h4 className="text-lg font-bold mb-4">PawFinder</h4>
                             <p>
-                                PawFinder is your dedicated platform for adopting homeless pets and helping reunite lost pets with their families.
+                                {t('footer.description')}
                             </p>
                         </div>
 
                         {/* Quick Links */}
                         <div>
-                            <h4 className="text-lg font-bold mb-4">Quick Links</h4>
+                            <h4 className="text-lg font-bold mb-4">{t('footer.quickLinks')}</h4>
                             <ul className="space-y-2">
                                 <li>
                                     <Link to="/adopt-pet" className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300">
-                                        Adopt a Pet
+                                        {t('footer.adoption')}
                                     </Link>
                                 </li>
                                 <li>
                                     <Link to='/lost-found' className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300">
-                                        Lost & Found Pets
+                                        {t('footer.lostAndFound')}
                                     </Link>
                                 </li>
                                 <li>
                                     <Link to='/guide' className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300">
-                                        Adoption Starter Guide
+                                        {t('footer.adoptionGuide')}
                                     </Link>
                                 </li>
                                 <li>
@@ -44,7 +46,7 @@ export default function Footer() {
                                         rel="noopener noreferrer"
                                         className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300"
                                     >
-                                        Support Four Paws
+                                        {t('footer.support')}
                                     </a>
                                 </li>
                              
@@ -53,7 +55,7 @@ export default function Footer() {
 
                         {/* Contact Us */}
                         <div>
-                            <h4 className="text-lg font-bold mb-4">Contact Us</h4>
+                            <h4 className="text-lg font-bold mb-4">{t('footer.contact')}</h4>
                             <ul className="space-y-2">
                                 <li>
                                     <a href="mailto:pawfinder@abv.bg" className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300">
@@ -65,7 +67,7 @@ export default function Footer() {
 
                         {/* Social Media */}
                         <div>
-                            <h4 className="text-lg font-bold mb-4">Follow Us</h4>
+                            <h4 className="text-lg font-bold mb-4">{t('footer.followUs')}</h4>
                             <div className="flex justify-center space-x-4">
                                 <a
                                     href="https://www.facebook.com/profile.php?id=61567282290739"
@@ -91,7 +93,7 @@ export default function Footer() {
                             to='/'
                             className="hover:text-green-700 dark:hover:text-green-300 transition-colors duration-300"
                         >
-                            © 2024 PawFinder. All rights reserved.
+                            © 2024 PawFinder. {t('footer.copyright')}
                         </Link>
                     </div>
                 </div>

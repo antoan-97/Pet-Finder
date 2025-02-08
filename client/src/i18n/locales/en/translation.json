@@ -7,5 +7,16 @@
         "login": "Login",
         "register": "Register",
         "logout": "Logout"
+    },
+    "footer": {
+        "quickLinks": "Quick Links",
+        "lostAndFound": "Lost & Found",
+        "adoption": "Adoption",
+        "adoptionGuide": "Adoption Guide",
+        "support": "Support",
+        "contact": "Contact Us",
+        "followUs": "Follow Us",
+        "description": "PawFinder is your dedicated platform for adopting homeless pets and helping reunite lost pets with their families.",
+        "copyright": "All rights reserved."
     }
 }

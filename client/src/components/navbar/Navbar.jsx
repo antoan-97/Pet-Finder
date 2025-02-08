@@ -99,12 +99,6 @@ export default function Navbar() {
                     </ul>
                 </div>
 
-                {/* Language switcher - new position and styling */}
-                {/* <div className="flex items-center justify-center md:ml-4">
-           
-                </div> */}
-
-                {/* Auth buttons */}
                 <div className="flex items-center">
                     {!isAuthenticated && (
                         <>
