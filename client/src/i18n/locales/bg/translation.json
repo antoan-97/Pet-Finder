@@ -97,5 +97,18 @@
         "contact": "Контакт",
         "uploadImage": "Качи снимка",
         "submitButton": "Добавете"
+    },
+    "updateAdoption": {
+        "titleDog": "Обнови куче за осиновяване",
+        "titleCat": "Обнови котка за осиновяване",
+        "name": "Име",
+        "breed": "Порода",
+        "age": "Възраст",
+        "description": "Описание",
+        "location": "Местоположение",
+        "contact": "Контакт",
+        "currentImage": "Текуща снимка",
+        "newImage": "Нова снимка",
+        "submitButton": "Обнови"
     }
 }

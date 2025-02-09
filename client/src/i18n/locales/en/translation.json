@@ -98,6 +98,19 @@
         "contact": "Contact",
         "uploadImage": "Upload Image",
         "submitButton": "Submit"
+    },
+    "updateAdoption": {
+        "titleDog": "Update Dog for Adoption",
+        "titleCat": "Update Cat for Adoption",
+        "name": "Name",
+        "breed": "Breed",
+        "age": "Age",
+        "description": "Description",
+        "location": "Location",
+        "contact": "Contact",
+        "currentImage": "Current Image",
+        "newImage": "New Image",
+        "submitButton": "Update"
     }
 
  
