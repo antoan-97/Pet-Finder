@@ -101,8 +101,8 @@ export default function DogAdoptionUpdate() {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            />
+                                className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                />
                         </div>
                         <div>
                             <label htmlFor="breed" className="block text-sm font-medium text-gray-700">
@@ -114,8 +114,8 @@ export default function DogAdoptionUpdate() {
                                 name="breed"
                                 value={formData.breed}
                                 onChange={handleChange}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            />
+                                className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                />
                         </div>
                         <div>
                             <label htmlFor="age" className="block text-sm font-medium text-gray-700">
@@ -127,8 +127,8 @@ export default function DogAdoptionUpdate() {
                                 name="age"
                                 value={formData.age}
                                 onChange={handleChange}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            />
+                                className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                />
                         </div>
                         <div>
                             <label htmlFor="description" className="block text-sm font-medium text-gray-700">
@@ -139,8 +139,8 @@ export default function DogAdoptionUpdate() {
                                 name="description"
                                 value={formData.description}
                                 onChange={handleChange}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            />
+                                className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                />
                         </div>
                         <div>
                             <label htmlFor="location" className="block text-sm font-medium text-gray-700">
@@ -152,8 +152,8 @@ export default function DogAdoptionUpdate() {
                                 name="location"
                                 value={formData.location}
                                 onChange={handleChange}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            />
+                                className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                />
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Current Image</label>
@@ -177,7 +177,7 @@ export default function DogAdoptionUpdate() {
 
                         <button
                             type="submit"
-                            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                            className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200"
                         >
                             {isLoading ? <Spinner /> : 'Update Pet'}
                         </button>
