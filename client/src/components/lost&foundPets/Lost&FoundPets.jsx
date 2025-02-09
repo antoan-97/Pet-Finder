@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import LazyLoad from "react-lazyload";
 
 export default function LostAndFoundPets() {
+    const { t } = useTranslation();
     return (
         <section className="bg-custom-gradient flex-1 min-h-screen pt-24 px-4">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-20">
                 <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-white mb-8 tracking-tight">
-                    Lost and Found Pets
+                    {t('lostAndFound.title')}
                 </h2>
                 <p className="text-lg sm:text-xl text-gray-700 text-center mb-12 max-w-3xl mx-auto leading-relaxed">
-                    Choose whether you want to help find a missing pet or post about a pet you've found.
+                    {t('lostAndFound.description')}
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10">
                     {/* Lost Pets Card */}
@@ -26,10 +28,10 @@ export default function LostAndFoundPets() {
                         </div>
                         <div className="p-6">
                             <h3 className="text-2xl font-semibold text-green-700 mb-2 group-hover:text-green-800 transition-colors duration-300">
-                                Lost Pets
+                                {t('lostAndFound.firstCardTitle')}
                             </h3>
                             <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                                Browse or post missing pets and help reunite them with their owners.
+                                {t('lostAndFound.firstCardDescription')}
                             </p>
                         </div>
                     </Link>
@@ -48,10 +50,10 @@ export default function LostAndFoundPets() {
                         </div>
                         <div className="p-6">
                             <h3 className="text-2xl font-semibold text-green-700 mb-2 group-hover:text-green-800 transition-colors duration-300">
-                                Found Pets
+                                {t('lostAndFound.secondCardTitle')}
                             </h3>
                             <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                                Found a pet? Post it here and help them find their way home.
+                                {t('lostAndFound.secondCardDescription')}
                             </p>
                         </div>
                     </Link>
@@ -61,7 +63,7 @@ export default function LostAndFoundPets() {
                     <Link to='/adopt-pet'
                         className="inline-block px-8 py-4 text-lg font-semibold text-white bg-green-600 rounded-full shadow-lg hover:bg-green-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                     >
-                        Looking to Adopt a Pet?
+                        {t('lostAndFound.button')}
                     </Link>
                 </div>
             </div>

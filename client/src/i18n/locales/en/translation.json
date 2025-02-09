@@ -111,6 +111,15 @@
         "currentImage": "Current Image",
         "newImage": "New Image",
         "submitButton": "Update"
+    },
+    "lostAndFound": {
+        "title": "Lost and Found Pets",
+        "description": "Choose whether you want to help find a missing pet or post about a pet you've found.",
+        "firstCardTitle": "Lost Pets",
+        "firstCardDescription": "Browse or post missing pets and help reunite them with their owners.",
+        "secondCardTitle": "Found Pets",
+        "secondCardDescription": "Found a pet? Post it here and help them find their way home.",
+        "button": "Looking to Adopt a Pet?"
     }
 
  
