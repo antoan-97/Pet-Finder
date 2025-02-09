@@ -61,15 +61,19 @@
         "secondCardDescription": "Discover loving cats waiting to find their forever homes.",
         "button" : "Report Missing or Found Pets"
     },
-    "dogAdoption": {
-        "title": "Dogs for Adoption",
+    "adoptionDetails": {
+        "titleDogs": "Dogs for Adoption",
+        "titleCats": "Cats for Adoption",
         "description": "You need to ",
         "secondDescription": "to add a dog for adoption.",
+        "secondDescriptionCat": "to add a cat for adoption.",
         "loginButton": "log in",
         "addButton": "Add a dog for adoption",
-        "noDogs": "No dogs for adoption found."
+        "addButtonCat": "Add a cat for adoption",
+        "noDogs": "No dogs for adoption found.",
+        "noCats": "No cats for adoption found."
     },
-    "adoptionDogCard": {
+    "adoptionCard": {
         "adopted": "Adopted",
         "lookingForHome": "Looking for a Home",
         "viewDetails": "View Details",
@@ -83,8 +87,9 @@
         "editButton": "Edit",
         "deleteButton": "Delete"
     },
-    "dogAdoptionForm": {
-        "title": "Add a Dog for Adoption",
+    "adoptionForm": {
+        "titleDog": "Add a Dog for Adoption",
+        "titleCat": "Add a Cat for Adoption",
         "name": "Name",
         "breed": "Breed",
         "age": "Age",
@@ -94,4 +99,6 @@
         "uploadImage": "Upload Image",
         "submitButton": "Submit"
     }
+
+ 
 }

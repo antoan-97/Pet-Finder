@@ -60,15 +60,19 @@
         "secondCardDescription": "Котки, които търсят любов и грижа. Намерите своят нов приятел!",
         "button": "Съобщи за изчезнал или намерен домашен любимец"
     },
-    "dogAdoption": {
-       "title": "Кучета за осиновяване",
+    "adoptionDetails": {
+       "titleDogs": "Кучета за осиновяване",    
+       "titleCats": "Котки за осиновяване",
        "description": "Трябва да влезете",
        "secondDescription": "за да добавите куче за осиновяване.",
+       "secondDescriptionCat": "за да добавите котка за осиновяване.",
        "loginButton": "влезете,",
        "addButton": "Добавете куче за осиновяване",
-       "noDogs": "Няма кучета за осиновяване."
+       "addButtonCat": "Добавете котка за осиновяване",
+       "noDogs": "Няма кучета за осиновяване.",
+       "noCats": "Няма котки за осиновяване."
     },
-    "adoptionDogCard": {
+    "adoptionCard": {
         "adopted": "Осиновен",
         "lookingForHome": "Търси дом",
         "viewDetails": "Преглед",
@@ -82,8 +86,9 @@
         "editButton": "Редактирай",
         "deleteButton": "Изтрий"
     },
-    "dogAdoptionForm": {
-        "title": "Добавете куче за осиновяване",
+    "adoptionForm": {
+        "titleDog": "Добавете куче за осиновяване",
+        "titleCat": "Добавете котка за осиновяване",
         "name": "Име",
         "breed": "Порода",
         "age": "Възраст",

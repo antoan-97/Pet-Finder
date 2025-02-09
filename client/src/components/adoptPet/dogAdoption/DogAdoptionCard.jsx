@@ -35,7 +35,7 @@ export default function DogAdoptionCard({
                 <div className={`absolute top-4 left-4 px-3 py-1 text-sm font-semibold rounded-full ${
                     adopted ? 'bg-green-600 text-white' : 'bg-yellow-600 text-white'
                 }`}>
-                    {adopted ? t('adoptionDogCard.adopted') : t('adoptionDogCard.lookingForHome')}
+                    {adopted ? t('adoptionCard.adopted') : t('adoptionCard.lookingForHome')}
                 </div>
             </div>
             <div className="p-6 flex flex-col flex-grow">
@@ -44,14 +44,14 @@ export default function DogAdoptionCard({
                         {name}
                     </h4>
                     <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                        {t('adoptionDogCard.breed')}: {breed}
+                        {t('adoptionCard.breed')}: {breed}
                     </p>
                     <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                        {t('adoptionDogCard.age')}: {age}
+                        {t('adoptionCard.age')}: {age}
                     </p>
                     {description && (
                         <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
-                            {t('adoptionDogCard.description')}: {truncateDescription(description, 100)}
+                            {t('adoptionCard.description')}: {truncateDescription(description, 100)}
                         </p>
                     )}
                 </div>
@@ -59,7 +59,7 @@ export default function DogAdoptionCard({
                     to={`/adopt-dog/${_id.toString()}`}
                     className="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors duration-300 mt-auto"
                 >
-                    {t('adoptionDogCard.viewDetails')}
+                    {t('adoptionCard.viewDetails')}
                 </Link>
             </div>
         </div>

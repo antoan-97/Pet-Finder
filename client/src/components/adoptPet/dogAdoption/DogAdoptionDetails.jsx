@@ -51,7 +51,7 @@ export default function DogAdoptionDetails() {
             <div className="max-w-4xl mx-auto rounded-xl shadow-2xl overflow-hidden">
                 <div className="p-8">
 
-                    <h2 className="text-3xl font-bold text-black mb-6 border-b pb-4">{t('adoptionDogCard.name')} - {pet.name}</h2>
+                    <h2 className="text-3xl font-bold text-black mb-6 border-b pb-4">{t('adoptionCard.name')} - {pet.name}</h2>
                     {pet.imgUrl && (
                         <div className="mb-8 flex justify-center">
                             <img
@@ -62,18 +62,18 @@ export default function DogAdoptionDetails() {
                         </div>
                     )}
                     <div className="space-y-4">
-                        <p className="text-xl"><strong className="text-black">{t('adoptionDogCard.breed')}:</strong> {pet.breed}</p>
-                        <p className="text-xl"><strong className="text-black">{t('adoptionDogCard.age')}:</strong> {pet.age}</p>
-                        <p className="text-xl"><strong className="text-black">{t('adoptionDogCard.location')}:</strong> {pet.location}</p>
-                        <p className="text-xl"><strong className="text-black">{t('adoptionDogCard.description')}:</strong> {pet.description}</p>
-                        <p className="text-xl"><strong className="text-black">{t('adoptionDogCard.contact')}:</strong> {pet.phone}</p>
+                        <p className="text-xl"><strong className="text-black">{t('adoptionCard.breed')}:</strong> {pet.breed}</p>
+                        <p className="text-xl"><strong className="text-black">{t('adoptionCard.age')}:</strong> {pet.age}</p>
+                        <p className="text-xl"><strong className="text-black">{t('adoptionCard.location')}:</strong> {pet.location}</p>
+                        <p className="text-xl"><strong className="text-black">{t('adoptionCard.description')}:</strong> {pet.description}</p>
+                        <p className="text-xl"><strong className="text-black">{t('adoptionCard.contact')}:</strong> {pet.phone}</p>
                     </div>
                     <div className="mt-8 flex justify-center">
                         <Link
                             to="/dog-adoption"
                             className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
                         >
-                            {t('adoptionDogCard.backButton')}
+                            {t('adoptionCard.backButton')}
                         </Link>
                     </div>
                     {isOwner && (
@@ -82,13 +82,13 @@ export default function DogAdoptionDetails() {
                                 to={`/adopt-dog/${pet._id}/edit`}
                                 className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
                             >
-                                {t('adoptionDogCard.editButton')}
+                                {t('adoptionCard.editButton')}
                             </Link>
                             <button
                                 onClick={() => setShowDeleteModal(true)}
                                 className="bg-red-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-md hover:shadow-lg"
                             >
-                                {t('adoptionDogCard.deleteButton')}
+                                {t('adoptionCard.deleteButton')}
                             </button>
                         </div>
                     )}

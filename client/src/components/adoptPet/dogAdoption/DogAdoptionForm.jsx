@@ -7,7 +7,7 @@ import AuthContext from "../../../contexts/AuthContext";
 import Spinner from "../../common/Spinner";
 import * as adoptionApi from "../../../services/adoptionApi";
 
-export default function DogAdoptionForm() {
+export default function adoptionForm() {
     const navigate = useNavigate()
     const { userId } = useContext(AuthContext);
     const { isLoading, setIsLoading } = useLoading();
@@ -67,11 +67,11 @@ export default function DogAdoptionForm() {
             <div className="container mx-auto px-4 max-w-md">
                 <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-6">
                     <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                        {t('dogAdoptionForm.title')}
+                        {t('adoptionForm.titleDog')}
                     </h1>
                     <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('dogAdoptionForm.name')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.name')}</label>
                             <input
                                 type="text"
                                 name="name"
@@ -83,7 +83,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('dogAdoptionForm.breed')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.breed')}</label>
                             <input
                                 type="text"
                                 name="breed"
@@ -95,7 +95,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('dogAdoptionForm.age')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.age')}</label>
                             <input
                                 type="text"
                                 name="age"
@@ -107,7 +107,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('dogAdoptionForm.location')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.location')}</label>
                             <input
                                 type="text"
                                 name="location"
@@ -119,7 +119,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('dogAdoptionForm.description')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.description')}</label>
                             <textarea
                                 name="description"
                                 value={formData.description}
@@ -130,7 +130,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('dogAdoptionForm.uploadImage')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.uploadImage')}</label>
                             <input
                                 type="file"
                                 name="image"
@@ -147,7 +147,7 @@ export default function DogAdoptionForm() {
 
                             className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200"
                         >
-                            {isLoading ? <Spinner /> : t('dogAdoptionForm.submitButton')}
+                            {isLoading ? <Spinner /> : t('adoptionForm.submitButton')}
                         </button>
                     </form>
                 </div>
