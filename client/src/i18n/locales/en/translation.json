@@ -82,5 +82,16 @@
         "backButton": "Back to Adoption",
         "editButton": "Edit",
         "deleteButton": "Delete"
+    },
+    "dogAdoptionForm": {
+        "title": "Add a Dog for Adoption",
+        "name": "Name",
+        "breed": "Breed",
+        "age": "Age",
+        "location": "Location",
+        "description": "Description",
+        "contact": "Contact",
+        "uploadImage": "Upload Image",
+        "submitButton": "Submit"
     }
 }

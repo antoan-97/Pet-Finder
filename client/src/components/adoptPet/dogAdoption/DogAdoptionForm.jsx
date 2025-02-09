@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoading } from "../../../contexts/LoadingContext";
+import { useTranslation } from 'react-i18next';
 
 import AuthContext from "../../../contexts/AuthContext";
 import Spinner from "../../common/Spinner";
@@ -10,6 +11,7 @@ export default function DogAdoptionForm() {
     const navigate = useNavigate()
     const { userId } = useContext(AuthContext);
     const { isLoading, setIsLoading } = useLoading();
+    const { t } = useTranslation();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -65,11 +67,11 @@ export default function DogAdoptionForm() {
             <div className="container mx-auto px-4 max-w-md">
                 <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-6">
                     <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                        Add Dog for Adoption
+                        {t('dogAdoptionForm.title')}
                     </h1>
                     <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Pet Name</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('dogAdoptionForm.name')}</label>
                             <input
                                 type="text"
                                 name="name"
@@ -81,7 +83,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Pet Breed</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('dogAdoptionForm.breed')}</label>
                             <input
                                 type="text"
                                 name="breed"
@@ -93,7 +95,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Age</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('dogAdoptionForm.age')}</label>
                             <input
                                 type="text"
                                 name="age"
@@ -105,7 +107,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('dogAdoptionForm.location')}</label>
                             <input
                                 type="text"
                                 name="location"
@@ -117,7 +119,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('dogAdoptionForm.description')}</label>
                             <textarea
                                 name="description"
                                 value={formData.description}
@@ -128,7 +130,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Upload Image</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('dogAdoptionForm.uploadImage')}</label>
                             <input
                                 type="file"
                                 name="image"
@@ -145,7 +147,7 @@ export default function DogAdoptionForm() {
 
                             className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200"
                         >
-                            {isLoading ? <Spinner /> : 'Submit'}
+                            {isLoading ? <Spinner /> : t('dogAdoptionForm.submitButton')}
                         </button>
                     </form>
                 </div>

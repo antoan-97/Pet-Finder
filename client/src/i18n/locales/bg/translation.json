@@ -81,5 +81,16 @@
         "backButton": "Назад към осиновяване",
         "editButton": "Редактирай",
         "deleteButton": "Изтрий"
+    },
+    "dogAdoptionForm": {
+        "title": "Добавете куче за осиновяване",
+        "name": "Име",
+        "breed": "Порода",
+        "age": "Възраст",
+        "location": "Местоположение",
+        "description": "Описание",
+        "contact": "Контакт",
+        "uploadImage": "Качи снимка",
+        "submitButton": "Добавете"
     }
 }
