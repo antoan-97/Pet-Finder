@@ -60,5 +60,12 @@
         "secondCardTitle": "Adopt a Cat",
         "secondCardDescription": "Discover loving cats waiting to find their forever homes.",
         "button" : "Report Missing or Found Pets"
+    },
+    "dogAdoption": {
+        "title": "Dogs for Adoption",
+        "description": "You need to ",
+        "secondDescription": "to add a dog for adoption.",
+        "loginButton": "log in",
+        "addButton": "Add a dog for adoption"
     }
 }
