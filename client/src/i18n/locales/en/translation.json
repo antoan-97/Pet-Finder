@@ -27,12 +27,12 @@
         "serviceTitle": "Our Services",
         "foundPetsDescription": "Report a lost pet and increase the chances of finding them.",
         "lostPetsDescription": "Report a lost pet and increase the chances of finding them.",
-        "adoptionDescription": "Adopt a pet waiting for adoption.",	
+        "adoptionDescription": "Adopt a pet waiting for adoption.",
         "lostPets": "Lost Pets",
         "foundPets": "Found Pets",
         "adoption": "Adoption",
         "petFound": "Pet Found",
-        "happyAdoptions" : "Happy Adoptions",
+        "happyAdoptions": "Happy Adoptions",
         "activeUsers": "Active Users",
         "parners": "Partner Shelters",
         "differencesTitle": "Ready to Make a Difference?",
@@ -42,5 +42,14 @@
         "lostPetsButton": "Report Lost Pet →",
         "foundPetsButton": "Report Found Pet →",
         "adoptionButton": "View Adoptable Pets →"
+    },
+    "about": {
+        "title": "About Us",
+        "description": "Welcome to PawFinder, a platform dedicated to helping both homeless animals and pets that have gone missing. You can find pets in need of a loving home, or help reunite lost pets with their families by posting information about missing or found pets, including location and contact details. Whether you're looking to adopt or to assist in reuniting a pet with its owner, together we can make a difference in their lives and provide the care and support they deserve.",
+        "firstCardTitle": "Meet Our Dogs",
+        "firstCardDescription": "Dogs looking for a forever home. Adopt one today!",
+        "secondCardTitle": "Meet Our Cats",
+        "secondCardDescription": "Cats in need of love and care. Find your new furry friend!",
+        "button" : "Report Missing or Found Pets"
     }
 }
