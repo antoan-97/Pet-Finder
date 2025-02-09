@@ -63,7 +63,7 @@
     "adoptionDetails": {
        "titleDogs": "Кучета за осиновяване",    
        "titleCats": "Котки за осиновяване",
-       "description": "Трябва да влезете",
+       "description": "Трябва да",
        "secondDescription": "за да добавите куче за осиновяване.",
        "secondDescriptionCat": "за да добавите котка за осиновяване.",
        "loginButton": "влезете,",

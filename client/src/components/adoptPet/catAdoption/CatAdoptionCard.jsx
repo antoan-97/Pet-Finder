@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { useTranslation } from 'react-i18next';
 export default function CatAdoptionCard({
     _id,
     name,
@@ -9,6 +9,7 @@ export default function CatAdoptionCard({
     imgUrl,
     adopted
 }) {
+    const { t } = useTranslation();
     const truncateDescription = (text, maxLength) => {
         if (!text) return '';
         if (text.length <= maxLength) return text;
@@ -32,7 +33,7 @@ export default function CatAdoptionCard({
                 {/* Adopted Badge */}
                 <div className={`absolute top-4 left-4 px-3 py-1 text-sm font-semibold rounded-full ${adopted ? 'bg-green-600 text-white' : 'bg-yellow-600 text-white'
                     }`}>
-                    {adopted ? 'Adopted' : 'Looking for a Home'}
+                    {adopted ? t('adoptionCard.adopted') : t('adoptionCard.lookingForHome')}
                 </div>
             </div>
             <div className="p-6 flex flex-col flex-grow">
@@ -41,14 +42,14 @@ export default function CatAdoptionCard({
                         {name}
                     </h4>
                     <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                        Breed: {breed}
+                        {t('adoptionCard.breed')}: {breed}
                     </p>
                     <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                        Age: {age}
+                        {t('adoptionCard.age')}: {age}
                     </p>
                     {description && (
                         <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
-                            Description: {truncateDescription(description, 100)}
+                            {t('adoptionCard.description')}: {truncateDescription(description, 100)}
                         </p>
                     )}
                 </div>
@@ -56,7 +57,7 @@ export default function CatAdoptionCard({
                     to={`/adopt-cat/${_id.toString()}`}
                     className="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors duration-300 mt-auto"
                 >
-                    View Details
+                    {t('adoptionCard.viewDetails')}
                 </Link>
             </div>
         </div>
