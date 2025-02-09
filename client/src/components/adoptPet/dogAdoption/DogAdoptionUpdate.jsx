@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import * as adoptionApi from '../../../services/adoptionApi';
 import Spinner from "../../common/Spinner";
 
 export default function DogAdoptionUpdate() {
+    const { t } = useTranslation();
     const { id } = useParams();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
@@ -88,12 +90,12 @@ export default function DogAdoptionUpdate() {
             <div className="container mx-auto px-4 max-w-md">
                 <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-6">
                     <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                        Update Dog for Adoption
+                        {t('updateAdoption.titleDog')}
                     </h1>
                     <form onSubmit={handleUpdate} className="space-y-6">
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                                Name
+                                {t('updateAdoption.name')}
                             </label>
                             <input
                                 type="text"
@@ -106,7 +108,7 @@ export default function DogAdoptionUpdate() {
                         </div>
                         <div>
                             <label htmlFor="breed" className="block text-sm font-medium text-gray-700">
-                                Breed
+                                {t('updateAdoption.breed')}
                             </label>
                             <input
                                 type="text"
@@ -119,7 +121,7 @@ export default function DogAdoptionUpdate() {
                         </div>
                         <div>
                             <label htmlFor="age" className="block text-sm font-medium text-gray-700">
-                                Age
+                                {t('updateAdoption.age')}
                             </label>
                             <input
                                 type="number"
@@ -132,7 +134,7 @@ export default function DogAdoptionUpdate() {
                         </div>
                         <div>
                             <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-                                Description
+                                {t('updateAdoption.description')}
                             </label>
                             <textarea
                                 id="description"
@@ -144,7 +146,7 @@ export default function DogAdoptionUpdate() {
                         </div>
                         <div>
                             <label htmlFor="location" className="block text-sm font-medium text-gray-700">
-                                Location
+                                {t('updateAdoption.location')}
                             </label>
                             <input
                                 type="text"
@@ -156,7 +158,9 @@ export default function DogAdoptionUpdate() {
                                 />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Current Image</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                {t('updateAdoption.currentImage')}
+                            </label>
                             {formData.imgUrl && (
                                 <img
                                     src={formData.imgUrl}
@@ -164,7 +168,9 @@ export default function DogAdoptionUpdate() {
                                     className="mt-2 mb-4 w-full h-64 object-cover rounded-md"
                                 />
                             )}
-                            <label className="block text-sm font-medium text-gray-700 mb-1">New Image</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                {t('updateAdoption.newImage')}
+                            </label>
                             <input
                                 type="file"
                                 name="image"
@@ -179,7 +185,7 @@ export default function DogAdoptionUpdate() {
                             type="submit"
                             className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200"
                         >
-                            {isLoading ? <Spinner /> : 'Update Pet'}
+                            {isLoading ? <Spinner /> : t('updateAdoption.submitButton')}
                         </button>
                     </form>
                 </div>
