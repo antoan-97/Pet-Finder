@@ -51,5 +51,14 @@
         "secondCardTitle": "Meet Our Cats",
         "secondCardDescription": "Cats in need of love and care. Find your new furry friend!",
         "button" : "Report Missing or Found Pets"
+    },
+    "adoption":{
+        "title": "Adopt a Pet",
+        "description": "Choose whether you want to adopt a dog or a cat.",
+        "firstCardTitle": "Adopt a Dog",
+        "firstCardDescription": "Explore adorable dogs looking for their forever homes.",
+        "secondCardTitle": "Adopt a Cat",
+        "secondCardDescription": "Discover loving cats waiting to find their forever homes.",
+        "button" : "Report Missing or Found Pets"
     }
 }
