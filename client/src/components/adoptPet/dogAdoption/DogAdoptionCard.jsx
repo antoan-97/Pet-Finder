@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { useTranslation } from 'react-i18next';
 export default function DogAdoptionCard({
     _id,
     name,
@@ -9,6 +9,7 @@ export default function DogAdoptionCard({
     imgUrl,
     adopted
 }) {
+    const { t } = useTranslation();
     // Function to truncate description
     const truncateDescription = (text, maxLength) => {
         if (!text) return '';
@@ -34,7 +35,7 @@ export default function DogAdoptionCard({
                 <div className={`absolute top-4 left-4 px-3 py-1 text-sm font-semibold rounded-full ${
                     adopted ? 'bg-green-600 text-white' : 'bg-yellow-600 text-white'
                 }`}>
-                    {adopted ? 'Adopted' : 'Looking for a Home'}
+                    {adopted ? t('adoptionDogCard.adopted') : t('adoptionDogCard.lookingForHome')}
                 </div>
             </div>
             <div className="p-6 flex flex-col flex-grow">
@@ -43,14 +44,14 @@ export default function DogAdoptionCard({
                         {name}
                     </h4>
                     <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                        Breed: {breed}
+                        {t('adoptionDogCard.breed')}: {breed}
                     </p>
                     <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                        Age: {age}
+                        {t('adoptionDogCard.age')}: {age}
                     </p>
                     {description && (
                         <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
-                            Description: {truncateDescription(description, 100)}
+                            {t('adoptionDogCard.description')}: {truncateDescription(description, 100)}
                         </p>
                     )}
                 </div>
@@ -58,7 +59,7 @@ export default function DogAdoptionCard({
                     to={`/adopt-dog/${_id.toString()}`}
                     className="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-green-700 transition-colors duration-300 mt-auto"
                 >
-                    View Details
+                    {t('adoptionDogCard.viewDetails')}
                 </Link>
             </div>
         </div>

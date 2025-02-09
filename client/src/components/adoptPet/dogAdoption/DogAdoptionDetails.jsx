@@ -1,11 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import * as adoptionApi from '../../../services/adoptionApi';
 import AuthContext from '../../../contexts/AuthContext';
 import DeleteModal from '../../../modals/DeleteModal';
 
 export default function DogAdoptionDetails() {
+    const { t } = useTranslation();
     const [pet, setPet] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -49,7 +51,7 @@ export default function DogAdoptionDetails() {
             <div className="max-w-4xl mx-auto rounded-xl shadow-2xl overflow-hidden">
                 <div className="p-8">
 
-                    <h2 className="text-3xl font-bold text-black mb-6 border-b pb-4">Name - {pet.name}</h2>
+                    <h2 className="text-3xl font-bold text-black mb-6 border-b pb-4">{t('adoptionDogCard.name')} - {pet.name}</h2>
                     {pet.imgUrl && (
                         <div className="mb-8 flex justify-center">
                             <img
@@ -60,18 +62,18 @@ export default function DogAdoptionDetails() {
                         </div>
                     )}
                     <div className="space-y-4">
-                        <p className="text-xl"><strong className="text-black">Breed:</strong> {pet.breed}</p>
-                        <p className="text-xl"><strong className="text-black">Age:</strong> {pet.age}</p>
-                        <p className="text-xl"><strong className="text-black">Location:</strong> {pet.location}</p>
-                        <p className="text-xl"><strong className="text-black">Description:</strong> {pet.description}</p>
-                        <p className="text-xl"><strong className="text-black">Contact:</strong> {pet.phone}</p>
+                        <p className="text-xl"><strong className="text-black">{t('adoptionDogCard.breed')}:</strong> {pet.breed}</p>
+                        <p className="text-xl"><strong className="text-black">{t('adoptionDogCard.age')}:</strong> {pet.age}</p>
+                        <p className="text-xl"><strong className="text-black">{t('adoptionDogCard.location')}:</strong> {pet.location}</p>
+                        <p className="text-xl"><strong className="text-black">{t('adoptionDogCard.description')}:</strong> {pet.description}</p>
+                        <p className="text-xl"><strong className="text-black">{t('adoptionDogCard.contact')}:</strong> {pet.phone}</p>
                     </div>
                     <div className="mt-8 flex justify-center">
                         <Link
                             to="/dog-adoption"
                             className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
                         >
-                            Back to Adoption Dogs
+                            {t('adoptionDogCard.backButton')}
                         </Link>
                     </div>
                     {isOwner && (
@@ -80,13 +82,13 @@ export default function DogAdoptionDetails() {
                                 to={`/adopt-dog/${pet._id}/edit`}
                                 className="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition-colors duration-300 shadow-md hover:shadow-lg"
                             >
-                                Edit
+                                {t('adoptionDogCard.editButton')}
                             </Link>
                             <button
                                 onClick={() => setShowDeleteModal(true)}
                                 className="bg-red-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition-colors duration-300 shadow-md hover:shadow-lg"
                             >
-                                Delete
+                                {t('adoptionDogCard.deleteButton')}
                             </button>
                         </div>
                     )}

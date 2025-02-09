@@ -65,6 +65,21 @@
        "description": "Трябва да влезете",
        "secondDescription": "за да добавите куче за осиновяване.",
        "loginButton": "влезете,",
-       "addButton": "Добавете куче за осиновяване"
+       "addButton": "Добавете куче за осиновяване",
+       "noDogs": "Няма кучета за осиновяване."
+    },
+    "adoptionDogCard": {
+        "adopted": "Осиновен",
+        "lookingForHome": "Търси дом",
+        "viewDetails": "Преглед",
+        "name": "Име",
+        "breed": "Порода",
+        "age": "Възраст",
+        "location": "Местоположение",
+        "description": "Описание",
+        "contact": "Контакт",
+        "backButton": "Назад към осиновяване",
+        "editButton": "Редактирай",
+        "deleteButton": "Изтрий"
     }
 }

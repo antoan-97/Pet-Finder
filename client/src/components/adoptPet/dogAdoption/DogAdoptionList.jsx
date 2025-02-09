@@ -52,7 +52,7 @@ export default function DogAdoptionList() {
             ))
           ) : (
             <div className="col-span-full text-center text-blackL text-xl">
-              No dogs available for adoption at the moment.
+              {t('dogAdoption.noDogs')}
             </div>
           )}
         </div>
