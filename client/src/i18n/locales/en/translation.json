@@ -120,7 +120,19 @@
         "secondCardTitle": "Found Pets",
         "secondCardDescription": "Found a pet? Post it here and help them find their way home.",
         "button": "Looking to Adopt a Pet?"
+    },
+    "login": {
+        "title": "Sign in to your account",
+        "email": "Email",
+        "password": "Password",
+        "loginButton": "Sign in",
+        "checkBox": "Remember me",
+        "signUp": "Don't have an account?",
+        "signUpLink": "Sign up here"
     }
 
  
+
+
+
 }

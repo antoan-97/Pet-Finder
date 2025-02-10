@@ -1,11 +1,13 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLoading } from "../../contexts/LoadingContext";
+import { useTranslation } from "react-i18next";
 import AuthContext from "../../contexts/AuthContext";
 import Spinner from "../common/Spinner";
 
 
 export default function Login() {
+    const { t } = useTranslation();
     const { loginSubmitHandler } = useContext(AuthContext);
     const { isLoading, setIsLoading } = useLoading()
 
@@ -59,17 +61,19 @@ export default function Login() {
                 <div className="w-full bg-white bg-opacity-80 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-50 dark:border-white-600">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-gray">
-                            Sign in to your account
+                            {t('login.title')}
                         </h1>
                         <form onSubmit={onSubmit} className="space-y-4 md:space-y-6" action="#">
                             <div>
+
                                 <label
                                     htmlFor="email"
                                     className="flex mb-2 text-sm font-medium text-gray-900 dark:text-gray"
                                 >
-                                    Email
+                                    {t('login.email')}
                                 </label>
                                 <input
+
                                     onChange={onChange}
                                     type="email"
                                     name="email"
@@ -85,9 +89,10 @@ export default function Login() {
                                     htmlFor="password"
                                     className="flex mb-2 text-sm font-medium text-gray-900 dark:text-gray"
                                 >
-                                    Password
+                                    {t('login.password')}
                                 </label>
                                 <input
+
                                     onChange={onChange}
                                     type="password"
                                     name="password"
@@ -115,9 +120,10 @@ export default function Login() {
                                             htmlFor="remember"
                                             className="text-gray-500 dark:text-gray-500"
                                         >
-                                            Remember me
+                                            {t('login.checkBox')}
                                         </label>
                                     </div>
+
                                 </div>
                             </div>
                             <button
@@ -125,16 +131,19 @@ export default function Login() {
                                 disabled={isLoading}
                                 className="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800"
                             >
-                                {isLoading ? <Spinner /> : 'Sign in'}
+                                {isLoading ? <Spinner /> : t('login.loginButton')}
+
                             </button>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-500">
-                                Don’t have an account yet?{" "}
+                                {t('login.signUp')}
                                 <Link to='/register'
                                     className="font-medium text-green-600 hover:underline dark:text-green-500"
+
                                 >
-                                    Sign up here
+                                    {t('login.signUpLink')}
                                 </Link>
                             </p>
+
                         </form>
                     </div>
                 </div>
