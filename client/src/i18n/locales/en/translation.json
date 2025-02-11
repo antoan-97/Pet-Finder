@@ -223,5 +223,11 @@
         "currentImage": "Current Image",
         "newImage": "New Image",
         "submitButton": "Update"
-    }   
+    },
+    "deleteModal": {
+        "title": "Confirm Delete",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "deleteMessage": "Are you sure you want to delete this pet?"
+    }
 }

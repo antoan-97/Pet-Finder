@@ -99,7 +99,7 @@ export default function DogAdoptionDetails() {
                 <DeleteModal
                     onClose={() => setShowDeleteModal(false)}
                     onConfirm={handleDelete}
-                    message="Are you sure you want to delete this dog?"
+                    message={t('deleteModal.deleteMessage')}
                 />
             )}
         </div>

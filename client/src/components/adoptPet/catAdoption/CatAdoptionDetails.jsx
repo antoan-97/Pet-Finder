@@ -98,7 +98,7 @@ export default function CatAdoptionDetails() {
                 <DeleteModal
                     onClose={() => setShowDeleteModal(false)}
                     onConfirm={handleDelete}
-                    message={t('adoptionCard.deleteMessage')}
+                    message={t('deleteModal.deleteMessage')}
                 />
             )}
         </div>
