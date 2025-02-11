@@ -2,12 +2,14 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { addLostPet } from "../../../services/petApi";
 import { useLoading } from "../../../contexts/LoadingContext";
+import { useTranslation } from "react-i18next";
 import Spinner from "../../common/Spinner";
 
 import AuthContext from "../../../contexts/AuthContext";
 
 export default function LostPetForm() {
     const navigate = useNavigate()
+    const { t } = useTranslation();
     const { userId } = useContext(AuthContext);
     const { isLoading, setIsLoading } = useLoading();
     const [formData, setFormData] = useState({
@@ -81,12 +83,12 @@ export default function LostPetForm() {
             <div className="container mx-auto px-4 max-w-md">
                 <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-6">
                     <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                        Add Lost Pet
+                        {t('lostPetsForm.title')}
                     </h1>
                     <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Pet Name</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">{t('lostPetsForm.name')}</label>
                                 <input
                                     type="text"
                                     name="name"
@@ -97,7 +99,7 @@ export default function LostPetForm() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Pet Kind</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">{t('lostPetsForm.kind')}</label>
                                 <input
                                     type="text"
                                     name="kind"
@@ -110,7 +112,7 @@ export default function LostPetForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Pet Breed</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('lostPetsForm.breed')}</label>
                             <input
                                 type="text"
                                 name="breed"
@@ -123,7 +125,7 @@ export default function LostPetForm() {
 
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Last Seen Date</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">{t('lostPetsForm.lastSeenDate')}</label>
                                 <input
                                     type="date"
                                     name="lastSeenDate"
@@ -135,7 +137,7 @@ export default function LostPetForm() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">{t('lostPetsForm.contact')}</label>
                                 <input
                                     type="tel"
                                     name="phone"
@@ -148,7 +150,7 @@ export default function LostPetForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Last Seen Location</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('lostPetsForm.lastSeenLocation')}</label>
                             <input
                                 type="text"
                                 name="lastSeenLocation"
@@ -160,7 +162,7 @@ export default function LostPetForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('lostPetsForm.description')}</label>
                             <textarea
                                 name="description"
                                 value={formData.description}
@@ -171,7 +173,7 @@ export default function LostPetForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Upload Image</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('lostPetsForm.uploadImage')}</label>
                             <input
                                 type="file"
                                 name="image"
@@ -187,7 +189,7 @@ export default function LostPetForm() {
                             className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200"
                             disabled={isLoading}
                         >
-                            {isLoading ? <Spinner /> : 'Submit'}
+                            {isLoading ? <Spinner /> : t('lostPetsForm.submitButton')}
                         </button>
                     </form>
                 </div>
