@@ -26,7 +26,7 @@ export default function LostPetsCard({
                     <>
                         <img 
                             src={imgUrl} 
-                            alt={`${name} - ${kind}`}
+                            alt={`${name} : ${kind}`}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -36,24 +36,24 @@ export default function LostPetsCard({
             <div className="p-6 flex flex-col flex-grow">
                 <div className="flex-grow">
                     <h4 className="text-xl font-semibold text-green-700 mb-2 group-hover:text-green-800 transition-colors duration-300">
-                        {t('lostPetsCard.name')} - {name}
+                        {name}
                     </h4>
-                    <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                        {t('lostPetsCard.breed')} - {breed}
+                    <p className="text-gray-600 mb-2 text-left group-hover:text-gray-700 transition-colors duration-300">
+                        {t('lostPetsCard.breed')} : {breed}
                     </p>
-                    <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                        {t('lostPetsCard.lastSeenDate')} - {new Date(lastSeenDate).toLocaleDateString()}
+                    <p className="text-gray-600 mb-2 text-left group-hover:text-gray-700 transition-colors duration-300">
+                        {t('lostPetsCard.lastSeenDate')} : {new Date(lastSeenDate).toLocaleDateString()}
                     </p>
-                    <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
-                        {t('lostPetsCard.lastSeenLocation')} - {lastSeenLocation}
+                    <p className="text-gray-600 mb-2 text-left group-hover:text-gray-700 transition-colors duration-300">
+                        {t('lostPetsCard.lastSeenLocation')} : {lastSeenLocation}
                     </p>
                     {description && (
-                        <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
-                            {t('lostPetsCard.description')} - {truncateDescription(description, 100)}
+                        <p className="text-gray-600 mb-4 text-left group-hover:text-gray-700 transition-colors duration-300">
+                            {t('lostPetsCard.description')} : {truncateDescription(description, 100)}
                         </p>
                     )}
-                    <p className="text-gray-700 font-semibold mb-4 group-hover:text-gray-800 transition-colors duration-300">
-                        {t('lostPetsCard.contact')} - {phone}
+                    <p className="text-gray-700 font-semibold mb-4 text-left group-hover:text-gray-800 transition-colors duration-300">
+                        {t('lostPetsCard.contact')} : {phone}
                     </p>
                 </div>
                 

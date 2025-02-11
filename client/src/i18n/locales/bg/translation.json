@@ -172,5 +172,34 @@
         "contact": "Контакт",
         "uploadImage": "Качи снимка",
         "submitButton": "Добавете"
+    },
+    "foundPets": {
+        "title": "Намерени домашни любимци",
+        "button": "Добавете намерен домашен любимец",
+        "description": "Трябва да",
+        "secondDescription": "за да добавите намерен домашен любимец.",
+        "loginLink": "влезете,",
+        "noPetsFound": "Няма намерени домашни любимци"
+    },
+    "foundPetsCard": {
+        "breed": "Порода",
+        "location": "Местоположение",
+        "description": "Описание",
+        "contact": "Контакт",
+        "viewDetails": "Преглед",
+        "backToFoundPets": "Назад към намерени домашни любимци",
+        "edit": "Редактирай",
+        "delete": "Изтрий",
+        "deleteMessage": "Сигурни ли сте, че желаете да изтриете този домашен любимец?"
+    },
+    "foundPetsForm": {
+        "title": "Добавете намерен домашен любимец",
+        "breed": "Порода",
+        "kind": "Вид",
+        "location": "Местоположение",
+        "description": "Описание",
+        "contact": "Контакт",
+        "uploadImage": "Качи снимка",
+        "submitButton": "Добавете"
     }
 }

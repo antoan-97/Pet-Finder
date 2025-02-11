@@ -146,7 +146,7 @@
         "button": "Add a Lost Pet",
         "description": "You need to ",
         "secondDescription": "to add a lost pet.",
-        "loginLink": "log in",
+        "loginLink": "log in ",
         "noPetsFound": "No pets found"
     },
     "lostPetsCard": {
@@ -176,7 +176,31 @@
     },
     "foundPets": {
         "title": "Found Pets",
-       
-        "button": "Report Found Pet →"
+        "description": "You need to ",
+        "secondDescription": "to add a found pet.",
+        "loginLink": "log in ",
+        "noPetsFound": "No pets found",
+        "button": "Add a Found Pet"
+    },
+    "foundPetsCard": {
+        "breed": "Breed",
+        "location": "Location",
+        "description": "Description",
+        "contact": "Contact",
+        "viewDetails": "View Details",
+        "backToFoundPets": "Back to Found Pets",
+        "edit": "Edit",
+        "delete": "Delete",
+        "deleteMessage": "Are you sure you want to delete this pet?"
+    },
+    "foundPetsForm": {
+        "title": "Add a Found Pet",
+        "breed": "Breed",
+        "kind": "Kind",
+        "location": "Location",
+        "description": "Description",
+        "contact": "Contact",
+        "uploadImage": "Upload Image",
+        "submitButton": "Submit"
     }
 }
