@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function FoundPetCard({ _id, kind, location, breed, phone, description, imgUrl }) {
+    const { t } = useTranslation();
     // Function to truncate description
     const truncateDescription = (text, maxLength) => {
         if (text.length <= maxLength) return text;
@@ -27,8 +29,8 @@ export default function FoundPetCard({ _id, kind, location, breed, phone, descri
                 {/* Pet info */}
                 <div className="flex-grow">
                     <h3 className="text-xl font-semibold mb-2">{breed}</h3>
-                    <p className="text-gray-600 mb-2"><strong>Location:</strong> {location}</p>
-                    <p className="text-gray-600 mb-2"><strong>Description:</strong> {truncateDescription(description, 100)}</p>
+                    <p className="text-gray-600 mb-2 text-left"><strong>{t('foundPetsCard.location')}:</strong> {location}</p>
+                    <p className="text-gray-600 mb-2 text-left"><strong>{t('foundPetsCard.description')}:</strong> {truncateDescription(description, 100)}</p>
                 </div>
                 
                 {/* Button container - always at bottom */}
@@ -37,7 +39,7 @@ export default function FoundPetCard({ _id, kind, location, breed, phone, descri
                         to={`/found-pets/${_id}`}
                         className="bg-green-600 text-white px-4 py-2 rounded-full inline-block text-center hover:bg-green-700 transition-colors duration-300"
                     >
-                        View Details
+                        {t('foundPetsCard.viewDetails')}
                     </Link>
                 </div>
             </div>

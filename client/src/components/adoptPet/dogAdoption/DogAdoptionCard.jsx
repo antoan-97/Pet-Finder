@@ -24,7 +24,7 @@ export default function DogAdoptionCard({
                     <>
                         <img 
                             src={imgUrl} 
-                            alt={`${name} - ${breed}`}
+                            alt={`${name} : ${breed}`}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -43,14 +43,14 @@ export default function DogAdoptionCard({
                     <h4 className="text-xl font-semibold text-green-700 mb-2 group-hover:text-green-800 transition-colors duration-300">
                         {name}
                     </h4>
-                    <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
+                    <p className="text-gray-600 mb-2 text-left group-hover:text-gray-700 transition-colors duration-300">
                         {t('adoptionCard.breed')}: {breed}
                     </p>
-                    <p className="text-gray-600 mb-2 group-hover:text-gray-700 transition-colors duration-300">
+                    <p className="text-gray-600 mb-2 text-left group-hover:text-gray-700 transition-colors duration-300">
                         {t('adoptionCard.age')}: {age}
                     </p>
                     {description && (
-                        <p className="text-gray-600 mb-4 group-hover:text-gray-700 transition-colors duration-300">
+                        <p className="text-gray-600 mb-4 text-left group-hover:text-gray-700 transition-colors duration-300">
                             {t('adoptionCard.description')}: {truncateDescription(description, 100)}
                         </p>
                     )}
