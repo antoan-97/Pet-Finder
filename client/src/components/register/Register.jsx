@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLoading } from "../../contexts/LoadingContext";
+import { useTranslation } from "react-i18next";
 
 import Spinner from "../common/Spinner";
 import AuthContext from "../../contexts/AuthContext";
 
 export default function Register() {
-
+    const { t } = useTranslation();
     const { registerSubmitHandler } = useContext(AuthContext)
     const { isLoading, setIsLoading } = useLoading()
     const [termsAccepted, setTermsAccepted] = useState(false);
@@ -45,7 +46,7 @@ export default function Register() {
                 <div className="w-full bg-white bg-opacity-80 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white-50 dark:border-white-600">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-gray">
-                            Create an account
+                            {t('register.title')}
                         </h1>
                         <form onSubmit={onSubmit} className="space-y-4 md:space-y-6" action="#">
                             <div>
@@ -53,7 +54,7 @@ export default function Register() {
                                     htmlFor="email"
                                     className="flex mb-2 text-sm font-medium text-gray-900 dark:text-gray"
                                 >
-                                    Email
+                                    {t('register.email')}
                                 </label>
                                 <input
                                     onChange={onChange}
@@ -71,7 +72,7 @@ export default function Register() {
                                     htmlFor="password"
                                     className="flex mb-2 text-sm font-medium text-gray-900 dark:text-gray"
                                 >
-                                    Password
+                                    {t('register.password')}
                                 </label>
                                 <input
                                     onChange={onChange}
@@ -89,7 +90,7 @@ export default function Register() {
                                     htmlFor="confirm-password"
                                     className="flex mb-2 text-sm font-medium text-gray-900 dark:text-gray"
                                 >
-                                    Confirm password
+                                    {t('register.confirmPassword')}
                                 </label>
                                 <input
                                     onChange={onChange}
@@ -118,14 +119,14 @@ export default function Register() {
                                         htmlFor="terms"
                                         className="font-light text-gray-500 dark:text-gray-500"
                                     >
-                                        I accept the{" "}
+                                        {t('register.checkBox')}
                                         <a
                                             href="/terms" // Link to your Terms of Service
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="font-medium text-green-600 hover:underline dark:text-green-500"
                                         >
-                                            Terms of Service
+                                            {t('register.termsLink')}
                                         </a>
                                     </label>
                                 </div>
@@ -135,14 +136,14 @@ export default function Register() {
                                 className={`w-full text-white ${termsAccepted ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-400 cursor-not-allowed'} focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800`}
                                 disabled={!termsAccepted} // Step 3: Disable button based on checkbox
                             >
-                                Create an account
+                                {t('register.registerButton')}
                             </button>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-500">
-                                Already have an account?{" "}
+                                {t('register.alreadyHaveAccount')} 
                                 <Link to='/login'
                                     className="font-medium text-green-600 hover:underline dark:text-green-500"
                                 >
-                                    {isLoading ? <Spinner /> : 'Login here'}
+                                    {isLoading ? <Spinner /> : t('register.loginLink')}
                                 </Link>
                             </p>
                         </form>
@@ -151,5 +152,5 @@ export default function Register() {
             </div>
         </section>
     );
-    
+
 }

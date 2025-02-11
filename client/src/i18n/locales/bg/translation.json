@@ -128,5 +128,16 @@
         "checkBox": "Запомни ме",
         "signUp": "Нямате акаунт?",
         "signUpLink": "Регистрирайте се тук"
+    },
+    "register": {
+        "title": "Създайте акаунт",
+        "email": "Имейл",
+        "password": "Парола",
+        "confirmPassword": "Потвърди парола",
+        "checkBox": "Съгласявам се с",
+        "termsLink": "Условия за ползване",
+        "registerButton": "Регистрация",
+        "alreadyHaveAccount": "Имате вече акаунт?",
+        "loginLink": "Влезте тук"
     }
 }

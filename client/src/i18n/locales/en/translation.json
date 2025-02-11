@@ -129,10 +129,16 @@
         "checkBox": "Remember me",
         "signUp": "Don't have an account?",
         "signUpLink": "Sign up here"
+    },
+    "register": {
+        "title": "Create an account",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "checkBox": "I accept the",
+        "termsLink": "Terms of Service",
+        "registerButton": "Register",
+        "alreadyHaveAccount": "Already have an account?",
+        "loginLink": "Login here"
     }
-
- 
-
-
-
 }
