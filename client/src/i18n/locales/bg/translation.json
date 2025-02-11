@@ -139,5 +139,38 @@
         "registerButton": "Регистрация",
         "alreadyHaveAccount": "Имате вече акаунт?",
         "loginLink": "Влезте тук"
+    },
+    "lostPets": {
+        "title": "Загубени домашни любимци",
+        "button": "Добавете загубен домашен любимец",
+        "description": "Трябва да",
+        "secondDescription": "за да добавите загубен домашен любимец.",
+        "loginLink": "влезете,",
+        "noPetsFound": "Няма загубени домашни любимци"
+    },
+    "lostPetsCard": {
+        "name": "Име",
+        "breed": "Порода",
+        "lastSeenDate": "Последно видян на",
+        "lastSeenLocation": "Последно видян в",
+        "description": "Описание",
+        "contact": "Контакт",
+        "viewDetails": "Преглед",
+        "backToLostPets": "Назад към загубени домашни любимци",
+        "edit": "Редактирай",
+        "delete": "Изтрий",
+        "deleteMessage": "Сигурни ли сте, че желаете да изтриете този домашен любимец?"
+    },
+    "lostPetsForm": {
+        "title": "Добавете загубен домашен любимец",
+        "name": "Име",
+        "kind": "Вид",
+        "breed": "Порода",
+        "lastSeenDate": "Последно видян на",
+        "lastSeenLocation": "Последно видян в",
+        "description": "Описание",
+        "contact": "Контакт",
+        "uploadImage": "Качи снимка",
+        "submitButton": "Добавете"
     }
 }

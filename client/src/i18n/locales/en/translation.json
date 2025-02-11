@@ -140,5 +140,43 @@
         "registerButton": "Register",
         "alreadyHaveAccount": "Already have an account?",
         "loginLink": "Login here"
+    },
+    "lostPets": {
+        "title": "Lost Pets",
+        "button": "Add a Lost Pet",
+        "description": "You need to ",
+        "secondDescription": "to add a lost pet.",
+        "loginLink": "log in",
+        "noPetsFound": "No pets found"
+    },
+    "lostPetsCard": {
+        "name": "Name",
+        "breed": "Breed",
+        "lastSeenLocation": "Last Seen Location",
+        "lastSeenDate": "Last Seen Date",
+        "description": "Description",
+        "contact": "Contact",
+        "viewDetails": "View Details",
+        "backToLostPets": "Back to Lost Pets",
+        "edit": "Edit",
+        "delete": "Delete",
+        "deleteMessage": "Are you sure you want to delete this dog?"
+    },
+    "lostPetsForm": {
+        "title": "Add a Lost Pet",
+        "name": "Name",
+        "kind": "Kind",
+        "breed": "Breed",
+        "lastSeenDate": "Last Seen Date",
+        "lastSeenLocation": "Last Seen Location",
+        "description": "Description",
+        "contact": "Contact",
+        "uploadImage": "Upload Image",
+        "submitButton": "Submit"
+    },
+    "foundPets": {
+        "title": "Found Pets",
+       
+        "button": "Report Found Pet →"
     }
 }
