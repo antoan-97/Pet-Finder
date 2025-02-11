@@ -173,6 +173,17 @@
         "uploadImage": "Качи снимка",
         "submitButton": "Добавете"
     },
+    "updateLostPets": {
+        "title": "Обнови загубен домашен любимец",
+        "kind": "Вид",
+        "breed": "Порода",
+        "description": "Описание",
+        "contact": "Контакт",
+        "currentImage": "Текуща снимка",
+        "newImage": "Нова снимка",
+        "submitButton": "Обнови"
+    },
+
     "foundPets": {
         "title": "Намерени домашни любимци",
         "button": "Добавете намерен домашен любимец",
