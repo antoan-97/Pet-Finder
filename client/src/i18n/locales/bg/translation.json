@@ -212,5 +212,16 @@
         "contact": "Контакт",
         "uploadImage": "Качи снимка",
         "submitButton": "Добавете"
-    }
+    },
+    "updateFoundPets": {
+        "title": "Обнови намерен домашен любимец",
+        "breed": "Порода",
+        "kind": "Вид",
+        "location": "Местоположение",
+        "description": "Описание",
+        "contact": "Контакт",
+        "currentImage": "Текуща снимка",
+        "newImage": "Нова снимка",
+        "submitButton": "Обнови"
+    }   
 }

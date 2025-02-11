@@ -212,5 +212,16 @@
         "contact": "Contact",
         "uploadImage": "Upload Image",
         "submitButton": "Submit"
-    }
+    },
+    "updateFoundPets": {
+        "title": "Update Found Pet",
+        "breed": "Breed",
+        "kind": "Kind",
+        "location": "Location",
+        "description": "Description",
+        "contact": "Contact",
+        "currentImage": "Current Image",
+        "newImage": "New Image",
+        "submitButton": "Update"
+    }   
 }
