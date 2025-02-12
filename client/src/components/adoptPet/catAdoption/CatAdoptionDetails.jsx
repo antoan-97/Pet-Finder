@@ -65,7 +65,6 @@ export default function CatAdoptionDetails() {
                         <p className="text-xl"><strong className="text-black ">{t('adoptionCard.age')}:</strong> {pet.age}</p>
                         <p className="text-xl"><strong className="text-black ">{t('adoptionCard.location')}:</strong> {pet.location}</p>
                         <p className="text-xl"><strong className="text-black ">{t('adoptionCard.description')}:</strong> {pet.description}</p>
-                        <p className="text-xl"><strong className="text-black">{t('adoptionCard.contact')}:</strong> {pet.phone}</p>
                     </div>
                     <div className="mt-8 flex justify-center">
                         <Link
