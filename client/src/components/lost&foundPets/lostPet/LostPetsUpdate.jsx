@@ -14,6 +14,8 @@ export default function LostPetsUpdate() {
     const [formData, setFormData] = useState({
         kind: '',
         breed: '',
+        lastSeenLocation: '',
+        lastSeenDate: '',
         phone: '',
         description: '',
         image: '',
@@ -25,10 +27,17 @@ export default function LostPetsUpdate() {
         const fetchPet = async () => {
             try {
                 const data = await petApi.getOneLost(id);
+                
+                // Format the date to YYYY-MM-DD
+                const formattedDate = data.lastSeenDate 
+                    ? new Date(data.lastSeenDate).toISOString().split('T')[0]
+                    : '';
 
                 setFormData({
                     kind: data.kind || '',
                     breed: data.breed || '',
+                    lastSeenLocation: data.lastSeenLocation || '',
+                    lastSeenDate: formattedDate,
                     phone: data.phone || '',
                     description: data.description || '',
                     image: data.image || '',
@@ -112,6 +121,28 @@ export default function LostPetsUpdate() {
                                     type="text"
                                     name="breed"
                                     value={formData.breed}
+                                    onChange={handleChange}
+                                    className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">{t('updateLostPets.lastSeenLocation')}</label>
+                                <input
+                                    type="text"
+                                    name="lastSeenLocation"
+                                    value={formData.lastSeenLocation}
+                                    onChange={handleChange}
+                                    className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                    required
+                                />
+                            </div>  
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">{t('updateLostPets.lastSeenDate')}</label>
+                                <input
+                                    type="date"
+                                    name="lastSeenDate"
+                                    value={formData.lastSeenDate}
                                     onChange={handleChange}
                                     className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
                                     required
