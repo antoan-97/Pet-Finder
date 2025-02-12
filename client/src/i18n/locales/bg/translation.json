@@ -176,6 +176,8 @@
     "updateLostPets": {
         "title": "Обнови загубен домашен любимец",
         "kind": "Вид",
+        "lastSeenDate": "Последно видян на",
+        "lastSeenLocation": "Последно видян в",
         "breed": "Порода",
         "description": "Описание",
         "contact": "Контакт",

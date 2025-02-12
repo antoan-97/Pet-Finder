@@ -178,6 +178,8 @@
         "title": "Update Lost Pet",
         "kind": "Kind",
         "breed": "Breed",
+        "lastSeenDate": "Last Seen Date",
+        "lastSeenLocation": "Last Seen Location",
         "description": "Description",
         "contact": "Contact",
         "currentImage": "Current Image",
