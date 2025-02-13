@@ -109,7 +109,7 @@ export default function Home() {
                         </div>
                         <div>
                             <h3 className="text-2xl sm:text-4xl font-bold mb-2">50+</h3>
-                            <p className="text-sm sm:text-base">{t('home.parners')}</p>
+                            <p className="text-sm sm:text-base">{t('home.partners')}</p>
                         </div>
                     </div>
                 </div>
