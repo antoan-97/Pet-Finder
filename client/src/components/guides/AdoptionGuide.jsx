@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import LazyLoad from "react-lazyload";
 
 export default function PetAdoptionStarterGuide() {
+    const { t } = useTranslation();
     return (
 
         <section className="bg-custom-gradient py-12 h-full">
             <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-4xl font-bold text-center text-white mb-8">
-                    Adoption Starter Guide
+                    {t("adoptionGuide.title")}
                 </h2>
                 <p className="text-lg text-gray-700 text-center mb-6 max-w-3xl mx-auto leading-relaxed">
-                    Adopting a pet is a rewarding experience, but it comes with responsibilities. If you're new to caring for a dog or cat, this guide will help you get started. From preparing your home to understanding your pet’s needs, we provide tips to ensure a smooth transition for both you and your new companion.
+                    {t("adoptionGuide.description")}
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center mb-8">
@@ -24,16 +26,16 @@ export default function PetAdoptionStarterGuide() {
                     </LazyLoad>
                     <div className="sm:w-1/2">
                         <h3 className="text-2xl font-semibold text-green-700 mb-4">
-                            Tips for First-Time Pet Owners
+                            {t("adoptionGuide.secondTitle")}
                         </h3>
                         <ul className="list-disc list-inside text-gray-600">
-                            <li>Prepare your home with a designated space for your new pet.</li>
-                            <li>Introduce them slowly to their new environment.</li>
-                            <li>Be patient and give them time to adjust.</li>
-                            <li>Provide the right food, water, and basic supplies like bedding and toys.</li>
-                            <li>Ensure your pet gets enough exercise and mental stimulation.</li>
-                            <li>Visit a vet to ensure they are healthy and up to date on vaccinations.</li>
-                            <li>Training and socializing are essential for a well-behaved pet.</li>
+                            <li>{t("adoptionGuide.tipOne")}</li>
+                            <li>{t("adoptionGuide.tipTwo")}</li>
+                            <li>{t("adoptionGuide.tipThree")}</li>
+                            <li>{t("adoptionGuide.tipFour")}</li>
+                            <li>{t("adoptionGuide.tipFive")}</li>
+                            <li>{t("adoptionGuide.tipSix")}</li>
+                            <li>{t("adoptionGuide.tipSeven")}</li>
                         </ul>
                     </div>
                 </div>
@@ -45,7 +47,7 @@ export default function PetAdoptionStarterGuide() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Learn More About Pet Adoption
+                        {t("adoptionGuide.firstButton")}
                     </a>
                 </div>
 
@@ -54,7 +56,7 @@ export default function PetAdoptionStarterGuide() {
                         to='/lost-found'
                         className="inline-block px-6 mt-2 py-3 text-white bg-gradient-to-r from-green-500 to-green-600 rounded-lg shadow-lg hover:from-green-600 hover:to-green-700 transition duration-300 ease-in-out transform hover:scale-105"
                     >
-                        Report Missing or Found Pets
+                        {t("adoptionGuide.secondButton")}
                     </Link>
                 </div>
             </div>
