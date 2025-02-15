@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import * as adoptionApi from '../../../services/adoptionApi';
 import AuthContext from '../../../contexts/AuthContext';
-import LoadingSpinner from '../../common/LoadingSpinner';
+import Spinner from '../../common/Spinner';
 import DeleteModal from '../../../modals/DeleteModal';
 
 export default function CatAdoptionDetails() {
@@ -21,15 +21,20 @@ export default function CatAdoptionDetails() {
         if (id) {
             adoptionApi.getOneCat(id)
                 .then(data => {
+                    if (!data) {
+                        navigate('/error-page');
+                        return;
+                    }
                     setPet(data);
                     setLoading(false);
                 })
                 .catch(err => {
                     setError(err.message);
                     setLoading(false);
+                    navigate('/error-page');
                 });
         }
-    }, [id]);
+    }, [id, navigate]);
 
     const handleDelete = async () => {
         try {
@@ -41,9 +46,8 @@ export default function CatAdoptionDetails() {
         }
     };
 
-    if (loading) return <LoadingSpinner />;
-    if (error) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Error: {error}</div>;
-    if (!pet) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">No pet found</div>;
+    if (loading) return <Spinner />;
+    if (error || !pet) return null;
 
     const isOwner = userId === pet?.ownerId;
 
