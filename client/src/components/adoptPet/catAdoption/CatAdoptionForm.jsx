@@ -1,65 +1,14 @@
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLoading } from "../../../contexts/LoadingContext";
-import { useTranslation } from 'react-i18next';
-
-import AuthContext from "../../../contexts/AuthContext";
 import Spinner from "../../common/Spinner";
-import * as adoptionApi from "../../../services/adoptionApi";
+import useCatAdoptionForm from "../../../hooks/catAdoption/useCatAdoptionForm";
 
 export default function CatAdoptionForm() {
-    const { t } = useTranslation();
-    const navigate = useNavigate()
-    const { userId } = useContext(AuthContext);
-    const { isLoading, setIsLoading } = useLoading();
-
-    const [formData, setFormData] = useState({
-        name: '',
-        breed: '',
-        age: '',
-        description: '',
-        location: '',
-        image: null,
-        adopted: false
-    });
-
-    const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: files ? files[0] : value
-        }));
-
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        try {
-            if (!userId) {
-                throw new Error('You must be logged in to add a cat');
-            }
-
-            const form = new FormData();
-            form.append('name', formData.name);
-            form.append('breed', formData.breed);
-            form.append('age', formData.age);
-            form.append('description', formData.description);
-            form.append('location', formData.location);
-            if (formData.image) {
-                form.append('image', formData.image);
-            }
-            form.append('ownerId', userId.toString());
-            
-            const response = await adoptionApi.addAdoptionCat(form);
-            navigate('/cat-adoption');
-        } catch (error) {
-            console.error('Failed to submit cat for adoption:', error);
-            alert(error.message || 'Failed to submit pet information. Please try again.');
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    const {
+        formData,
+        isLoading,
+        handleChange,
+        handleSubmit,
+        t
+    } = useCatAdoptionForm();
 
     return (
         <section className="bg-login-bg bg-cover bg-center pt-24 pb-24 px-4 h-full">
@@ -143,7 +92,6 @@ export default function CatAdoptionForm() {
                         <button
                             type="submit"
                             disabled={isLoading}
-
                             className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200"
                         >
                             {isLoading ? <Spinner /> : t('adoptionForm.submitButton')}
@@ -152,5 +100,5 @@ export default function CatAdoptionForm() {
                 </div>
             </div>
         </section>
-    )
+    );
 }
