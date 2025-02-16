@@ -1,5 +1,5 @@
 # Dependencies
-node_modules/
+/node_modules
 
 # Environment Variables
 .env
@@ -11,6 +11,10 @@ node_modules/
 logs
 *.log
 npm-debug.log*
+
+# Uploads (except .gitkeep)
+/uploads/*
+!uploads/.gitkeep
 
 # Runtime data
 pids
