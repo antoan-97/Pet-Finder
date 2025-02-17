@@ -61,6 +61,4 @@ server/uploads/image-1735240324593.jpg
 *.jpg
 client/src/components/adoptPet/dogAdoption/DogAdoptionDetails.jsx
 /node_modules
-/client
-*.json
-*.json
+
