@@ -2,30 +2,13 @@ import AuthContext from "../../../contexts/AuthContext";
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-
-import * as adoptionApi from '../../../services/adoptionApi';
+import useCatAdoptionList from "../../../hooks/catAdoption/useCatAdoptionList";
 import CatAdoptionCard from "./CatAdoptionCard";
 
 export default function CatAdoptionList() {
     const { isAuthenticated } = useContext(AuthContext);
-    const [pets, setPets] = useState([]);
     const { t } = useTranslation();
-
-    useEffect(() => {
-        const fetchCats = async () => {
-            try {
-                const result = await adoptionApi.getAllCats();
-                setPets(result);
-            } catch (err) {
-                console.error('Error details:', {
-                    message: err.message,
-                    response: err.response,
-                    stack: err.stack
-                });
-            } 
-        };
-        fetchCats();
-    }, []);
+    const { pets } = useCatAdoptionList();
 
     return (
         <section className="bg-custom-gradient min-h-screen pt-24 overflow-y-auto">
