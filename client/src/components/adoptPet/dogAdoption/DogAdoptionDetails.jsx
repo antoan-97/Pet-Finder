@@ -1,62 +1,31 @@
-import { useState, useEffect, useContext } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-
-import * as adoptionApi from '../../../services/adoptionApi';
-import AuthContext from '../../../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 import DeleteModal from '../../../modals/DeleteModal';
 import Spinner from '../../common/Spinner';
+import useDogAdoptionDetails from '../../../hooks/dogAdoption/useDogAdoptionDetails';
 
 export default function DogAdoptionDetails() {
-    const { t } = useTranslation();
-    const [pet, setPet] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const { userId } = useContext(AuthContext);
-    const { id } = useParams();
-    const navigate = useNavigate();
+    const {
+        pet,
+        isLoading,
+        error,
+        isOwner,
+        showDeleteModal,
+        setShowDeleteModal,
+        handleDelete,
+        t
+    } = useDogAdoptionDetails();
 
-    useEffect(() => {
-        if (id) {
-            adoptionApi.getOneDog(id)
-                .then(data => {
-                    if (!data) {
-                        navigate('/error-page');
-                        return;
-                    }
-                    setPet(data);
-                    setLoading(false);
-                })
-                .catch(err => {
-                    setError(err.message);
-                    setLoading(false);
-                    navigate('/error-page');
-                });
-        }
-    }, [id, navigate]);
-
-    const handleDelete = async () => {
-        try {
-            await adoptionApi.deleteAdoptionDog(id);
-            navigate('/dog-adoption');
-        } catch (error) {
-            console.error('Error deleting dog:', error);
-            setError('Failed to delete dog');
-        }
-    };
-
-    if (loading) return <Spinner />;
+    if (isLoading) return <Spinner />;
     if (error || !pet) return null;
-
-    const isOwner = userId === pet?.ownerId;
 
     return (
         <div className="bg-custom-gradient min-h-screen pt-24 pb-24 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto rounded-xl shadow-2xl overflow-hidden">
                 <div className="p-8">
-
-                    <h2 className="text-3xl font-bold text-black mb-6 border-b pb-4">{t('adoptionCard.name')} - {pet.name}</h2>
+                    <h2 className="text-3xl font-bold text-black mb-6 border-b pb-4">
+                        {t('adoptionCard.name')} - {pet.name}
+                    </h2>
+                    
                     {pet.imgUrl && (
                         <div className="mb-8 flex justify-center">
                             <img
@@ -66,12 +35,22 @@ export default function DogAdoptionDetails() {
                             />
                         </div>
                     )}
+                    
                     <div className="space-y-4">
-                        <p className="text-xl"><strong className="text-black">{t('adoptionCard.breed')}:</strong> {pet.breed}</p>
-                        <p className="text-xl"><strong className="text-black">{t('adoptionCard.age')}:</strong> {pet.age}</p>
-                        <p className="text-xl"><strong className="text-black">{t('adoptionCard.location')}:</strong> {pet.location}</p>
-                        <p className="text-xl"><strong className="text-black">{t('adoptionCard.description')}:</strong> {pet.description}</p>
+                        <p className="text-xl">
+                            <strong className="text-black">{t('adoptionCard.breed')}:</strong> {pet.breed}
+                        </p>
+                        <p className="text-xl">
+                            <strong className="text-black">{t('adoptionCard.age')}:</strong> {pet.age}
+                        </p>
+                        <p className="text-xl">
+                            <strong className="text-black">{t('adoptionCard.location')}:</strong> {pet.location}
+                        </p>
+                        <p className="text-xl">
+                            <strong className="text-black">{t('adoptionCard.description')}:</strong> {pet.description}
+                        </p>
                     </div>
+
                     <div className="mt-8 flex justify-center">
                         <Link
                             to="/dog-adoption"
@@ -80,6 +59,7 @@ export default function DogAdoptionDetails() {
                             {t('adoptionCard.backButton')}
                         </Link>
                     </div>
+
                     {isOwner && (
                         <div className="mt-8 flex justify-center gap-2">
                             <Link
