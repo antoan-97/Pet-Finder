@@ -5,54 +5,16 @@ import { useLoading } from "../../../contexts/LoadingContext";
 import { useTranslation } from "react-i18next";
 import AuthContext from "../../../contexts/AuthContext";
 import Spinner from "../../common/Spinner";
+import useFoundPetForm from "../../../hooks/foundPets/useFoundPetForm";
 
 export default function FoundPetForm() {
-    const { t } = useTranslation();
-    const navigate = useNavigate()
-    const { userId } = useContext(AuthContext);
-    const [formData, setFormData] = useState({
-        kind: '',
-        location: '',
-        breed: '',
-        phone: '',
-        description: '',
-        image: null,
-        ownerId: userId
-    });
-
-    const { isLoading, setIsLoading } = useLoading();
-
-    const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: files ? files[0] : value
-        }));
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        try {
-            const response = await addFoundPet(formData);
-            navigate('/found-pets')
-            setFormData({
-                kind: '',
-                location: '',
-                breed: '',
-                phone: '',
-                description: '',
-                image: null,
-                ownerId: userId
-            });
-        } catch (error) {
-            console.error('Failed to report pet:', error);
-            alert(error.message || 'Failed to submit pet information. Please try again.');
-        } finally {
-            setIsLoading(false);
-        }
-
-    };
+    const {
+        formData,
+        isLoading,
+        handleChange,
+        handleSubmit,
+        t
+    } = useFoundPetForm();
 
     return (
         <section className="bg-login-bg bg-cover bg-center pt-24 pb-24 px-4 h-full">
