@@ -1,92 +1,15 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
-import * as petApi from '../../../services/petApi';
 import Spinner from "../../common/Spinner";
+import useFoundPetUpdate from "../../../hooks/foundPets/useFoundPetUpdate";
 
 export default function FoundPetUpdate() {
-    const { t } = useTranslation();
-    const { id } = useParams();
-    const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-
-    const [formData, setFormData] = useState({
-        kind: '',
-        breed: '',
-        location: '',
-        phone: '',
-        description: '',
-        image: '',
-        imgUrl: ''
-    });
-
-    // Fetch pet data when component mounts
-    useEffect(() => {
-        const fetchPet = async () => {
-            try {
-                const data = await petApi.getOneFound(id);
-
-                setFormData({
-                    kind: data.kind || '',
-                    breed: data.breed || '',
-                    location: data.location || '',
-                    phone: data.phone || '',
-                    description: data.description || '',
-                    image: data.image || '',
-                    imgUrl: data.imgUrl || ''
-                });
-            } catch (err) {
-                console.error('Error fetching pet:', err);
-                setError(err.message);
-            }
-        };
-
-        if (id) {
-            fetchPet();
-        }
-    }, [id]);
-
-    const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        if (name === 'image' && files) {
-            setFormData(prev => ({
-                ...prev,
-                [name]: files[0],
-            }));
-        } else {
-            setFormData(prev => ({
-                ...prev,
-                [name]: value
-            }));
-        }
-    };
-
-    const handleUpdate = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        try {
-            const formDataToSend = new FormData();
-            Object.keys(formData).forEach(key => {
-                if (key === 'image' && formData[key] instanceof File) {
-                    console.log('Appending image file:', formData[key]); // Debug log
-                    formDataToSend.append('image', formData[key]);
-                } else if (key !== 'image') {
-                    console.log(`Appending ${key}:`, formData[key]); // Debug log
-                    formDataToSend.append(key, formData[key]);
-                }
-            });
-            
-            const response = await petApi.updateFoundPet(id, formDataToSend);
-            console.log('Update response:', response); // Debug log
-            navigate('/found-pets');
-        } catch (error) {
-            console.error('Update error:', error); // Debug log
-            setError(error.message);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    const {
+        formData,
+        isLoading,
+        error,
+        handleChange,
+        handleUpdate,
+        t
+    } = useFoundPetUpdate();
 
     if (error) {
         return <div>Error: {error}</div>;
@@ -177,7 +100,6 @@ export default function FoundPetUpdate() {
                                 className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
                             />
                         </div>
-
 
                         <button
                             type="submit"
