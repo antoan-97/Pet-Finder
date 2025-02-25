@@ -1,68 +1,40 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-
-import * as petApi from '../../../services/petApi';
-import AuthContext from '../../../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 import DeleteModal from '../../../modals/DeleteModal';
+import useLostPetsDetails from '../../../hooks/lostPets/useLostPetsDetails';
 
 export default function LostPetsDetails() {
-    const { t } = useTranslation();
-    const navigate = useNavigate();
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [pet, setPet] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const { userId } = useContext(AuthContext);
-    const { id } = useParams();
+    const {
+        pet,
+        loading,
+        error,
+        isOwner,
+        showDeleteModal,
+        setShowDeleteModal,
+        handleDelete,
+        formatDate,
+        t
+    } = useLostPetsDetails();
 
-    const formatDate = (dateString) => {
-        const options = { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        }; 
-        return new Date(dateString).toLocaleDateString('en-US', options);
-    };
+    if (loading) {
+        return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Loading...</div>;
+    }
 
-    useEffect(() => {
-        if (id) {
-            petApi.getOneLost(id)
-                .then(data => {
-                    setPet(data);
-                    setLoading(false);
-                })
-                .catch(err => {
-                    setError(err.message);
-                    setLoading(false);
-                });
-        }
-    }, [id]);
-    
-    const handleDelete = async () => {
-        try {
-            await petApi.deleteLostPet(id);
-            navigate('/lost-pets');
-        } catch (error) {
-            console.error('Error deleting dog:', error);
-            setError('Failed to delete dog');
-        }
-    };
+    if (error) {
+        return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Error: {error}</div>;
+    }
 
-    if (loading) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Loading...</div>;
-    if (error) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">Error: {error}</div>;
-    if (!pet) return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">No pet found</div>;
+    if (!pet) {
+        return <div className="bg-custom-gradient min-h-screen flex items-center justify-center">No pet found</div>;
+    }
 
-    const isOwner = userId === pet?.ownerId;
-    
-    return(
+    return (
         <div className="bg-custom-gradient min-h-screen pt-24 pb-24 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto rounded-xl shadow-2xl overflow-hidden">
                 <div className="p-8">
-
-                    <h2 className="text-3xl font-bold text-black mb-6 border-b pb-4">{t('lostPetsCard.name')} - {pet.name}</h2>
+                    <h2 className="text-3xl font-bold text-black mb-6 border-b pb-4">
+                        {t('lostPetsCard.name')} - {pet.name}
+                    </h2>
+                    
                     {pet.imgUrl && (
                         <div className="mb-8 flex justify-center">
                             <img 
@@ -72,14 +44,22 @@ export default function LostPetsDetails() {
                             />
                         </div>
                     )}
+                    
                     <div className="space-y-4">
-                        <p className="text-xl"><strong className="text-black">{t('lostPetsCard.lastSeenLocation')}:</strong> {pet.lastSeenLocation}</p>
+                        <p className="text-xl">
+                            <strong className="text-black">{t('lostPetsCard.lastSeenLocation')}:</strong> {pet.lastSeenLocation}
+                        </p>
                         <p className="text-xl">
                             <strong className="text-black">{t('lostPetsCard.lastSeenDate')}:</strong> {formatDate(pet.lastSeenDate)}
                         </p>
-                        <p className="text-xl"><strong className="text-black">{t('lostPetsCard.description')}:</strong> {pet.description}</p>
-                        <p className="text-xl"><strong className="text-black">{t('lostPetsCard.contact')}:</strong> {pet.phone}</p>
+                        <p className="text-xl">
+                            <strong className="text-black">{t('lostPetsCard.description')}:</strong> {pet.description}
+                        </p>
+                        <p className="text-xl">
+                            <strong className="text-black">{t('lostPetsCard.contact')}:</strong> {pet.phone}
+                        </p>
                     </div>
+
                     <div className="mt-8 flex justify-center">
                         <Link 
                             to="/lost-pets" 
@@ -88,6 +68,7 @@ export default function LostPetsDetails() {
                             {t('lostPetsCard.backToLostPets')}
                         </Link>
                     </div>
+
                     {isOwner && (
                         <div className="mt-8 flex justify-center gap-2">
                             <Link
@@ -115,5 +96,5 @@ export default function LostPetsDetails() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
