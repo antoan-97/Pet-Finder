@@ -1,82 +1,15 @@
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { addLostPet } from "../../../services/petApi";
-import { useLoading } from "../../../contexts/LoadingContext";
-import { useTranslation } from "react-i18next";
 import Spinner from "../../common/Spinner";
-
-import AuthContext from "../../../contexts/AuthContext";
+import useLostPetsForm from "../../../hooks/lostPets/useLostPetsForm";
 
 export default function LostPetForm() {
-    const navigate = useNavigate()
-    const { t } = useTranslation();
-    const { userId } = useContext(AuthContext);
-    const { isLoading, setIsLoading } = useLoading();
-    const [formData, setFormData] = useState({
-        name: '',
-        kind: '',
-        breed: '',
-        lastSeenLocation: '',
-        lastSeenDate: '',
-        phone: '',
-        description: '',
-        image: null,
-        ownerId: userId
-    });
-
-    const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        
-        // Format the date when it's selected
-        if (name === 'lastSeenDate') {
-            const formattedDate = new Date(value);
-            formattedDate.setHours(12, 0, 0, 0); // Set to noon to avoid timezone issues
-            setFormData(prevState => ({
-                ...prevState,
-                [name]: formattedDate.toISOString().split('T')[0] // Format as YYYY-MM-DD
-            }));
-        } else {
-            setFormData(prevState => ({
-                ...prevState,
-                [name]: files ? files[0] : value
-            }));
-        }
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        try {
-            // Create a new FormData object with the formatted date
-            const submissionData = { ...formData };
-            if (submissionData.lastSeenDate) {
-                const date = new Date(submissionData.lastSeenDate);
-                date.setHours(12, 0, 0, 0); // Set to noon to avoid timezone issues
-                submissionData.lastSeenDate = date.toISOString();
-            }
-
-            const response = await addLostPet(submissionData);
-            navigate('/lost-pets')
-            setFormData({
-                name: '',
-                kind: '',
-                breed: '',
-                lastSeenLocation: '',
-                lastSeenDate: '',
-                phone: '',
-                description: '',
-                image: null,
-            });
-        } catch (error) {
-            console.error('Failed to report pet:', error);
-            alert(error.message || 'Failed to submit pet information. Please try again.');
-        } finally {
-            setIsLoading(false);
-        }
-    }
-
-    // Get today's date for max attribute
-    const today = new Date().toISOString().split('T')[0];
+    const {
+        formData,
+        isLoading,
+        today,
+        handleChange,
+        handleSubmit,
+        t
+    } = useLostPetsForm();
 
     return (
         <section className="bg-login-bg bg-cover bg-center pt-24  px-4 h-screen">
@@ -131,7 +64,7 @@ export default function LostPetForm() {
                                     name="lastSeenDate"
                                     value={formData.lastSeenDate}
                                     onChange={handleChange}
-                                    max={today} // Prevent future dates
+                                    max={today}
                                     className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
                                     required
                                 />
@@ -195,5 +128,5 @@ export default function LostPetForm() {
                 </div>
             </div>
         </section>
-    )
+    );
 }
