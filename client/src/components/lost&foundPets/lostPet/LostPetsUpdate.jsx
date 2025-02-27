@@ -1,95 +1,15 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import Spinner from "../../common/Spinner";
-import * as petApi from '../../../services/petApi';
+import useLostPetsUpdate from "../../../hooks/lostPets/useLostPetsUpdate";
 
 export default function LostPetsUpdate() {
-    const { t } = useTranslation();
-    const { id } = useParams();
-    const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-
-    const [formData, setFormData] = useState({
-        kind: '',
-        breed: '',
-        lastSeenLocation: '',
-        lastSeenDate: '',
-        phone: '',
-        description: '',
-        image: '',
-        imgUrl: ''
-    });
-
-    // Fetch pet data when component mounts
-    useEffect(() => {
-        const fetchPet = async () => {
-            try {
-                const data = await petApi.getOneLost(id);
-                
-                // Format the date to YYYY-MM-DD
-                const formattedDate = data.lastSeenDate 
-                    ? new Date(data.lastSeenDate).toISOString().split('T')[0]
-                    : '';
-
-                setFormData({
-                    kind: data.kind || '',
-                    breed: data.breed || '',
-                    lastSeenLocation: data.lastSeenLocation || '',
-                    lastSeenDate: formattedDate,
-                    phone: data.phone || '',
-                    description: data.description || '',
-                    image: data.image || '',
-                    imgUrl: data.imgUrl || ''
-                });
-            } catch (err) {
-                console.error('Error fetching pet:', err);
-                setError(err.message);
-            }
-        };
-
-        if (id) {
-            fetchPet();
-        }
-    }, [id]);
-
-    const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        if (name === 'image' && files) {
-            setFormData(prev => ({
-                ...prev,
-                [name]: files[0]
-            }));
-        } else {
-            setFormData(prev => ({
-                ...prev,
-                [name]: value
-            }));
-        }
-    };
-
-    const handleUpdate = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        try {
-            const formDataToSend = new FormData();
-            Object.keys(formData).forEach(key => {
-                if (key === 'image' && formData[key] instanceof File) {
-                    formDataToSend.append('image', formData[key]);
-                } else if (key !== 'image') {
-                    formDataToSend.append(key, formData[key]);
-                }
-            });
-
-            await petApi.updateLostPet(id, formDataToSend);
-            navigate('/lost-pets');
-        } catch (error) {
-            setError(error.message);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    const {
+        formData,
+        isLoading,
+        error,
+        handleChange,
+        handleUpdate,
+        t
+    } = useLostPetsUpdate();
 
     if (error) {
         return <div>Error: {error}</div>;
