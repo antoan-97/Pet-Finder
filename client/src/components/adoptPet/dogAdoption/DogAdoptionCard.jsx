@@ -10,7 +10,6 @@ export default function DogAdoptionCard({
     adopted
 }) {
     const { t } = useTranslation();
-    // Function to truncate description
     const truncateDescription = (text, maxLength) => {
         if (!text) return '';
         if (text.length <= maxLength) return text;
@@ -31,7 +30,6 @@ export default function DogAdoptionCard({
                     </>
                     
                 )}
-                {/* Adopted Badge */}
                 <div className={`absolute top-4 left-4 px-3 py-1 text-sm font-semibold rounded-full ${
                     adopted ? 'bg-green-600 text-white' : 'bg-yellow-600 text-white'
                 }`}>

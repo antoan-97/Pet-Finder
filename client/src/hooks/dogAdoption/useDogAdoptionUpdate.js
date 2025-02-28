@@ -47,7 +47,6 @@ export default function useDogAdoptionUpdate() {
             fetchPet();
         }
         
-        // Cleanup function
         return () => {
             setState({
                 isLoading: false,

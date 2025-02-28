@@ -18,7 +18,6 @@ export default function Login() {
     });
 
     useEffect(() => {
-        // Check local storage for saved users
         const savedEmail = localStorage.getItem('savedEmail');
         if (savedEmail) {
             setFormData({ email: savedEmail });
@@ -35,7 +34,7 @@ export default function Login() {
     };
 
     const onRememberMeChange = (e) => {
-        setRememberMe(e.target.checked); // Update rememberMe state based on checkbox
+        setRememberMe(e.target.checked); 
     };
 
     const onSubmit = async (e) => {

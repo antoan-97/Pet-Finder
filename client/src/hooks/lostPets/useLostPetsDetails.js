@@ -55,7 +55,6 @@ export default function useLostPetsDetails() {
             fetchPet();
         }
 
-        // Cleanup function
         return () => {
             setState({
                 pet: null,

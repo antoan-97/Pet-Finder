@@ -12,7 +12,7 @@ export default function Logout() {
         api.logout()
             .then(() => {
                 logoutSubmitHandler()
-                navigate('/login'); // Redirect to login after successful logout
+                navigate('/login');
             })
             .catch((error) => {
                 navigate('/');

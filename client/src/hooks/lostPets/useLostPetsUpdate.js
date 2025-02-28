@@ -26,7 +26,6 @@ export default function useLostPetsUpdate() {
         try {
             const data = await petApi.getOneLost(id);
             
-            // Format the date to YYYY-MM-DD
             const formattedDate = data.lastSeenDate 
                 ? new Date(data.lastSeenDate).toISOString().split('T')[0]
                 : '';
@@ -55,7 +54,6 @@ export default function useLostPetsUpdate() {
             fetchPet();
         }
         
-        // Cleanup function
         return () => {
             setState({
                 isLoading: false,

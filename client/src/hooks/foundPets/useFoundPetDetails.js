@@ -44,7 +44,6 @@ export default function useFoundPetDetails() {
             fetchPet();
         }
 
-        // Cleanup function
         return () => {
             setState({
                 pet: null,

@@ -3,7 +3,6 @@ export default function TermsOfCondition() {
     const [lastUpdated, setLastUpdated] = useState("");
 
     useEffect(() => {
-        // Dynamically generate the current date for "Last updated"
         const today = new Date();
         const formattedDate = today.toLocaleDateString('en-US', {
             year: 'numeric',

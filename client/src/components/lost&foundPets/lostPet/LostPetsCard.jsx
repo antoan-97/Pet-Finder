@@ -12,7 +12,6 @@ export default function LostPetsCard({
     imgUrl,
 }) {
     const { t } = useTranslation();
-    // Function to truncate description
     const truncateDescription = (text, maxLength) => {
         if (!text) return '';
         if (text.length <= maxLength) return text;

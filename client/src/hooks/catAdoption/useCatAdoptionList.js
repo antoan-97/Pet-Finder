@@ -38,7 +38,6 @@ export default function useCatAdoptionList() {
     useEffect(() => {
         fetchCats();
 
-        // Cleanup function
         return () => {
             setState({
                 pets: [],

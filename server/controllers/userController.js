@@ -51,8 +51,6 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-    // You can handle any server-side logout logic here, if needed.
-
     res.status(204).send();
 };
 

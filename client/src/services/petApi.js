@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
-// Create axios instance for pets
 const petApi = axios.create({
     baseURL: baseURL + '/api',
     withCredentials: true,
@@ -34,7 +33,7 @@ export const addFoundPet = async (formData) => {
         const response = await petApi.post('/pets/addFoundPet', form, {
             headers: {
                 'Authorization': `Bearer ${token}`,
-                'Content-Type': 'multipart/form-data' // Important for file upload
+                'Content-Type': 'multipart/form-data'
             }
         });
         return response.data;
@@ -70,8 +69,6 @@ export const addLostPet = async (formData) => {
         throw error.response?.data || error;
     }
 };
-
-//Found Pets
 
 export const getAllFound = async () => {
     try {

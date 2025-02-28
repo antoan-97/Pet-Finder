@@ -14,7 +14,6 @@ export default function DeleteModal({ onClose, onConfirm, message }) {
 
         document.addEventListener('mousedown', handleClickOutside);
         
-        // Cleanup listener on component unmount
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };

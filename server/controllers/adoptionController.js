@@ -43,7 +43,6 @@ const addAdoptionDog = async (req, res) => {
             fs.unlinkSync(req.file.path);
         }
 
-        // Create new dog with ownerId
         const newPet = new AdoptionDog({
             name,
             breed,
@@ -74,7 +73,6 @@ const addAdoptionCat = async (req, res) => {
             fs.unlinkSync(req.file.path);
         }
 
-        // Create new cat with ownerId
         const newPet = new AdoptionCat({
             name,
             breed,
@@ -191,7 +189,7 @@ const deleteAdoptionCat = async (req, res) => {
         await AdoptionCat.findByIdAndDelete(id);
         res.status(200).json({ message: 'Cat deleted successfully' });
     } catch (error) {
-        console.log('Error in deleteAdoptionCat:', error);
+        console.error('Error in deleteAdoptionCat:', error);
         res.status(500).json({ error: 'Failed to delete cat', details: error.message });
     }
 }

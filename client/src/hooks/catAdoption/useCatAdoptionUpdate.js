@@ -47,7 +47,6 @@ export default function useCatAdoptionUpdate() {
             fetchPet();
         }
         
-        // Cleanup function
         return () => {
             setState({
                 isLoading: false,

@@ -228,7 +228,7 @@
     },
     "adoptionGuide": {
         "title": "Adoption Starter Guide",
-        "description": "Adopting a pet is a rewarding experience, but it comes with responsibilities. If you're new to caring for a dog or cat, this guide will help you get started. From preparing your home to understanding your pet’s needs, we provide tips to ensure a smooth transition for both you and your new companion.",
+        "description": "Adopting a pet is a rewarding experience, but it comes with responsibilities. If you're new to caring for a dog or cat, this guide will help you get started. From preparing your home to understanding your pet's needs, we provide tips to ensure a smooth transition for both you and your new companion.",
         "secondTitle": "Tips for First-Time Pet Owners",
         "tipOne": "Prepare your home with a designated space for your new pet.",
         "tipTwo": "Introduce them slowly to their new environment.",
@@ -245,5 +245,9 @@
         "cancel": "Cancel",
         "delete": "Delete",
         "deleteMessage": "Are you sure you want to delete this pet?"
+    },
+    "pagination": {
+        "previous": "Previous",
+        "next": "Next"
     }
 }
