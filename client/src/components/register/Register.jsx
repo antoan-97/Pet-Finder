@@ -17,6 +17,32 @@ export default function Register() {
         confirmPassword: '',
     });
 
+    const generatePassword = () => {
+        const length = 12;
+        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+        let password = "";
+        
+        // Ensure at least one of each character type
+        password += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)]; // Uppercase
+        password += "abcdefghijklmnopqrstuvwxyz"[Math.floor(Math.random() * 26)]; // Lowercase
+        password += "0123456789"[Math.floor(Math.random() * 10)]; // Number
+        password += "!@#$%^&*"[Math.floor(Math.random() * 8)]; // Special char
+        
+        // Fill the rest randomly
+        for (let i = password.length; i < length; i++) {
+            password += charset[Math.floor(Math.random() * charset.length)];
+        }
+
+        // Shuffle the password
+        password = password.split('').sort(() => Math.random() - 0.5).join('');
+        
+        setFormData(prev => ({
+            ...prev,
+            password: password,
+            confirmPassword: password
+        }));
+    };
+
     const onChange = (e) => {
         setFormData(formData => ({
             ...formData,
@@ -74,16 +100,25 @@ export default function Register() {
                                 >
                                     {t('register.password')}
                                 </label>
-                                <input
-                                    onChange={onChange}
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    value={formData.password}
-                                    placeholder="••••••••"
-                                    className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
-                                    required=""
-                                />
+                                <div className="relative">
+                                    <input
+                                        onChange={onChange}
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        value={formData.password}
+                                        placeholder="••••••••"
+                                        className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
+                                        required=""
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={generatePassword}
+                                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-green-600 text-white px-3 py-1 rounded-md text-sm hover:bg-green-700 transition-colors"
+                                    >
+                                        Generate
+                                    </button>
+                                </div>
                             </div>
                             <div>
                                 <label
