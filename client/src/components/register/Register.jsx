@@ -100,25 +100,16 @@ export default function Register() {
                                 >
                                     {t('register.password')}
                                 </label>
-                                <div className="relative">
-                                    <input
-                                        onChange={onChange}
-                                        type="password"
-                                        name="password"
-                                        id="password"
-                                        value={formData.password}
-                                        placeholder="••••••••"
-                                        className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
-                                        required=""
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={generatePassword}
-                                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-green-600 text-white px-3 py-1 rounded-md text-sm hover:bg-green-700 transition-colors"
-                                    >
-                                        Generate
-                                    </button>
-                                </div>
+                                <input
+                                    onChange={onChange}
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    value={formData.password}
+                                    placeholder="••••••••"
+                                    className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
+                                    required=""
+                                />
                             </div>
                             <div>
                                 <label
@@ -137,6 +128,15 @@ export default function Register() {
                                     className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
                                     required=""
                                 />
+                            </div>
+                            <div className="flex justify-end">
+                                <button
+                                    type="button"
+                                    onClick={generatePassword}
+                                    className="bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition-colors"
+                                >
+                                    Generate Password
+                                </button>
                             </div>
                             <div className="flex items-start">
                                 <div className="flex items-center h-5">
