@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLoading } from "../../contexts/LoadingContext";
 import { useTranslation } from "react-i18next";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import Spinner from "../common/Spinner";
 import AuthContext from "../../contexts/AuthContext";
@@ -11,11 +13,35 @@ export default function Register() {
     const { registerSubmitHandler } = useContext(AuthContext)
     const { isLoading, setIsLoading } = useLoading()
     const [termsAccepted, setTermsAccepted] = useState(false);
+    const [passwordType, setPasswordType] = useState('password');
+    const [confirmPasswordType, setConfirmPasswordType] = useState('password');
+    const [passwordIcon, setPasswordIcon] = useState(faEye);
+    const [confirmPasswordIcon, setConfirmPasswordIcon] = useState(faEye);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
         confirmPassword: '',
     });
+
+    const togglePasswordVisibility = () => {
+        if(passwordType === 'password') {
+            setPasswordType('text');
+            setPasswordIcon(faEyeSlash);
+        } else {
+            setPasswordType('password');
+            setPasswordIcon(faEye);
+        }
+    };
+
+    const toggleConfirmPasswordVisibility = () => {
+        if(confirmPasswordType === 'password') {
+            setConfirmPasswordType('text');
+            setConfirmPasswordIcon(faEyeSlash);
+        } else {
+            setConfirmPasswordType('password');
+            setConfirmPasswordIcon(faEye);
+        }
+    };
 
     const generatePassword = () => {
         const length = 12;
@@ -100,16 +126,25 @@ export default function Register() {
                                 >
                                     {t('register.password')}
                                 </label>
-                                <input
-                                    onChange={onChange}
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    value={formData.password}
-                                    placeholder="••••••••"
-                                    className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
-                                    required=""
-                                />
+                                <div className="relative">
+                                    <input
+                                        onChange={onChange}
+                                        type={passwordType}
+                                        name="password"
+                                        id="password"
+                                        value={formData.password}
+                                        placeholder="••••••••"
+                                        className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
+                                        required=""
+                                    />
+                                    <button
+                                        type="button"
+                                        className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-800"
+                                        onClick={togglePasswordVisibility}
+                                    >
+                                        <FontAwesomeIcon icon={passwordIcon} />
+                                    </button>
+                                </div>
                             </div>
                             <div>
                                 <label
@@ -118,16 +153,25 @@ export default function Register() {
                                 >
                                     {t('register.confirmPassword')}
                                 </label>
-                                <input
-                                    onChange={onChange}
-                                    type="password"
-                                    name="confirmPassword"
-                                    id="confirm-password"
-                                    value={formData.confirmPassword}
-                                    placeholder="••••••••"
-                                    className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
-                                    required=""
-                                />
+                                <div className="relative">
+                                    <input
+                                        onChange={onChange}
+                                        type={confirmPasswordType}
+                                        name="confirmPassword"
+                                        id="confirm-password"
+                                        value={formData.confirmPassword}
+                                        placeholder="••••••••"
+                                        className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
+                                        required=""
+                                    />
+                                    <button
+                                        type="button"
+                                        className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-800"
+                                        onClick={toggleConfirmPasswordVisibility}
+                                    >
+                                        <FontAwesomeIcon icon={confirmPasswordIcon} />
+                                    </button>
+                                </div>
                             </div>
                             <div className="flex justify-end">
                                 <button
