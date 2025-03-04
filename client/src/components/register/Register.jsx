@@ -1,96 +1,29 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { useLoading } from "../../contexts/LoadingContext";
-import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import Spinner from "../common/Spinner";
 import AuthContext from "../../contexts/AuthContext";
+import { useRegister } from "../../hooks/useRegister";
 
 export default function Register() {
-    const { t } = useTranslation();
-    const { registerSubmitHandler } = useContext(AuthContext)
-    const { isLoading, setIsLoading } = useLoading()
-    const [termsAccepted, setTermsAccepted] = useState(false);
-    const [passwordType, setPasswordType] = useState('password');
-    const [confirmPasswordType, setConfirmPasswordType] = useState('password');
-    const [passwordIcon, setPasswordIcon] = useState(faEye);
-    const [confirmPasswordIcon, setConfirmPasswordIcon] = useState(faEye);
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-        confirmPassword: '',
-    });
-
-    const togglePasswordVisibility = () => {
-        if(passwordType === 'password') {
-            setPasswordType('text');
-            setPasswordIcon(faEyeSlash);
-        } else {
-            setPasswordType('password');
-            setPasswordIcon(faEye);
-        }
-    };
-
-    const toggleConfirmPasswordVisibility = () => {
-        if(confirmPasswordType === 'password') {
-            setConfirmPasswordType('text');
-            setConfirmPasswordIcon(faEyeSlash);
-        } else {
-            setConfirmPasswordType('password');
-            setConfirmPasswordIcon(faEye);
-        }
-    };
-
-    const generatePassword = () => {
-        const length = 12;
-        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
-        let password = "";
-        
-        // Ensure at least one of each character type
-        password += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)]; // Uppercase
-        password += "abcdefghijklmnopqrstuvwxyz"[Math.floor(Math.random() * 26)]; // Lowercase
-        password += "0123456789"[Math.floor(Math.random() * 10)]; // Number
-        password += "!@#$%^&*"[Math.floor(Math.random() * 8)]; // Special char
-        
-        // Fill the rest randomly
-        for (let i = password.length; i < length; i++) {
-            password += charset[Math.floor(Math.random() * charset.length)];
-        }
-
-        // Shuffle the password
-        password = password.split('').sort(() => Math.random() - 0.5).join('');
-        
-        setFormData(prev => ({
-            ...prev,
-            password: password,
-            confirmPassword: password
-        }));
-    };
-
-    const onChange = (e) => {
-        setFormData(formData => ({
-            ...formData,
-            [e.target.name]: e.target.value
-        }));
-    }
-
-    const handleCheckboxChange = (e) => {
-        setTermsAccepted(e.target.checked);
-    }
-
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            setIsLoading(true);
-            await registerSubmitHandler(formData);
-        } catch (error) {
-            console.error('Registration failed:', error);
-        } finally {
-            setIsLoading(false);
-        }
-    }
+    const { registerSubmitHandler } = useContext(AuthContext);
+    const {
+        t,
+        isLoading,
+        termsAccepted,
+        passwordType,
+        confirmPasswordType,
+        passwordIcon,
+        confirmPasswordIcon,
+        formData,
+        togglePasswordVisibility,
+        toggleConfirmPasswordVisibility,
+        generatePassword,
+        onChange,
+        handleCheckboxChange,
+        onSubmit
+    } = useRegister(registerSubmitHandler);
 
     return (
         <section className="bg-login-bg bg-cover bg-center">
@@ -200,7 +133,7 @@ export default function Register() {
                                     >
                                         {t('register.checkBox')}
                                         <a
-                                            href="/terms" // Link to your Terms of Service
+                                            href="/terms"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="font-medium text-green-600 hover:underline dark:text-green-500"
@@ -213,7 +146,7 @@ export default function Register() {
                             <button
                                 type="submit"
                                 className={`w-full text-white ${termsAccepted ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-400 cursor-not-allowed'} focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800`}
-                                disabled={!termsAccepted} // Step 3: Disable button based on checkbox
+                                disabled={!termsAccepted}
                             >
                                 {t('register.registerButton')}
                             </button>
@@ -231,5 +164,4 @@ export default function Register() {
             </div>
         </section>
     );
-
 }
