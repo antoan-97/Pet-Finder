@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLoading } from '../contexts/LoadingContext';
+import { useLoading } from '../../contexts/LoadingContext';
 import { useTranslation } from 'react-i18next';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
