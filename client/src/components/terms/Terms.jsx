@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export default function TermsOfCondition() {
     const [lastUpdated, setLastUpdated] = useState("");
+    const navigate = useNavigate();
+    const location = useLocation();
+    const fromRegister = location.state?.from === '/register';
 
     useEffect(() => {
         const today = new Date();
@@ -12,6 +16,14 @@ export default function TermsOfCondition() {
         });
         setLastUpdated(formattedDate);
     }, []);
+
+    const handleBack = () => {
+        if (fromRegister) {
+            navigate('/register');
+        } else {
+            navigate(-1);
+        }
+    };
 
     return (
         <section className="bg-login-bg bg-cover bg-center min-h-screen py-8 px-4">
@@ -62,10 +74,10 @@ export default function TermsOfCondition() {
 
                 <div className="mt-8 flex justify-center">
                     <button
-                        onClick={() => window.history.back()}
+                        onClick={handleBack}
                         className="bg-green-600 text-white px-6 py-2 rounded-md text-sm hover:bg-green-700 transition-colors focus:ring-4 focus:outline-none focus:ring-green-300"
                     >
-                        Back
+                        Back to Register
                     </button>
                 </div>
             </div>

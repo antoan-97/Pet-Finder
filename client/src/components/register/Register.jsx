@@ -132,14 +132,13 @@ export default function Register() {
                                         className="font-light text-gray-500 dark:text-gray-500"
                                     >
                                         {t('register.checkBox')}
-                                        <a
-                                            href="/terms"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="font-medium text-green-600 hover:underline dark:text-green-500"
+                                        <Link
+                                            to="/terms"
+                                            state={{ from: '/register' }}
+                                            className="font-medium text-green-600 hover:underline dark:text-green-500 ml-1"
                                         >
                                             {t('register.termsLink')}
-                                        </a>
+                                        </Link>
                                     </label>
                                 </div>
                             </div>
