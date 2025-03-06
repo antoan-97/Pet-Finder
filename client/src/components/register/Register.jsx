@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Spinner from "../common/Spinner";
 import AuthContext from "../../contexts/AuthContext";
-import { useRegister } from "../../hooks/useRegister";
+import { useRegister } from "../../hooks/register/useRegister";
 
 export default function Register() {
     const { registerSubmitHandler } = useContext(AuthContext);
