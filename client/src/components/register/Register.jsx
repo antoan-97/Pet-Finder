@@ -17,6 +17,7 @@ export default function Register() {
         passwordIcon,
         confirmPasswordIcon,
         formData,
+        errors,
         togglePasswordVisibility,
         toggleConfirmPasswordVisibility,
         generatePassword,
@@ -47,10 +48,13 @@ export default function Register() {
                                     name="email"
                                     id="email"
                                     value={formData.email}
-                                    className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
+                                    className={`bg-green-50 border ${errors.email ? 'border-red-500' : 'border-green-300'} text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400`}
                                     placeholder="name@example.com"
                                     required=""
                                 />
+                                {errors.email && (
+                                    <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+                                )}
                             </div>
                             <div>
                                 <label
@@ -67,7 +71,7 @@ export default function Register() {
                                         id="password"
                                         value={formData.password}
                                         placeholder="••••••••"
-                                        className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
+                                        className={`bg-green-50 border ${errors.password ? 'border-red-500' : 'border-green-300'} text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400`}
                                         required=""
                                     />
                                     <button
@@ -78,6 +82,9 @@ export default function Register() {
                                         <FontAwesomeIcon icon={passwordIcon} />
                                     </button>
                                 </div>
+                                {errors.password && (
+                                    <p className="mt-1 text-sm text-red-500">{errors.password}</p>
+                                )}
                             </div>
                             <div>
                                 <label
@@ -94,7 +101,7 @@ export default function Register() {
                                         id="confirm-password"
                                         value={formData.confirmPassword}
                                         placeholder="••••••••"
-                                        className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400"
+                                        className={`bg-green-50 border ${errors.confirmPassword ? 'border-red-500' : 'border-green-300'} text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-400`}
                                         required=""
                                     />
                                     <button
@@ -105,6 +112,9 @@ export default function Register() {
                                         <FontAwesomeIcon icon={confirmPasswordIcon} />
                                     </button>
                                 </div>
+                                {errors.confirmPassword && (
+                                    <p className="mt-1 text-sm text-red-500">{errors.confirmPassword}</p>
+                                )}
                             </div>
                             <div className="flex justify-end">
                                 <button
