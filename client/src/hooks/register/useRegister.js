@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import * as Yup from 'yup';
 
-// Validation schema matching server requirements exactly
 const validationSchema = Yup.object().shape({
     email: Yup.string()
         .required('Email is required!')
@@ -36,29 +35,23 @@ export const useRegister = (registerSubmitHandler) => {
 
     const validateField = async (name, value) => {
         try {
-            // Create a temporary object with all form data
             const dataToValidate = {
                 ...formData,
                 [name]: value
             };
 
-            // Validate only the specific field
             await validationSchema.validateAt(name, dataToValidate);
             
-            // For confirmPassword, we need to revalidate when password changes
             if (name === 'password' && dataToValidate.confirmPassword) {
                 await validationSchema.validateAt('confirmPassword', dataToValidate);
             }
             
-            // Clear errors for the validated field(s)
             setErrors(prev => {
                 const newErrors = { ...prev };
                 delete newErrors[name];
-                // If password is valid and matches confirm password, clear confirm password error
                 if (name === 'password' && value === dataToValidate.confirmPassword) {
                     delete newErrors.confirmPassword;
                 }
-                // If confirm password is valid and matches password, clear both errors
                 if (name === 'confirmPassword' && value === dataToValidate.password) {
                     delete newErrors.confirmPassword;
                     delete newErrors.password;
@@ -98,7 +91,6 @@ export const useRegister = (registerSubmitHandler) => {
         const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
         let password = "";
         
-        // Ensure at least one of each character type
         password += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)];
         password += "abcdefghijklmnopqrstuvwxyz"[Math.floor(Math.random() * 26)];
         password += "0123456789"[Math.floor(Math.random() * 10)];
@@ -118,7 +110,6 @@ export const useRegister = (registerSubmitHandler) => {
         
         setFormData(newFormData);
         
-        // Clear any existing password-related errors since we know they match
         setErrors(prev => {
             const newErrors = { ...prev };
             delete newErrors.password;
@@ -130,13 +121,11 @@ export const useRegister = (registerSubmitHandler) => {
     const onChange = (e) => {
         const { name, value } = e.target;
         
-        // Update form data
         setFormData(prev => ({
             ...prev,
             [name]: value
         }));
 
-        // Validate the field with a slight delay to ensure state is updated
         setTimeout(() => validateField(name, value), 0);
     };
 
@@ -148,7 +137,6 @@ export const useRegister = (registerSubmitHandler) => {
         e.preventDefault();
         
         try {
-            // Validate all fields before submission
             await validationSchema.validate(formData, { abortEarly: false });
             setErrors({});
             
@@ -156,15 +144,13 @@ export const useRegister = (registerSubmitHandler) => {
             await registerSubmitHandler(formData);
         } catch (error) {
             if (error instanceof Yup.ValidationError) {
-                // Transform validation errors into an object
                 const validationErrors = {};
                 error.inner.forEach(err => {
                     validationErrors[err.path] = err.message;
                 });
                 setErrors(validationErrors);
-                return; // Don't proceed with submission if validation fails
+                return;
             }
-            // Handle other errors (e.g., API errors)
             console.error('Registration failed:', error);
         } finally {
             setIsLoading(false);
