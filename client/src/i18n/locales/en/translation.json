@@ -246,6 +246,14 @@
         "delete": "Delete",
         "deleteMessage": "Are you sure you want to delete this pet?"
     },
+    "validations": {
+        "email": "Please enter a valid email address!",
+        "confirmPassword": "Password missmatch!",
+        "required": "This field is required!",
+        "min": "This field should be at least {{min}} characters long!",
+        "max": "This field should be at most {{max}} characters long!",
+        "oneOf": "This field should be one of the following: {{list}}!"
+    },
     "pagination": {
         "previous": "Previous",
         "next": "Next"

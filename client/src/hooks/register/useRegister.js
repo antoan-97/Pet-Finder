@@ -2,20 +2,21 @@ import { useState } from 'react';
 import { useLoading } from '../../contexts/LoadingContext';
 import { useTranslation } from 'react-i18next';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { t } from 'i18next';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string()
-        .required('Email is required!')
-        .email('Please enter a valid email address!')
-        .min(10, 'Email should be at least 10 characters long!')
-        .matches(/.+\@.+\..+/, 'Please enter a valid email address!'),
+        .required(t('validations.required'))
+        .email(t('validations.email'))
+        .min(10, t('validations.min', { min: 10 }))
+        .matches(/.+\@.+\..+/, t('validations.email')),
     password: Yup.string()
-        .required('Password is required!')
-        .min(4, 'Password should be at least 4 characters long!'),
+        .required(t('validations.required'))
+        .min(4, t('validations.min', { min: 4 })),
     confirmPassword: Yup.string()
-        .required('Please confirm your password!')
-        .oneOf([Yup.ref('password')], 'Password missmatch!')
+        .required(t('validations.required'))
+        .oneOf([Yup.ref('password')], t('validations.confirmPassword')),
 });
 
 export const useRegister = (registerSubmitHandler) => {
