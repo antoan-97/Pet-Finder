@@ -1,59 +1,19 @@
-import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useLoading } from "../../contexts/LoadingContext";
-import { useTranslation } from "react-i18next";
-import AuthContext from "../../contexts/AuthContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Spinner from "../common/Spinner";
-
+import { useLogin } from "../../hooks/login/useLogin";
 
 export default function Login() {
-    const { t } = useTranslation();
-    const { loginSubmitHandler } = useContext(AuthContext);
-    const { isLoading, setIsLoading } = useLoading()
+    const {
+        t,
+        isLoading,
+        rememberMe,
+        formData,
+        onChange,
+        onRememberMeChange,
+        onSubmit
+    } = useLogin();
 
-    const [rememberMe, setRememberMe] = useState(false);
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-    });
-
-    useEffect(() => {
-        const savedEmail = localStorage.getItem('savedEmail');
-        if (savedEmail) {
-            setFormData({ email: savedEmail });
-            setRememberMe(true);
-        }
-    }, []);
-
-
-    const onChange = (e) => {
-        setFormData(formData => ({
-            ...formData,
-            [e.target.name]: e.target.value
-        }));
-    };
-
-    const onRememberMeChange = (e) => {
-        setRememberMe(e.target.checked); 
-    };
-
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        try {
-            await loginSubmitHandler(formData, rememberMe);
-            
-            if (rememberMe) {
-                localStorage.setItem('savedEmail', formData.email);
-            } else {
-                localStorage.removeItem('savedEmail');
-            }
-        } catch (error) {
-            console.error('Login error:', error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
     return (
         <section className="bg-login-bg bg-cover bg-center">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -64,7 +24,6 @@ export default function Login() {
                         </h1>
                         <form onSubmit={onSubmit} className="space-y-4 md:space-y-6" action="#">
                             <div>
-
                                 <label
                                     htmlFor="email"
                                     className="flex mb-2 text-sm font-medium text-gray-900 dark:text-gray"
@@ -72,7 +31,6 @@ export default function Login() {
                                     {t('login.email')}
                                 </label>
                                 <input
-
                                     onChange={onChange}
                                     type="email"
                                     name="email"
@@ -91,7 +49,6 @@ export default function Login() {
                                     {t('login.password')}
                                 </label>
                                 <input
-
                                     onChange={onChange}
                                     type="password"
                                     name="password"
@@ -122,7 +79,6 @@ export default function Login() {
                                             {t('login.checkBox')}
                                         </label>
                                     </div>
-
                                 </div>
                             </div>
                             <button
@@ -131,18 +87,16 @@ export default function Login() {
                                 className="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800"
                             >
                                 {isLoading ? <Spinner /> : t('login.loginButton')}
-
                             </button>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-500">
                                 {t('login.signUp')}
-                                <Link to='/register'
+                                <Link 
+                                    to='/register'
                                     className="font-medium text-green-600 hover:underline dark:text-green-500"
-
                                 >
                                     {t('login.signUpLink')}
                                 </Link>
                             </p>
-
                         </form>
                     </div>
                 </div>
