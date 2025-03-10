@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock, faLockOpen, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Spinner from "../common/Spinner";
 import { useLogin } from "../../hooks/login/useLogin";
 
@@ -9,9 +10,14 @@ export default function Login() {
         isLoading,
         rememberMe,
         formData,
+        errors,
+        loginError,
+        isLocked,
+        passwordIcon,
         onChange,
         onRememberMeChange,
-        onSubmit
+        onSubmit,
+        togglePasswordVisibility
     } = useLogin();
 
     return (
@@ -22,6 +28,11 @@ export default function Login() {
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-gray">
                             {t('login.title')}
                         </h1>
+                        {errors.server && (
+                            <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                                {errors.server}
+                            </div>
+                        )}
                         <form onSubmit={onSubmit} className="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <label
@@ -36,10 +47,14 @@ export default function Login() {
                                     name="email"
                                     id="email"
                                     value={formData.email}
-                                    className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-100 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-100"
+                                    disabled={isLocked}
+                                    className={`bg-green-50 border ${errors.email ? 'border-red-500' : 'border-green-300'} text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-100 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-100 ${isLocked ? 'opacity-50 cursor-not-allowed' : ''}`}
                                     placeholder="name@example.com"
                                     required=""
                                 />
+                                {errors.email && (
+                                    <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+                                )}
                             </div>
                             <div>
                                 <label
@@ -48,16 +63,29 @@ export default function Login() {
                                 >
                                     {t('login.password')}
                                 </label>
-                                <input
-                                    onChange={onChange}
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    value={formData.password}
-                                    placeholder="••••••••"
-                                    className="bg-green-50 border border-green-300 text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-100"
-                                    required=""
-                                />
+                                <div className="relative">
+                                    <input
+                                        onChange={onChange}
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        value={formData.password}
+                                        disabled={isLocked}
+                                        placeholder="••••••••"
+                                        className={`bg-green-50 border ${errors.password ? 'border-red-500' : 'border-green-300'} text-gray-900 text-sm rounded-lg focus:ring-green-100 focus:border-green-100 block w-full p-2.5 dark:bg-white-50 dark:border-green-400 dark:placeholder-gray-500 dark:text-dark dark:focus:ring-green-100 dark:focus:border-green-100 ${isLocked ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                        required=""
+                                    />
+                                    <button
+                                        type="button"
+                                        className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-800"
+                                        onClick={togglePasswordVisibility}
+                                    >
+                                        <FontAwesomeIcon icon={passwordIcon} />
+                                    </button>
+                                </div>
+                                {errors.password && (
+                                    <p className="mt-1 text-sm text-red-500">{errors.password}</p>
+                                )}
                             </div>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-start">
@@ -67,8 +95,8 @@ export default function Login() {
                                             type="checkbox"
                                             checked={rememberMe}
                                             onChange={onRememberMeChange}
-                                            className="w-4 h-4 border border-green-300 rounded bg-green-50 focus:ring-3 focus:ring-green-300 dark:bg-green-600 dark:border-green-400 dark:focus:ring-green-400 dark:ring-offset-green-800"
-                                            required=""
+                                            disabled={isLocked}
+                                            className={`w-4 h-4 border border-green-300 rounded bg-green-50 focus:ring-3 focus:ring-green-300 dark:bg-green-600 dark:border-green-400 dark:focus:ring-green-400 dark:ring-offset-green-800 ${isLocked ? 'opacity-50 cursor-not-allowed' : ''}`}
                                         />
                                     </div>
                                     <div className="ml-3 text-sm">
@@ -83,8 +111,10 @@ export default function Login() {
                             </div>
                             <button
                                 type="submit"
-                                disabled={isLoading}
-                                className="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800"
+                                disabled={isLoading || isLocked}
+                                className={`w-full text-white ${
+                                    isLocked ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700'
+                                } focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800`}
                             >
                                 {isLoading ? <Spinner /> : t('login.loginButton')}
                             </button>

@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useLoading } from '../../contexts/LoadingContext';
 import { useTranslation } from 'react-i18next';
+import * as Yup from 'yup';
 import AuthContext from '../../contexts/AuthContext';
 
 export const useLogin = () => {
@@ -13,6 +14,15 @@ export const useLogin = () => {
         email: '',
         password: '',
     });
+    const [errors, setErrors] = useState({});
+
+    const validationSchema = Yup.object().shape({
+        email: Yup.string()
+            .required(t('validations.required'))
+            .email(t('validations.email')),
+        password: Yup.string()
+            .required(t('validations.required'))
+    });
 
     useEffect(() => {
         const savedEmail = localStorage.getItem('savedEmail');
@@ -22,19 +32,70 @@ export const useLogin = () => {
         }
     }, []);
 
+    const validateField = async (name, value) => {
+        try {
+            const dataToValidate = {
+                ...formData,
+                [name]: value
+            };
+
+            await validationSchema.validateAt(name, dataToValidate);
+            
+            setErrors(prev => {
+                const newErrors = { ...prev };
+                delete newErrors[name];
+                return newErrors;
+            });
+        } catch (error) {
+            setErrors(prev => ({
+                ...prev,
+                [error.path]: error.message
+            }));
+        }
+    };
+
     const onChange = (e) => {
+        const { name, value } = e.target;
+        
         setFormData(prev => ({
             ...prev,
-            [e.target.name]: e.target.value
+            [name]: value
         }));
+
+        // Clear server error when user starts typing
+        setErrors(prev => {
+            const newErrors = { ...prev };
+            delete newErrors.server;
+            return newErrors;
+        });
+        
+        setTimeout(() => validateField(name, value), 0);
     };
 
     const onRememberMeChange = (e) => {
         setRememberMe(e.target.checked);
     };
 
+    const validateForm = async () => {
+        try {
+            await validationSchema.validate(formData, { abortEarly: false });
+            return true;
+        } catch (error) {
+            const validationErrors = {};
+            error.inner.forEach(err => {
+                validationErrors[err.path] = err.message;
+            });
+            setErrors(validationErrors);
+            return false;
+        }
+    };
+
     const onSubmit = async (e) => {
         e.preventDefault();
+
+        const isValid = await validateForm();
+        if (!isValid) return;
+
         setIsLoading(true);
         
         try {
@@ -47,6 +108,20 @@ export const useLogin = () => {
             }
         } catch (error) {
             console.error('Login error:', error);
+            // Clear password on failed login
+            setFormData(prev => ({
+                ...prev,
+                password: ''
+            }));
+
+            // Get the error message from the response
+            const errorMessage = error.response?.data || 'Invalid email or password';
+            
+            // Set the server error message to both email and password fields
+            setErrors({
+                email: errorMessage,
+                password: errorMessage
+            });
         } finally {
             setIsLoading(false);
         }
@@ -57,6 +132,7 @@ export const useLogin = () => {
         isLoading,
         rememberMe,
         formData,
+        errors,
         onChange,
         onRememberMeChange,
         onSubmit
