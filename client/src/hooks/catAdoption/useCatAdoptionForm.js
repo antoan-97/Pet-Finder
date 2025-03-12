@@ -4,6 +4,7 @@ import { useLoading } from "../../contexts/LoadingContext";
 import { useTranslation } from 'react-i18next';
 import AuthContext from "../../contexts/AuthContext";
 import * as adoptionApi from "../../services/adoptionApi";
+import * as Yup from 'yup';
 
 export default function useCatAdoptionForm() {
     const { t } = useTranslation();
@@ -20,17 +21,86 @@ export default function useCatAdoptionForm() {
         image: null,
         adopted: false
     });
- 
+    const [errors, setErrors] = useState({});
+
+    const validationSchema = Yup.object().shape({
+        name: Yup.string()
+            .required(t('validations.required'))
+            .min(2, t('validations.min', { min: 2 }))
+            .max(30, t('validations.max', { max: 30 })),
+        location: Yup.string()
+            .required(t('validations.required'))
+            .min(2, t('validations.min', { min: 2 }))
+            .max(30, t('validations.max', { max: 30 })),
+        breed: Yup.string()
+            .required(t('validations.required'))
+            .min(2, t('validations.min', { min: 2 }))
+            .max(30, t('validations.max', { max: 30 })),
+        age: Yup.number()
+            .typeError(t('validations.mustBeNumber'))
+            .min(0, t('validations.min', { min: 0 }))
+            .max(30, t('validations.max', { max: 30 })),
+        description: Yup.string()
+            .min(2, t('validations.min', { min: 2 }))
+            .max(30, t('validations.max', { max: 30 })),
+        image: Yup.mixed()
+            .required(t('validations.required'))
+    });
+
+    const validateField = async (name, value) => {
+        try {
+            const dataToValidate = {
+                ...formData,
+                [name]: value
+            };
+
+            await validationSchema.validateAt(name, dataToValidate);
+            
+            setErrors(prev => {
+                const newErrors = { ...prev };
+                delete newErrors[name];
+                return newErrors;
+            });
+        } catch (error) {
+            setErrors(prev => ({
+                ...prev,
+                [error.path]: error.message
+            }));
+        }
+    };
+
     const handleChange = (e) => {
         const { name, value, files } = e.target;
+        const newValue = files ? files[0] : value;
+
         setFormData(prevState => ({
             ...prevState,
-            [name]: files ? files[0] : value
+            [name]: newValue
         }));
+
+        setTimeout(() => validateField(name, newValue), 0);
+    };
+
+    const validateForm = async () => {
+        try {
+            await validationSchema.validate(formData, { abortEarly: false });
+            return true;
+        } catch (error) {
+            const validationErrors = {};
+            error.inner.forEach(err => {
+                validationErrors[err.path] = err.message;
+            });
+            setErrors(validationErrors);
+            return false;
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        const isValid = await validateForm();
+        if (!isValid) return;
+
         setIsLoading(true);
         
         try {
@@ -52,7 +122,10 @@ export default function useCatAdoptionForm() {
             navigate('/cat-adoption');
         } catch (error) {
             console.error('Failed to submit cat for adoption:', error);
-            throw new Error(error.message || 'Failed to submit pet information. Please try again.');
+            setErrors(prev => ({
+                ...prev,
+                submit: error.message || 'Failed to submit pet information. Please try again.'
+            }));
         } finally {
             setIsLoading(false);
         }
@@ -60,6 +133,7 @@ export default function useCatAdoptionForm() {
 
     return {
         formData,
+        errors,
         isLoading,
         handleChange,
         handleSubmit,
