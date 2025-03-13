@@ -4,20 +4,33 @@ const petSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
+        minlength: 2,
+        maxlength: 30,
     },
     location: {
         type: String,
         required: true,
+        minlength: 2,
+        maxlength: 30,
     },
     breed: {
         type: String,
         required: true,
+        minlength: 2,
+        maxlength: 30,
     },
     age: {
         type: Number,
         required: false,
+        min: 0,
+        max: 30,
     },
-    description: String,
+    description: {
+        type: String,
+        required: false,
+        minlength: 2,
+        maxlength: 30,
+    },
     imgUrl: String,
     adopted: {
         type: Boolean,
