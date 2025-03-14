@@ -4,6 +4,7 @@ import useDogAdoptionForm from "../../../hooks/dogAdoption/useDogAdoptionForm";
 export default function DogAdoptionForm() {
     const {
         formData,
+        errors,
         isLoading,
         handleChange,
         handleSubmit,
@@ -17,6 +18,11 @@ export default function DogAdoptionForm() {
                     <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">
                         {t('adoptionForm.titleDog')}
                     </h1>
+                    {errors.submit && (
+                        <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                            {errors.submit}
+                        </div>
+                    )}
                     <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.name')}</label>
@@ -25,9 +31,12 @@ export default function DogAdoptionForm() {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                className={`w-full p-2 text-sm border ${errors.name ? 'border-red-500' : 'border-green-300'} rounded-lg focus:ring-green-500 focus:border-green-500`}
                                 required
                             />
+                            {errors.name && (
+                                <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+                            )}
                         </div>
 
                         <div>
@@ -37,9 +46,12 @@ export default function DogAdoptionForm() {
                                 name="breed"
                                 value={formData.breed}
                                 onChange={handleChange}
-                                className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                className={`w-full p-2 text-sm border ${errors.breed ? 'border-red-500' : 'border-green-300'} rounded-lg focus:ring-green-500 focus:border-green-500`}
                                 required
                             />
+                            {errors.breed && (
+                                <p className="mt-1 text-sm text-red-500">{errors.breed}</p>
+                            )}
                         </div>
 
                         <div>
@@ -49,9 +61,11 @@ export default function DogAdoptionForm() {
                                 name="age"
                                 value={formData.age}
                                 onChange={handleChange}
-                                className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
-                                required
+                                className={`w-full p-2 text-sm border ${errors.age ? 'border-red-500' : 'border-green-300'} rounded-lg focus:ring-green-500 focus:border-green-500`}
                             />
+                            {errors.age && (
+                                <p className="mt-1 text-sm text-red-500">{errors.age}</p>
+                            )}
                         </div>
 
                         <div>
@@ -61,9 +75,12 @@ export default function DogAdoptionForm() {
                                 name="location"
                                 value={formData.location}
                                 onChange={handleChange}
-                                className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                className={`w-full p-2 text-sm border ${errors.location ? 'border-red-500' : 'border-green-300'} rounded-lg focus:ring-green-500 focus:border-green-500`}
                                 required
                             />
+                            {errors.location && (
+                                <p className="mt-1 text-sm text-red-500">{errors.location}</p>
+                            )}
                         </div>
 
                         <div>
@@ -73,8 +90,11 @@ export default function DogAdoptionForm() {
                                 value={formData.description}
                                 onChange={handleChange}
                                 rows="3"
-                                className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                className={`w-full p-2 text-sm border ${errors.description ? 'border-red-500' : 'border-green-300'} rounded-lg focus:ring-green-500 focus:border-green-500`}
                             />
+                            {errors.description && (
+                                <p className="mt-1 text-sm text-red-500">{errors.description}</p>
+                            )}
                         </div>
 
                         <div>
@@ -84,9 +104,12 @@ export default function DogAdoptionForm() {
                                 name="image"
                                 accept="image/*"
                                 onChange={handleChange}
-                                className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                className={`w-full p-2 text-sm border ${errors.image ? 'border-red-500' : 'border-green-300'} rounded-lg focus:ring-green-500 focus:border-green-500`}
                                 required
                             />
+                            {errors.image && (
+                                <p className="mt-1 text-sm text-red-500">{errors.image}</p>
+                            )}
                         </div>
 
                         <button
