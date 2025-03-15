@@ -252,7 +252,8 @@
         "required": "This field is required!",
         "min": "This field should be at least {{min}} characters long!",
         "max": "This field should be at most {{max}} characters long!",
-        "oneOf": "This field should be one of the following: {{list}}!"
+        "oneOf": "This field should be one of the following: {{list}}!",
+        "mustBeNumber": "This field must be a number!"
     },
     "pagination": {
         "previous": "Previous",
