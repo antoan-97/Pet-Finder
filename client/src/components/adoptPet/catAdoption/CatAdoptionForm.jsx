@@ -57,7 +57,7 @@ export default function CatAdoptionForm() {
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.age')}</label>
                             <input
-                                type="number"
+                                type="text"
                                 name="age"
                                 value={formData.age}
                                 onChange={handleChange}
