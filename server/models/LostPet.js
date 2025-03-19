@@ -3,14 +3,20 @@ const mongoose = require('mongoose')
 const petSchema = new mongoose.Schema({
     name: {
         type: String,
+        minLength: 1,
+        maxLength: 20,
         required: true,
     },
     kind: {
         type: String,
+        minLength: 1,
+        maxLength: 20,
         required: true,
     },
     breed: {
         type: String,
+        minLength: 1,
+        maxLength: 20,
         required: true,
     },
     lastSeenDate: {
@@ -20,13 +26,21 @@ const petSchema = new mongoose.Schema({
     },
     lastSeenLocation: {
         type: String,
+        minLength: 1,
+        maxLength: 20,
         required: true,
     },
     phone: {
         type: String,
-        required: true,
+        minLength: 1,
+        maxLength: 20,
+            required: true,
     },
-    description: String,
+    description: {
+        type: String,
+        minLength: 1,
+        maxLength: 60,
+    },
     imgUrl: String,
     ownerId: {
         type: String,
