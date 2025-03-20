@@ -28,8 +28,8 @@ const petSchema = new mongoose.Schema({
     description: {
         type: String,
         required: false,
-        minlength: 2,
-        maxlength: 30,
+        minlength: 3,
+        maxlength: 200,
     },
     imgUrl: String,
     adopted: {

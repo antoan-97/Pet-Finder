@@ -25,7 +25,12 @@ const petSchema = new mongoose.Schema({
         minlength: 3,
         maxlength: 20
     },
-    description: String,
+    description:
+    {
+        type: String,
+        minLength: 3,
+        maxLength: 200
+    },
     imgUrl: String,
     ownerId: {
         type: String,

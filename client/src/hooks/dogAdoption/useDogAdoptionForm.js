@@ -41,8 +41,8 @@ export default function useDogAdoptionForm() {
             .min(0, t('validations.min', { min: 0 }))
             .max(30, t('validations.max', { max: 30 })),
         description: Yup.string()
-            .min(2, t('validations.min', { min: 2 }))
-            .max(30, t('validations.max', { max: 30 })),
+            .min(3, t('validations.min', { min: 2 }))
+            .max(200, t('validations.max', { max: 30 })),
         image: Yup.mixed()
             .required(t('validations.required'))
     });

@@ -31,7 +31,7 @@ export default function useFoundPetForm() {
             .required(t('validation.required'))
             .matches(/^\+?[\d\s-]{8,}$/, t('validation.phoneInvalid')),
         description: yup.string()
-            .min(2, t('validation.min', { min: 2 }))
+            .min(3, t('validation.min', { min: 2 }))
             .max(200, t('validation.max', { max: 200 }))
             .optional(),
         image: yup.mixed()
