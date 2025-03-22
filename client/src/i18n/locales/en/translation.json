@@ -253,7 +253,9 @@
         "min": "This field should be at least {{min}} characters long!",
         "max": "This field should be at most {{max}} characters long!",
         "oneOf": "This field should be one of the following: {{list}}!",
-        "mustBeNumber": "This field must be a number!"
+        "mustBeNumber": "This field must be a number!",
+        "phoneInvalid": "Invalid phone number!",
+        "imageRequired": "Please upload an image!"
     },
     "pagination": {
         "previous": "Previous",
