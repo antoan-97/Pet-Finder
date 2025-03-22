@@ -15,34 +15,34 @@ export default function useLostPetsForm() {
 
     const validationSchema = yup.object().shape({
         name: yup.string()
-            .required(t('validation.required'))
+            .required(t('validations.required'))
             .min(1, t('validation.min', { min: 1 }))
             .max(20, t('validation.max', { max: 20 })),
         kind: yup.string()
-            .required(t('validation.required'))
+            .required(t('validations.required'))
             .min(1, t('validation.min', { min: 1 }))
             .max(20, t('validation.max', { max: 20 })),
         breed: yup.string()
-            .required(t('validation.required'))
-            .min(1, t('validation.min', { min: 1 }))
-            .max(20, t('validation.max', { max: 20 })),
+            .required(t('validations.required'))
+            .min(1, t('validations.min', { min: 1 }))
+            .max(20, t('validations.max', { max: 20 })),
         lastSeenLocation: yup.string()
-            .required(t('validation.required'))
-            .min(1, t('validation.min', { min: 1 }))
-            .max(20, t('validation.max', { max: 20 })),
+            .required(t('validations.required'))
+            .min(1, t('validations.min', { min: 1 }))
+            .max(20, t('validations.max', { max: 20 })),
         lastSeenDate: yup.date()
-            .required(t('validation.required'))
-            .max(new Date(), t('validation.futureDate')),
+            .required(t('validations.required'))
+            .max(new Date(), t('validations.futureDate')),
         phone: yup.string()
-            .required(t('validation.required'))
-            .min(1, t('validation.min', { min: 1 }))
-            .max(20, t('validation.max', { max: 20 }))
-            .matches(/^\+?[\d\s-]{8,}$/, t('validation.phoneInvalid')),
+            .required(t('validations.required'))
+            .min(1, t('validations.min', { min: 1 }))
+            .max(20, t('validations.max', { max: 20 }))
+            .matches(/^\+?[\d\s-]{8,}$/, t('validations.phoneInvalid')),
         description: yup.string()
-            .min(3, t('validation.min', { min: 3 }))
-            .max(200, t('validation.max', { max: 200 })),
+            .min(3, t('validations.min', { min: 3 }))
+            .max(200, t('validations.max', { max: 200 })),
         image: yup.mixed()
-            .required(t('validation.imageRequired'))
+            .required(t('validations.imageRequired'))
     });
 
     const [formData, setFormData] = useState({
