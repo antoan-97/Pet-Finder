@@ -13,7 +13,8 @@ export default function FoundPetForm() {
         isLoading,
         handleChange,
         handleSubmit,
-        t
+        t,
+        errors
     } = useFoundPetForm();
 
     return (
@@ -26,7 +27,7 @@ export default function FoundPetForm() {
                     <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">{t('foundPetsForm.kind')}</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">{t('foundPetsForm.kind')}<span className="text-red-500">*</span></label>
                                 <input
                                     type="text"
                                     name="kind"
@@ -35,9 +36,10 @@ export default function FoundPetForm() {
                                     className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
                                     required
                                 />
+                                {errors.kind && <p className="text-red-500 text-sm">{errors.kind}</p>}
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">{t('foundPetsForm.breed')}</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">{t('foundPetsForm.breed')}<span className="text-red-500">*</span></label>
                                 <input
                                     type="text"
                                     name="breed"
@@ -46,11 +48,12 @@ export default function FoundPetForm() {
                                     className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
                                     required
                                 />
+                                {errors.breed && <p className="text-red-500 text-sm">{errors.breed}</p>}
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('foundPetsForm.location')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('foundPetsForm.location')}<span className="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 name="location"
@@ -59,10 +62,11 @@ export default function FoundPetForm() {
                                 className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
                                 required
                             />
+                            {errors.location && <p className="text-red-500 text-sm">{errors.location}</p>}
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('foundPetsForm.contact')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('foundPetsForm.contact')}<span className="text-red-500">*</span></label>
                             <input
                                 type="tel"
                                 name="phone"
@@ -71,10 +75,11 @@ export default function FoundPetForm() {
                                 className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
                                 required
                             />
+                            {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('foundPetsForm.description')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('foundPetsForm.description')}<span className="text-red-500">*</span></label>
                             <textarea
                                 name="description"
                                 value={formData.description}
@@ -82,10 +87,11 @@ export default function FoundPetForm() {
                                 rows="3"
                                 className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
                             />
+                            {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('foundPetsForm.uploadImage')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('foundPetsForm.uploadImage')}<span className="text-red-500">*</span></label>
                             <input
                                 type="file"
                                 name="image"
@@ -94,6 +100,7 @@ export default function FoundPetForm() {
                                 className="w-full p-2 text-sm border border-green-300 rounded-lg focus:ring-green-500 focus:border-green-500"
                                 required
                             />
+                            {errors.image && <p className="text-red-500 text-sm">{errors.image}</p>}
                         </div>
 
                         <button
