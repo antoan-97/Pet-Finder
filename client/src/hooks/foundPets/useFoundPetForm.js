@@ -16,26 +16,26 @@ export default function useFoundPetForm() {
 
     const validationSchema = yup.object().shape({
         kind: yup.string()
-            .required(t('validation.required'))
-            .min(2, t('validation.min', { min: 2 }))
-            .max(30, t('validation.max', { max: 30 })),
+            .required(t('validations.required'))
+            .min(2, t('validations.min', { min: 2 }))
+            .max(30, t('validations.max', { max: 30 })),
         location: yup.string()
-            .required(t('validation.required'))
-            .min(2, t('validation.min', { min: 2 }))
-            .max(30, t('validation.max', { max: 30 })),
+            .required(t('validations.required'))
+            .min(2, t('validations.min', { min: 2 }))
+            .max(30, t('validations.max', { max: 30 })),
         breed: yup.string()
-            .required(t('validation.required'))
-            .min(2, t('validation.min', { min: 2 }))
-            .max(30, t('validation.max', { max: 30 })),
+            .required(t('validations.required'))
+            .min(2, t('validations.min', { min: 2 }))
+            .max(30, t('validations.max', { max: 30 })),
         phone: yup.string()
-            .required(t('validation.required'))
-            .matches(/^\+?[\d\s-]{8,}$/, t('validation.phoneInvalid')),
+            .required(t('validations.required'))
+            .matches(/^\+?[\d\s-]{8,}$/, t('validations.phoneInvalid')),
         description: yup.string()
-            .min(3, t('validation.min', { min: 2 }))
-            .max(200, t('validation.max', { max: 200 }))
+            .min(3, t('validations.min', { min: 2 }))
+            .max(200, t('validations.max', { max: 200 }))
             .optional(),
         image: yup.mixed()
-            .required(t('validation.imageRequired'))
+            .required(t('validations.imageRequired'))
     });
 
     const [formData, setFormData] = useState({
@@ -77,7 +77,7 @@ export default function useFoundPetForm() {
     const handleChange = useCallback((e) => {
         const { name, value, files } = e.target;
         const newValue = files ? files[0] : value;
-        
+
         setFormData(prevState => ({
             ...prevState,
             [name]: newValue
@@ -88,12 +88,12 @@ export default function useFoundPetForm() {
 
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
-        
+
         const isValid = await validateForm(formData);
         if (!isValid) return;
 
         setIsLoading(true);
-        
+
         try {
             if (!userId) {
                 throw new Error(t('errors.loginRequired'));
