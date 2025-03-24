@@ -25,7 +25,7 @@ export default function DogAdoptionForm() {
                     )}
                     <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.name')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.name')}<span className="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 name="name"
@@ -40,7 +40,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.breed')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.breed')}<span className="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 name="breed"
@@ -69,7 +69,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.location')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.location')}<span className="text-red-500">*</span></label>
                             <input
                                 type="text"
                                 name="location"
@@ -84,7 +84,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.description')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.description')}<span className="text-red-500">*</span></label>
                             <textarea
                                 name="description"
                                 value={formData.description}
@@ -98,7 +98,7 @@ export default function DogAdoptionForm() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.uploadImage')}</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('adoptionForm.uploadImage')}<span className="text-red-500">*</span></label>
                             <input
                                 type="file"
                                 name="image"
