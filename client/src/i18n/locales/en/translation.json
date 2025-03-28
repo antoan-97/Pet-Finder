@@ -175,6 +175,7 @@
         "submitButton": "Submit"
     },
     "updateLostPets": {
+        "name": "Name",
         "title": "Update Lost Pet",
         "kind": "Kind",
         "breed": "Breed",
