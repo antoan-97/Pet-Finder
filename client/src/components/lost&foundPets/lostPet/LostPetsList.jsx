@@ -1,5 +1,6 @@
 import LostPetsCard from "./LostPetsCard";
 import AuthContext from "../../../contexts/AuthContext";
+import Pagination from "../../common/Pagination";
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -10,10 +11,17 @@ export default function LostPetsList() {
   const { t } = useTranslation();
   const { isAuthenticated } = useContext(AuthContext);
   const [pets, setPets] = useState([]);
+  
+  // Add pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6; // Number of items to show per page
 
   useEffect(() => {
     petApi.getAllLost()
-      .then(result => setPets(result))
+      .then(result => {
+        setPets(result);
+        console.log('Total pets:', result.length); // Debug log
+      })
       .catch(err => {
         console.error('Error details:', {
           message: err.message,
@@ -21,8 +29,25 @@ export default function LostPetsList() {
           stack: err.stack
         });
       })
-
   }, [])
+
+  // Calculate pagination values
+  const totalPages = Math.max(1, Math.ceil(pets.length / itemsPerPage));
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentPets = pets.slice(startIndex, endIndex);
+
+  // Debug logs
+  console.log('Total pets:', pets.length);
+  console.log('Items per page:', itemsPerPage);
+  console.log('Total pages:', totalPages);
+  console.log('Current page:', currentPage);
+  console.log('Current pets shown:', currentPets.length);
+
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <section className="bg-custom-gradient min-h-screen pt-24 overflow-y-auto">
@@ -47,14 +72,21 @@ export default function LostPetsList() {
 
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pets.length > 0 ? (
-              pets.map(pet => (
+            {currentPets.length > 0 ? (
+              currentPets.map(pet => (
                 <LostPetsCard key={pet._id} {...pet} />
               ))
             ) : (
               <h3 className='no-articles'>{t('lostPets.noPetsFound')}</h3>
             )}
           </div>
+          
+          {/* Show pagination regardless of pages count for testing */}
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </div>
       </div>
     </section>
