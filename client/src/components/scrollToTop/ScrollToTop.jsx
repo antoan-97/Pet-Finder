@@ -5,18 +5,20 @@ export default function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Force immediate scroll without smooth behavior
-    window.scrollTo(0, 0);
-    
-    // Alternative: if you want to keep smooth scrolling, 
-    // wrap it in a setTimeout to ensure it runs after route change
-    // setTimeout(() => {
-    //   window.scrollTo({
-    //     top: 0,
-    //     left: 0,
-    //     behavior: 'smooth'
-    //   });
-    // }, 0);
+    // Add a small delay to ensure DOM is ready
+    const timeoutId = setTimeout(() => {
+      // Reset scroll position
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant'
+      });
+      // Restore smooth scroll behavior
+      document.documentElement.style.scrollBehavior = 'smooth';
+    }, 0);
+
+    return () => clearTimeout(timeoutId);
   }, [pathname]);
 
   return null;

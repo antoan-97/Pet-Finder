@@ -42,12 +42,11 @@ import CatAdoptionForm from './components/adoptPet/catAdoption/CatAdoptionForm'
 import CatAdoptionDetails from './components/adoptPet/catAdoption/CatAdoptionDetails'
 
 function App() {
-
   return (
     <LoadingProvider>
       <AuthProvider>
-        <Navbar />
         <ScrollToTop />
+        <Navbar />
         <main className="flex-grow">
           <Routes>
             <Route path='/' element={<Home />}></Route>
