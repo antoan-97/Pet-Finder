@@ -88,29 +88,30 @@ export default function useFoundPetForm() {
 
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
-
+    
         const isValid = await validateForm(formData);
         if (!isValid) return;
-
+    
         setIsLoading(true);
-
+    
         try {
             if (!userId) {
                 throw new Error(t('errors.loginRequired'));
             }
-
-            const form = new FormData();
-            Object.entries(formData).forEach(([key, value]) => {
-                if (key === 'image' && value) {
-                    form.append('image', value);
-                } else if (key !== 'image') {
-                    form.append(key, value);
-                }
-            });
-            form.append('ownerId', userId.toString());
-
-            await petApi.addFoundPet(form);
+    
+            const submissionData = { ...formData };
+            submissionData.ownerId = userId;
+    
+            await petApi.addFoundPet(submissionData);
             navigate('/found-pets');
+            setFormData({
+                kind: '',
+                location: '',
+                breed: '',
+                phone: '',
+                description: '',
+                image: null,
+            });
         } catch (error) {
             console.error('Failed to report pet:', error);
             setErrors(prev => ({
