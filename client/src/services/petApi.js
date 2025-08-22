@@ -125,11 +125,13 @@ export const deleteFoundPet = async (id) => {
 };
 
 //Lost Pets
-export const getAllLost = async () => {
+export const getAllLost = async (page = 1, limit = 6) => {
     try {
         const response = await petApi.get('/pets/lost', {
             params: {
-                sortBy: '_createdOn desc'
+                sortBy: '_createdOn desc',
+                page: page,
+                limit: limit
             }
         });
         return response.data;

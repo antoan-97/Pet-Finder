@@ -3,9 +3,12 @@ import { useTranslation } from 'react-i18next';
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     const { t } = useTranslation();
     
+    
     const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
     const handlePageChange = (pageNumber) => {
+        
+        
         // First change the page
         onPageChange(pageNumber);
         

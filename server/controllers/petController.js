@@ -162,8 +162,31 @@ const addLostPet = async (req, res) => {
 
 const getAllLost = async (req, res) => {
     try {
-        const pets = await LostPet.find().sort({ createdAt: -1 });
-        res.status(200).json(pets);
+        // Extract pagination parameters from query
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 6;
+        const skip = (page - 1) * limit;
+
+
+        // Get total count for pagination
+        const totalPets = await LostPet.countDocuments();
+        
+        // Get paginated results
+        const pets = await LostPet.find()
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit);
+
+
+        // Return paginated response with metadata
+        res.status(200).json({
+            pets: pets,
+            total: totalPets,
+            currentPage: page,
+            totalPages: Math.ceil(totalPets / limit),
+            hasNextPage: page * limit < totalPets,
+            hasPrevPage: page > 1
+        });
     } catch (error) {
         console.error('Error in getAllLost:', error);
         res.status(500).json({ error: 'Failed to fetch lost pets', details: error.message });

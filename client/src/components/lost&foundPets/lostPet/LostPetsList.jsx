@@ -11,38 +11,42 @@ export default function LostPetsList() {
   const { t } = useTranslation();
   const { isAuthenticated } = useContext(AuthContext);
   const [pets, setPets] = useState([]);
+  const [totalPets, setTotalPets] = useState(0);
+  const [loading, setLoading] = useState(false);
   
   // Add pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6; // Number of items to show per page
+  const itemsPerPage = 6;
+
+  // Add debug counter to track how many times fetchPets is called
+  const [fetchCount, setFetchCount] = useState(0);
+
+  // Fetch pets for current page
+  const fetchPets = async (page) => {
+    const currentFetchCount = fetchCount + 1;
+    setFetchCount(currentFetchCount);
+    
+
+    
+    setLoading(true);
+    try {
+      const result = await petApi.getAllLost(page, itemsPerPage);
+      setPets(result.pets || result);
+      setTotalPets(result.total || result.length);
+    } catch (err) {
+      console.error('❌ [DEBUG] Error in fetchPets:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    petApi.getAllLost()
-      .then(result => {
-        setPets(result);
-        console.log('Total pets:', result.length); // Debug log
-      })
-      .catch(err => {
-        console.error('Error details:', {
-          message: err.message,
-          response: err.response,
-          stack: err.stack
-        });
-      })
-  }, [])
+    fetchPets(currentPage);
+  }, [currentPage]); // Only depend on currentPage
 
+ 
   // Calculate pagination values
-  const totalPages = Math.max(1, Math.ceil(pets.length / itemsPerPage));
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentPets = pets.slice(startIndex, endIndex);
-
-  // Debug logs
-  console.log('Total pets:', pets.length);
-  console.log('Items per page:', itemsPerPage);
-  console.log('Total pages:', totalPages);
-  console.log('Current page:', currentPage);
-  console.log('Current pets shown:', currentPets.length);
+  const totalPages = Math.max(1, Math.ceil(totalPets / itemsPerPage));
 
   // Handle page change
   const handlePageChange = (pageNumber) => {
@@ -71,22 +75,30 @@ export default function LostPetsList() {
         )}
 
         <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {currentPets.length > 0 ? (
-              currentPets.map(pet => (
-                <LostPetsCard key={pet._id} {...pet} />
-              ))
-            ) : (
-              <h3 className='no-articles'>{t('lostPets.noPetsFound')}</h3>
-            )}
-          </div>
+          {loading ? (
+            <div className="text-center py-8">
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {pets.length > 0 ? (
+                pets.map(pet => (
+                  <LostPetsCard key={pet._id} {...pet} />
+                ))
+              ) : (
+                <h3 className='no-articles'>{t('lostPets.noPetsFound')}</h3>
+              )}
+            </div>
+          )}
           
-          {/* Show pagination regardless of pages count for testing */}
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+          {/* Only show pagination if there are multiple pages */}
+          {totalPages > 1 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          )}
         </div>
       </div>
     </section>
