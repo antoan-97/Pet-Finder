@@ -19,7 +19,6 @@ export const getToken = () => {
 
 export const addFoundPet = async (formData) => {
     const token = getToken();
-
     const form = new FormData();
     form.append('kind', formData.kind);
     form.append('location', formData.location);
@@ -70,11 +69,13 @@ export const addLostPet = async (formData) => {
     }
 };
 
-export const getAllFound = async () => {
+export const getAllFound = async (page = 1, limit = 6) => {
     try {
         const response = await petApi.get('/pets/found', {
             params: {
-                sortBy: '_createdOn desc'
+                sortBy: '_createdOn desc',
+                page: page,
+                limit: limit
             }
         });
         return response.data;

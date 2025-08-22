@@ -69,13 +69,36 @@ const getOneFound = async (req, res) => {
 
 const getAllFound = async (req, res) => {
     try {
-        const pets = await FoundPet.find().sort({ createdAt: -1 });  // Sort by creation date, newest first
-        res.status(200).json(pets);
+        // Extract pagination parameters from query
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 6;
+        const skip = (page - 1) * limit;
+        // Get total count for pagination
+        const totalPets = await FoundPet.countDocuments();
+        
+        // Get paginated results
+        const pets = await FoundPet.find()
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit);
+
+        // Return paginated response with metadata
+        const response = {
+            pets: pets,
+            total: totalPets,
+            currentPage: page,
+            totalPages: Math.ceil(totalPets / limit),
+            hasNextPage: page * limit < totalPets,
+            hasPrevPage: page > 1
+        };
+
+        res.status(200).json(response);
     } catch (error) {
         console.error('Error in getAllFound :', error);
         res.status(500).json({ error: 'Failed to fetch pets', details: error.message });
     }
 };
+
 
 const deleteFoundPet = async (req, res) => {
     try {
